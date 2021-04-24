@@ -34,7 +34,8 @@ extension MainViewController: BottomBarProvider {
     var bottomBarLeftItems: [UIBarButtonItem]? { [] }
 
     var bottomBarCenterText: String? {
-        "Testing"
+        guard !counters.isEmpty else { return nil }
+        return "\(counters.count) items"
     }
 
     var bottomBarRightItems: [UIBarButtonItem]? {

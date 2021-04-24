@@ -13,4 +13,7 @@ public protocol BottomBarProvider where Self: UIViewController {
 
     /// Defines the right items to be shown in the toolbar.
     var bottomBarRightItems: [UIBarButtonItem]? { get }
+
+    /// Passthrough for toolbarItems on a UIViewController.
+    var toolbarItems: [UIBarButtonItem]? { get }
 }
