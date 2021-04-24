@@ -11,7 +11,7 @@ protocol WelcomeViewControllerPresenter {
 }
 
 class WelcomeViewController: UIViewController {
-    private lazy var innerView = WelcomeView()
+    private lazy var innerView = WelcomeView(delegate: self)
     
     private let presenter: WelcomeViewControllerPresenter
     
@@ -33,6 +33,18 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         additionalSafeAreaInsets = Constants.additionalInsets
         innerView.configure(with: presenter.viewModel)
+    }
+}
+
+extension WelcomeViewController: WelcomeViewButtonDelegate {
+    func didPressContinueButton() {
+        routeToMainScreen()
+    }
+
+    private func routeToMainScreen() {
+        let viewController = MainViewController()
+        let navigationController = MainNavigationController(rootViewController: viewController)
+        present(navigationController, animated: true)
     }
 }
 

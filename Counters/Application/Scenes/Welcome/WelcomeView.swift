@@ -6,6 +6,10 @@
 
 import UIKit
 
+protocol WelcomeViewButtonDelegate: class {
+    func didPressContinueButton()
+}
+
 internal final class WelcomeView: UIView {
     // MARK: - View Model
 
@@ -15,6 +19,10 @@ internal final class WelcomeView: UIView {
         let features: [WelcomeFeatureView.ViewModel]
         let buttonTitle: String
     }
+
+    // MARK: - Action delegates
+
+    weak var delegate: WelcomeViewButtonDelegate?
     
     // MARK: - Properties
 
@@ -25,8 +33,9 @@ internal final class WelcomeView: UIView {
 
     // MARK: - Initialization
     
-    init() {
+    init(delegate: WelcomeViewButtonDelegate?) {
         super.init(frame: .zero)
+        self.delegate = delegate
         setup()
     }
     
@@ -169,6 +178,6 @@ private extension WelcomeView {
 
 private extension WelcomeView {
     @objc func didPressContinue() {
-        
+        delegate?.didPressContinueButton()
     }
 }
