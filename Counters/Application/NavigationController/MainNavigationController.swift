@@ -80,7 +80,7 @@ extension MainNavigationController: UINavigationControllerDelegate {
                 flexibleSpaceItem
             ] + rightItems
 
-            (viewController as UIViewController).toolbarItems = items
+            viewController.toolbarItems = items
             setToolbarHidden(items.isEmpty, animated: false)
         }
     }
