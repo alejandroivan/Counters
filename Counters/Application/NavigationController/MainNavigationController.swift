@@ -35,6 +35,11 @@ final class MainNavigationController: UINavigationController {
 
     // MARK: - Styling
 
+    public func updateBars() {
+        guard let viewController = presentedViewController ?? topViewController else { return }
+        setupStyle(on: viewController)
+    }
+
     private func configureNavigationBar() {
         navigationBar.isTranslucent = false
         navigationBar.prefersLargeTitles = true
@@ -48,7 +53,7 @@ extension MainNavigationController: UINavigationControllerDelegate {
     /// Sets up the navigationItem for a presented view controller.
     /// This enforces the implementation of the procotol (and the protocol itself) to
     /// define navigation/toolbar elements rather than the view controller configuring
-    /// everything by itself (risking consistancy).
+    /// everything by itself (risking consistency).
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         setupStyle(on: viewController)
     }

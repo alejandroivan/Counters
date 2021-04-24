@@ -20,6 +20,13 @@
 		DECA258325CC8D4300851431 /* CountersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA258225CC8D4300851431 /* CountersTests.swift */; };
 		DECA258E25CC8D4300851431 /* CountersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA258D25CC8D4300851431 /* CountersUITests.swift */; };
 		DEED7FCE25CC975D00BA0CDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEED7FD025CC975D00BA0CDB /* Localizable.strings */; };
+		FF93D8B02634C522000B5361 /* MainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */; };
+		FF93D8B62634C56A000B5361 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8B52634C56A000B5361 /* Item.swift */; };
+		FF93D8C52634C6AB000B5361 /* ItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8C42634C6AB000B5361 /* ItemCategory.swift */; };
+		FF93D8CA2634C7C3000B5361 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8C92634C7C3000B5361 /* String+Localizable.swift */; };
+		FF93D8CF2634C7E9000B5361 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8CE2634C7E9000B5361 /* Constants.swift */; };
+		FF93D8DB2634CB4F000B5361 /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8DA2634CB4F000B5361 /* MainViewPresenter.swift */; };
+		FF93D8E32634CC06000B5361 /* MainViewDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8E22634CC06000B5361 /* MainViewDisplay.swift */; };
 		FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576F32633AF9300BEE65E /* MainNavigationController.swift */; };
 		FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */; };
 		FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE577042633B13B00BEE65E /* BottomBarProvider.swift */; };
@@ -67,6 +74,13 @@
 		DECA258D25CC8D4300851431 /* CountersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersUITests.swift; sourceTree = "<group>"; };
 		DECA258F25CC8D4300851431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEED7FCF25CC975D00BA0CDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
+		FF93D8B52634C56A000B5361 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		FF93D8C42634C6AB000B5361 /* ItemCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCategory.swift; sourceTree = "<group>"; };
+		FF93D8C92634C7C3000B5361 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
+		FF93D8CE2634C7E9000B5361 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FF93D8DA2634CB4F000B5361 /* MainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenter.swift; sourceTree = "<group>"; };
+		FF93D8E22634CC06000B5361 /* MainViewDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewDisplay.swift; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
 		FFE577042633B13B00BEE65E /* BottomBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarProvider.swift; sourceTree = "<group>"; };
@@ -112,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				FFE577202633B8B600BEE65E /* Namespace.swift */,
+				FF93D8C92634C7C3000B5361 /* String+Localizable.swift */,
 				350AF6EC25E0365A0000F698 /* UIImage+Badge.swift */,
 				FFE5771A2633B62300BEE65E /* UIColor+Namespace.swift */,
 			);
@@ -166,6 +181,7 @@
 		DECA256A25CC8D4200851431 /* Counters */ = {
 			isa = PBXGroup;
 			children = (
+				FF93D8CE2634C7E9000B5361 /* Constants.swift */,
 				DE3EBACA25E048C200DA1E0D /* UIComponents */,
 				DECA25AA25CC8FD600851431 /* Application */,
 				DECA25AC25CC900C00851431 /* Config */,
@@ -250,6 +266,24 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		FF93D8B42634C55F000B5361 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FF93D8B52634C56A000B5361 /* Item.swift */,
+				FF93D8C42634C6AB000B5361 /* ItemCategory.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		FF93D8D92634CB42000B5361 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FF93D8DA2634CB4F000B5361 /* MainViewPresenter.swift */,
+				FF93D8E22634CC06000B5361 /* MainViewDisplay.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		FFE576DD2633ADF100BEE65E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,7 +314,10 @@
 		FFE577142633B27E00BEE65E /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FF93D8D92634CB42000B5361 /* Protocols */,
+				FF93D8B42634C55F000B5361 /* Data */,
 				FFE577152633B28A00BEE65E /* MainViewController.swift */,
+				FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -417,16 +454,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */,
+				FF93D8CF2634C7E9000B5361 /* Constants.swift in Sources */,
+				FF93D8DB2634CB4F000B5361 /* MainViewPresenter.swift in Sources */,
 				FFE577212633B8B600BEE65E /* Namespace.swift in Sources */,
+				FF93D8B02634C522000B5361 /* MainViewControllerPresenter.swift in Sources */,
 				35868D2825E03F090028AF1D /* WelcomeViewPresenter.swift in Sources */,
+				FF93D8B62634C56A000B5361 /* Item.swift in Sources */,
+				FF93D8CA2634C7C3000B5361 /* String+Localizable.swift in Sources */,
 				FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */,
 				FFE577162633B28A00BEE65E /* MainViewController.swift in Sources */,
 				350AF6ED25E0365A0000F698 /* UIImage+Badge.swift in Sources */,
+				FF93D8C52634C6AB000B5361 /* ItemCategory.swift in Sources */,
 				FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */,
 				DECA257025CC8D4200851431 /* WelcomeViewController.swift in Sources */,
 				DECA256C25CC8D4200851431 /* AppDelegate.swift in Sources */,
 				DE3EBACC25E048CE00DA1E0D /* Button.swift in Sources */,
 				35EAFB7925CC9E3B00DCFE10 /* Networking.m in Sources */,
+				FF93D8E32634CC06000B5361 /* MainViewDisplay.swift in Sources */,
 				FFE5771B2633B62300BEE65E /* UIColor+Namespace.swift in Sources */,
 				350AF6D925E02D5E0000F698 /* WelcomeView.swift in Sources */,
 				350AF6E425E035840000F698 /* WelcomeFeatureView.swift in Sources */,

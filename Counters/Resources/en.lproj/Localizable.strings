@@ -20,3 +20,10 @@
 "WELCOME_COUNT_FEATURE_DESCRIPTION" = "Possibilities are literally endless.";
 
 "WELCOME_PRIMARY_ACTION_TITLE" = "Continue";
+
+// MARK: - Items
+
+"CATEGORY_DRINK" = "Drink";
+"CATEGORY_FRINK_PLURALIZED" = "Drinks";
+"CATEGORY_FOOD" = "Food";
+"CATEGORY_MISC" = "Misc";

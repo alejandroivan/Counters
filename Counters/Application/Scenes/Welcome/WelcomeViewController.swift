@@ -42,7 +42,9 @@ extension WelcomeViewController: WelcomeViewButtonDelegate {
     }
 
     private func routeToMainScreen() {
-        let viewController = MainViewController()
+        let viewController = MainViewController(
+            presenter: MainViewControllerPresenter()
+        )
         let navigationController = MainNavigationController(rootViewController: viewController)
         present(navigationController, animated: true)
     }
