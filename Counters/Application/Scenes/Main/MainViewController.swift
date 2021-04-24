@@ -12,7 +12,10 @@ final class MainViewController: UIViewController {
 }
 
 extension MainViewController: TopBarProvider {
-    var backButtonText: String? {
+
+    var topBarTitle: String? { "Counters" }
+
+    var topBarBackButtonText: String? {
         nil
     }
 

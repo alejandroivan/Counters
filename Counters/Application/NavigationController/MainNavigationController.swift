@@ -28,6 +28,8 @@ final class MainNavigationController: UINavigationController {
 
     private func commonInit() {
         delegate = self
+        modalPresentationStyle = .fullScreen
+        view.backgroundColor = UIColor.counters.background
         configureNavigationBar()
     }
 
@@ -35,12 +37,20 @@ final class MainNavigationController: UINavigationController {
 
     private func configureNavigationBar() {
         navigationBar.isTranslucent = false
-        navigationBar.setBackgroundImage(nil, for: .default)
+        navigationBar.prefersLargeTitles = true
+        navigationBar.barTintColor = UIColor.counters.background
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
 }
 
 extension MainNavigationController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        guard let viewController = viewController as? TopBarProvider else { return }
+        if let topBarProvider = viewController as? TopBarProvider {
+            let navigationItem = viewController.navigationItem
+            navigationItem.backButtonTitle = topBarProvider.topBarBackButtonText
+            navigationItem.leftBarButtonItems = topBarProvider.topBarLeftItems
+            navigationItem.rightBarButtonItems = topBarProvider.topBarRightItems
+            navigationItem.title = topBarProvider.topBarTitle
+        }
     }
 }
