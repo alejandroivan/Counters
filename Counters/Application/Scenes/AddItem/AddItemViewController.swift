@@ -4,6 +4,14 @@ final class AddItemViewController: UIViewController {
 
     private let presenter: AddItemPresenter
 
+    // MARK: - Styling
+
+    private struct Constants {
+        struct SaveItem {
+            static let font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        }
+    }
+
     // MARK: - Initialization
 
     init(presenter: AddItemPresenter) {
@@ -60,7 +68,7 @@ extension AddItemViewController: TopBarProvider {
     var topBarRightItems: [UIBarButtonItem]? {
         let saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveItem))
         let fontAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 17, weight: .bold)
+            .font: Constants.SaveItem.font
         ]
         
         saveItem.setTitleTextAttributes(fontAttributes, for: .normal)
