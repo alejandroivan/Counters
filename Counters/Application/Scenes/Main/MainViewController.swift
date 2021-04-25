@@ -82,6 +82,7 @@ extension MainViewController: MainViewDisplay {
 
     // MARK: - Routing
 
+    // TODO: Delegate this to a router/coordinator object (later).
     func routeToAddItem() {
         let presenter = AddItemViewControllerPresenter()
         let viewController = AddItemViewController(presenter: presenter)
