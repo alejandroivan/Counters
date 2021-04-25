@@ -53,6 +53,7 @@ final class MainNavigationController: UINavigationController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = Constants.barColor
 
+        navigationBar.isTranslucent = false
         navigationBar.prefersLargeTitles = true
         navigationBar.tintColor = Constants.itemColor
         navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -66,6 +67,7 @@ final class MainNavigationController: UINavigationController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = Constants.barColor
 
+        toolbar.isTranslucent = false
         toolbar.standardAppearance = appearance
         toolbar.tintColor = Constants.itemColor
     }
