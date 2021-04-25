@@ -1,17 +1,19 @@
 import UIKit
 
-final class MainViewControllerPresenter: MainViewPresenter {
-    var items: Items = [
-        Item(category: .drink, title: "Piscola", count: 1),
-        Item(category: .food, title: "Pizza", count: 2),
-        Item(category: .misc, title: "Barcode Scanner", count: 1)
-    ]
+final class MainViewControllerPresenter: MainPresenter {
+    var items: Items = []
 
     weak var viewController: MainViewDisplay?
+    private(set) var dataSource: MainTableViewDataSource
+
+    init(dataSource: MainTableViewDataSource) {
+        self.dataSource = dataSource
+        self.dataSource.presenter = self
+    }
 
     func viewDidLoad() {
         // We should present an activity indicator here and fetch data.
-        viewController?.presentItems(items)
+        viewController?.displayItems()
     }
 }
 
@@ -26,13 +28,6 @@ extension MainViewControllerPresenter {
     // MARK: - Add item button
 
     func addItem() {
-        let newItem = Item(
-            category: .drink,
-            title: "New item",
-            count: 10
-        )
-
-        items.append(newItem)
-        viewController?.presentItems(items)
+        viewController?.routeToAddItem()
     }
 }

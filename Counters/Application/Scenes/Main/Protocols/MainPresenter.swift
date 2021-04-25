@@ -1,10 +1,11 @@
 import Foundation
 
-protocol MainViewPresenter: class {
+protocol MainPresenter: class {
 
     var viewController: MainViewDisplay? { get set }
-    var items: Items { get }
+    var dataSource: MainTableViewDataSource { get }
 
+    var items: Items { get }
 
     /// Must be called at the end of viewDidLoad() in the view controller.
     /// Basically starts whatever the presenter needs to do at initialization,

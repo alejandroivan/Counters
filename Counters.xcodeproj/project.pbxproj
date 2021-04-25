@@ -25,8 +25,13 @@
 		FF93D8C52634C6AB000B5361 /* ItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8C42634C6AB000B5361 /* ItemCategory.swift */; };
 		FF93D8CA2634C7C3000B5361 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8C92634C7C3000B5361 /* String+Localizable.swift */; };
 		FF93D8CF2634C7E9000B5361 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8CE2634C7E9000B5361 /* Constants.swift */; };
-		FF93D8DB2634CB4F000B5361 /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8DA2634CB4F000B5361 /* MainViewPresenter.swift */; };
+		FF93D8DB2634CB4F000B5361 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8DA2634CB4F000B5361 /* MainPresenter.swift */; };
 		FF93D8E32634CC06000B5361 /* MainViewDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8E22634CC06000B5361 /* MainViewDisplay.swift */; };
+		FF93D8E92634DF14000B5361 /* MainTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8E82634DF14000B5361 /* MainTableViewDataSource.swift */; };
+		FF93D8F22634E4BE000B5361 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8F12634E4BD000B5361 /* AddItemViewController.swift */; };
+		FF93D8F82634E544000B5361 /* AddItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8F72634E544000B5361 /* AddItemPresenter.swift */; };
+		FF93D9002634E578000B5361 /* AddItemViewDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8FF2634E578000B5361 /* AddItemViewDisplay.swift */; };
+		FF93D9082634E5E9000B5361 /* AddItemViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D9072634E5E9000B5361 /* AddItemViewControllerPresenter.swift */; };
 		FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576F32633AF9300BEE65E /* MainNavigationController.swift */; };
 		FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */; };
 		FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE577042633B13B00BEE65E /* BottomBarProvider.swift */; };
@@ -79,8 +84,13 @@
 		FF93D8C42634C6AB000B5361 /* ItemCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCategory.swift; sourceTree = "<group>"; };
 		FF93D8C92634C7C3000B5361 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		FF93D8CE2634C7E9000B5361 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		FF93D8DA2634CB4F000B5361 /* MainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenter.swift; sourceTree = "<group>"; };
+		FF93D8DA2634CB4F000B5361 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		FF93D8E22634CC06000B5361 /* MainViewDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewDisplay.swift; sourceTree = "<group>"; };
+		FF93D8E82634DF14000B5361 /* MainTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDataSource.swift; sourceTree = "<group>"; };
+		FF93D8F12634E4BD000B5361 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		FF93D8F72634E544000B5361 /* AddItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemPresenter.swift; sourceTree = "<group>"; };
+		FF93D8FF2634E578000B5361 /* AddItemViewDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewDisplay.swift; sourceTree = "<group>"; };
+		FF93D9072634E5E9000B5361 /* AddItemViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewControllerPresenter.swift; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
 		FFE577042633B13B00BEE65E /* BottomBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarProvider.swift; sourceTree = "<group>"; };
@@ -278,8 +288,35 @@
 		FF93D8D92634CB42000B5361 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				FF93D8DA2634CB4F000B5361 /* MainViewPresenter.swift */,
+				FF93D8DA2634CB4F000B5361 /* MainPresenter.swift */,
 				FF93D8E22634CC06000B5361 /* MainViewDisplay.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		FF93D8E72634DEFA000B5361 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				FF93D8E82634DF14000B5361 /* MainTableViewDataSource.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		FF93D8F02634E4AF000B5361 /* AddItem */ = {
+			isa = PBXGroup;
+			children = (
+				FF93D8F62634E53E000B5361 /* Protocols */,
+				FF93D8F12634E4BD000B5361 /* AddItemViewController.swift */,
+				FF93D9072634E5E9000B5361 /* AddItemViewControllerPresenter.swift */,
+			);
+			path = AddItem;
+			sourceTree = "<group>";
+		};
+		FF93D8F62634E53E000B5361 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FF93D8F72634E544000B5361 /* AddItemPresenter.swift */,
+				FF93D8FF2634E578000B5361 /* AddItemViewDisplay.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -289,6 +326,7 @@
 			children = (
 				DECA25B225CC910100851431 /* Welcome */,
 				FFE577142633B27E00BEE65E /* Main */,
+				FF93D8F02634E4AF000B5361 /* AddItem */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -314,6 +352,7 @@
 		FFE577142633B27E00BEE65E /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FF93D8E72634DEFA000B5361 /* TableView */,
 				FF93D8D92634CB42000B5361 /* Protocols */,
 				FF93D8B42634C55F000B5361 /* Data */,
 				FFE577152633B28A00BEE65E /* MainViewController.swift */,
@@ -454,10 +493,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */,
+				FF93D8F82634E544000B5361 /* AddItemPresenter.swift in Sources */,
 				FF93D8CF2634C7E9000B5361 /* Constants.swift in Sources */,
-				FF93D8DB2634CB4F000B5361 /* MainViewPresenter.swift in Sources */,
+				FF93D9002634E578000B5361 /* AddItemViewDisplay.swift in Sources */,
+				FF93D8DB2634CB4F000B5361 /* MainPresenter.swift in Sources */,
 				FFE577212633B8B600BEE65E /* Namespace.swift in Sources */,
 				FF93D8B02634C522000B5361 /* MainViewControllerPresenter.swift in Sources */,
+				FF93D8F22634E4BE000B5361 /* AddItemViewController.swift in Sources */,
 				35868D2825E03F090028AF1D /* WelcomeViewPresenter.swift in Sources */,
 				FF93D8B62634C56A000B5361 /* Item.swift in Sources */,
 				FF93D8CA2634C7C3000B5361 /* String+Localizable.swift in Sources */,
@@ -466,6 +508,8 @@
 				350AF6ED25E0365A0000F698 /* UIImage+Badge.swift in Sources */,
 				FF93D8C52634C6AB000B5361 /* ItemCategory.swift in Sources */,
 				FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */,
+				FF93D9082634E5E9000B5361 /* AddItemViewControllerPresenter.swift in Sources */,
+				FF93D8E92634DF14000B5361 /* MainTableViewDataSource.swift in Sources */,
 				DECA257025CC8D4200851431 /* WelcomeViewController.swift in Sources */,
 				DECA256C25CC8D4200851431 /* AppDelegate.swift in Sources */,
 				DE3EBACC25E048CE00DA1E0D /* Button.swift in Sources */,

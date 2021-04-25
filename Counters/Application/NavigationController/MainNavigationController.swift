@@ -65,6 +65,9 @@ extension MainNavigationController: UINavigationControllerDelegate {
             navigationItem.leftBarButtonItems = viewController.topBarLeftItems
             navigationItem.rightBarButtonItems = viewController.topBarRightItems
             navigationItem.title = viewController.topBarTitle
+
+            let navigationBar = viewController.navigationController?.navigationBar
+            navigationBar?.prefersLargeTitles = viewController.topBarPrefersLargeTitles
         }
 
         if let viewController = viewController as? BottomBarProvider {

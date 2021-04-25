@@ -2,8 +2,8 @@ import UIKit
 
 final class MainViewController: UIViewController {
 
-    var items: Items = []
-    private let presenter: MainViewPresenter
+    var items: Items { presenter.items }
+    private let presenter: MainPresenter
 
     // MARK: - Views
 
@@ -13,7 +13,7 @@ final class MainViewController: UIViewController {
 
     // MARK: - Initialization
 
-    init(presenter: MainViewPresenter) {
+    init(presenter: MainPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
         self.presenter.viewController = self
@@ -23,12 +23,33 @@ final class MainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented.")
     }
 
-    // MARK: - View controller lifecycle
+    // MARK: - View controller lifecycle & View setup
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.counters.background
+        navigationItem.largeTitleDisplayMode = .always
+        configureView()
         presenter.viewDidLoad()
+    }
+
+    private func configureView() {
+        view.backgroundColor = UIColor.counters.background
+        configureTableView()
+    }
+
+    private func configureTableView() {
+        view.addSubview(tableView)
+        tableView.backgroundColor = view.backgroundColor
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.dataSource = presenter.dataSource
+
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
 
     // MARK: - Buttons
@@ -51,10 +72,21 @@ final class MainViewController: UIViewController {
 // MARK: - MainViewDisplay protocol
 
 extension MainViewController: MainViewDisplay {
-    func presentItems(_ items: Items) {
-        self.items = items
-        tableView.reloadData()
+
+    // MARK: - Data
+
+    func displayItems() {
         mainNavigationController?.updateBars()
+        tableView.reloadData()
+    }
+
+    // MARK: - Routing
+
+    func routeToAddItem() {
+        let presenter = AddItemViewControllerPresenter()
+        let viewController = AddItemViewController(presenter: presenter)
+        let navigationController = MainNavigationController(rootViewController: viewController)
+        present(navigationController, animated: true)
     }
 }
 

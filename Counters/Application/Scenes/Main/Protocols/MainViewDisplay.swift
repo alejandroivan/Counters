@@ -1,5 +1,9 @@
 import Foundation
 
 protocol MainViewDisplay: class {
-    func presentItems(_ items: Items)
+    // MARK: - Data
+    func displayItems()
+
+    // MARK: - Routing
+    func routeToAddItem()
 }

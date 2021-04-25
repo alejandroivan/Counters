@@ -15,4 +15,12 @@ public protocol TopBarProvider where Self: UIViewController {
 
     /// Defines the right bar button items to be shown when this view controller is presented.
     var topBarRightItems: [UIBarButtonItem]? { get }
+
+    /// Defines either the top bar should use large titles or not.
+    /// Defaults to true.
+    var topBarPrefersLargeTitles: Bool { get }
+}
+
+extension TopBarProvider {
+    var topBarPrefersLargeTitles: Bool { true }
 }

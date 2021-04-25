@@ -27,3 +27,7 @@
 "CATEGORY_FRINK_PLURALIZED" = "Drinks";
 "CATEGORY_FOOD" = "Food";
 "CATEGORY_MISC" = "Misc";
+
+// MARK: - New Item
+
+"CREATE_A_COUNTER" = "Create a counter";
