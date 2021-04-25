@@ -24,3 +24,13 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
         viewController?.dismiss(animated: true, completion: nil)
     }
 }
+
+extension AddItemViewControllerPresenter: AddItemViewDelegate {
+    func progressIndicatorTextField(_ textField: ProgressIndicatorTextField, isAnimating: Bool) {
+        print("\(textField) animating: \(isAnimating)")
+    }
+
+    func didPressExamples() {
+        print("EXAMPLES!")
+    }
+}

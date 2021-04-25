@@ -20,6 +20,7 @@
 		DECA258325CC8D4300851431 /* CountersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA258225CC8D4300851431 /* CountersTests.swift */; };
 		DECA258E25CC8D4300851431 /* CountersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA258D25CC8D4300851431 /* CountersUITests.swift */; };
 		DEED7FCE25CC975D00BA0CDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEED7FD025CC975D00BA0CDB /* Localizable.strings */; };
+		FF164DCC2636289100EDD69E /* AddItemViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */; };
 		FF93D8B02634C522000B5361 /* MainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */; };
 		FF93D8B62634C56A000B5361 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8B52634C56A000B5361 /* Item.swift */; };
 		FF93D8C52634C6AB000B5361 /* ItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8C42634C6AB000B5361 /* ItemCategory.swift */; };
@@ -81,6 +82,7 @@
 		DECA258D25CC8D4300851431 /* CountersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersUITests.swift; sourceTree = "<group>"; };
 		DECA258F25CC8D4300851431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEED7FCF25CC975D00BA0CDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewDelegate.swift; sourceTree = "<group>"; };
 		FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
 		FF93D8B52634C56A000B5361 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FF93D8C42634C6AB000B5361 /* ItemCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCategory.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 			children = (
 				FF93D8F72634E544000B5361 /* AddItemPresenter.swift */,
 				FF93D8FF2634E578000B5361 /* AddItemViewDisplay.swift */,
+				FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 			files = (
 				FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */,
 				FF93D8F82634E544000B5361 /* AddItemPresenter.swift in Sources */,
+				FF164DCC2636289100EDD69E /* AddItemViewDelegate.swift in Sources */,
 				FF93D8CF2634C7E9000B5361 /* GlobalConstants.swift in Sources */,
 				FF93D9002634E578000B5361 /* AddItemViewDisplay.swift in Sources */,
 				FF93D8DB2634CB4F000B5361 /* MainPresenter.swift in Sources */,

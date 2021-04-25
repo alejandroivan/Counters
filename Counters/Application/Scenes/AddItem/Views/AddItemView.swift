@@ -56,6 +56,8 @@ final class AddItemView: UIView {
         }
     }
 
+    weak var delegate: AddItemViewDelegate?
+
     // MARK: - Subviews
 
     private lazy var stackView: UIStackView = {
@@ -77,15 +79,17 @@ final class AddItemView: UIView {
         return textField
     }()
 
-    private let subtitleLabelContainer = UIView()
+    private let subtitleContainer = UIView()
 
-    private lazy var subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.Subtitle.font
-        label.textColor = Constants.Subtitle.textColor
-        label.attributedText = viewData?.subtitle
-        return label
+    private lazy var subtitleButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = Constants.Subtitle.font
+        button.titleLabel?.textColor = Constants.Subtitle.textColor
+        button.contentHorizontalAlignment = .left
+        button.setAttributedTitle(viewData?.subtitle, for: .normal)
+        button.addTarget(self, action: #selector(didPressExamples), for: .touchUpInside)
+        return button
     }()
 
     // MARK: - Initialization
@@ -94,9 +98,10 @@ final class AddItemView: UIView {
     /// We'll call this "view data", since "view models" usually have business logic involved.
     /// This "view data" should be dumb.
     /// - Parameter viewData: The data that's being passed by the view controller for drawing the view.
-    init(viewData: ViewData) {
+    init(viewData: ViewData, delegate: AddItemViewDelegate? = nil) {
         super.init(frame: .zero)
         self.viewData = viewData
+        self.delegate = delegate
         commonInit()
     }
 
@@ -113,20 +118,20 @@ final class AddItemView: UIView {
         // allow to translate the autoresizing mask automatically.
 
         backgroundColor = Constants.backgroundColor
-        configureSubtitleLabel()
+        configureSubtitle()
         configureStackView()
     }
 
-    private func configureSubtitleLabel() {
-        subtitleLabelContainer.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabelContainer.addSubview(subtitleLabel)
+    private func configureSubtitle() {
+        subtitleContainer.translatesAutoresizingMaskIntoConstraints = false
+        subtitleContainer.addSubview(subtitleButton)
 
         let insets = Constants.Subtitle.insets
         NSLayoutConstraint.activate([
-            subtitleLabel.topAnchor.constraint(equalTo: subtitleLabelContainer.topAnchor, constant: insets.top),
-            subtitleLabel.bottomAnchor.constraint(equalTo: subtitleLabelContainer.bottomAnchor, constant: -insets.bottom),
-            subtitleLabel.leadingAnchor.constraint(equalTo: subtitleLabelContainer.leadingAnchor, constant: insets.left),
-            subtitleLabel.trailingAnchor.constraint(equalTo: subtitleLabelContainer.trailingAnchor, constant: -insets.right)
+            subtitleButton.topAnchor.constraint(equalTo: subtitleContainer.topAnchor, constant: insets.top),
+            subtitleButton.bottomAnchor.constraint(equalTo: subtitleContainer.bottomAnchor, constant: -insets.bottom),
+            subtitleButton.leadingAnchor.constraint(equalTo: subtitleContainer.leadingAnchor, constant: insets.left),
+            subtitleButton.trailingAnchor.constraint(equalTo: subtitleContainer.trailingAnchor, constant: -insets.right)
         ])
     }
 
@@ -152,7 +157,7 @@ final class AddItemView: UIView {
     private var arrangedSubviews: [UIView] {
         [
             textField,
-            subtitleLabelContainer
+            subtitleContainer
         ]
     }
 
@@ -163,7 +168,7 @@ final class AddItemView: UIView {
             isAnimating: false
         )
         textField.viewData = textFieldViewData
-        subtitleLabel.attributedText = viewData?.subtitle
+        subtitleButton.setAttributedTitle(viewData?.subtitle, for: .normal)
 
         if viewData?.isAnimating == true {
             startAnimating()
@@ -172,14 +177,21 @@ final class AddItemView: UIView {
         }
     }
 
+    @objc
+    func didPressExamples() {
+        delegate?.didPressExamples()
+    }
+
     // MARK: - Public interface
 
     public func startAnimating() {
         textField.startAnimating()
+        delegate?.progressIndicatorTextField(textField, isAnimating: true)
     }
 
     public func stopAnimating() {
         textField.stopAnimating()
+        delegate?.progressIndicatorTextField(textField, isAnimating: false)
     }
 
     public var isAnimating: Bool { textField.isAnimating }

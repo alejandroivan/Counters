@@ -10,7 +10,7 @@ final class AddItemViewController: UIViewController {
             subtitle: Self.placeholderAttributedText,
             isAnimating: true
         )
-        let addItemView = AddItemView(viewData: viewData)
+        let addItemView = AddItemView(viewData: viewData, delegate: presenter as? AddItemViewDelegate)
         return addItemView
     }()
 
@@ -22,7 +22,7 @@ final class AddItemViewController: UIViewController {
         let nsText = text as NSString
         let nsRange = nsText.range(of: linkText)
         let attributes: [NSAttributedString.Key: Any] = [
-            .underlineStyle: NSUnderlineStyle.single
+            .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
 
         attributedText.addAttributes(attributes, range: nsRange)
