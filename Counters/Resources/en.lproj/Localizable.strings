@@ -34,3 +34,4 @@
 "ADD_ITEM_PLACEHOLDER" = "Enter the name of the new counter";
 "ADD_ITEM_SUBTITLE" = "Give it a name. Creative block? See examples.";
 "ADD_ITEM_SUBTITLE_UNDERLINED" = "examples";
+"ADD_ITEM_EXAMPLES_HEADER" = "Select an example to add it to your counters.";

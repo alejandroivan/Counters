@@ -7,4 +7,6 @@ protocol AddItemViewDisplay: class {
     func dismiss(animated flag: Bool, completion: (() -> Void)?)
 
     var isSaving: Bool { get set }
+
+    func routeToExamples()
 }

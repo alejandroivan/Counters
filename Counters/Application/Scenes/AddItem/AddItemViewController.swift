@@ -88,6 +88,11 @@ extension AddItemViewController: AddItemViewDisplay {
 
         get { addItemView.isAnimating }
     }
+
+    func routeToExamples() {
+        let viewController = AddItemExamplesViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 // MARK: Top/Bottom Bars
@@ -98,7 +103,7 @@ extension AddItemViewController: TopBarProvider {
     }
 
     var topBarBackButtonText: String? {
-        nil
+        "Create"
     }
 
     var topBarLeftItems: [UIBarButtonItem]? {

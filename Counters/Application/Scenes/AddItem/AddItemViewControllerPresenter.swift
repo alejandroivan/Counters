@@ -31,6 +31,6 @@ extension AddItemViewControllerPresenter: AddItemViewDelegate {
     }
 
     func didPressExamples() {
-        print("EXAMPLES!")
+        viewController?.routeToExamples()
     }
 }

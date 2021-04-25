@@ -21,6 +21,10 @@
 		DECA258E25CC8D4300851431 /* CountersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA258D25CC8D4300851431 /* CountersUITests.swift */; };
 		DEED7FCE25CC975D00BA0CDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEED7FD025CC975D00BA0CDB /* Localizable.strings */; };
 		FF164DCC2636289100EDD69E /* AddItemViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */; };
+		FF164DD226362E8000EDD69E /* AddItemExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DD126362E8000EDD69E /* AddItemExamplesViewController.swift */; };
+		FF164DDA26362FC000EDD69E /* AddItemExamplesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DD926362FC000EDD69E /* AddItemExamplesDelegate.swift */; };
+		FF164DE0263630EA00EDD69E /* AddItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DDF263630EA00EDD69E /* AddItemTableViewCell.swift */; };
+		FF164DE82636310F00EDD69E /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DE72636310F00EDD69E /* Reusable.swift */; };
 		FF93D8B02634C522000B5361 /* MainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */; };
 		FF93D8B62634C56A000B5361 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8B52634C56A000B5361 /* Item.swift */; };
 		FF93D8C52634C6AB000B5361 /* ItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8C42634C6AB000B5361 /* ItemCategory.swift */; };
@@ -83,6 +87,10 @@
 		DECA258F25CC8D4300851431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEED7FCF25CC975D00BA0CDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewDelegate.swift; sourceTree = "<group>"; };
+		FF164DD126362E8000EDD69E /* AddItemExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesViewController.swift; sourceTree = "<group>"; };
+		FF164DD926362FC000EDD69E /* AddItemExamplesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesDelegate.swift; sourceTree = "<group>"; };
+		FF164DDF263630EA00EDD69E /* AddItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewCell.swift; sourceTree = "<group>"; };
+		FF164DE72636310F00EDD69E /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
 		FF93D8B52634C56A000B5361 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FF93D8C42634C6AB000B5361 /* ItemCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCategory.swift; sourceTree = "<group>"; };
@@ -282,6 +290,23 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		FF164DD026362E7800EDD69E /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				FF164DDE263630DF00EDD69E /* Cells */,
+				FF164DD126362E8000EDD69E /* AddItemExamplesViewController.swift */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		FF164DDE263630DF00EDD69E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FF164DDF263630EA00EDD69E /* AddItemTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		FF93D8B42634C55F000B5361 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +336,7 @@
 		FF93D8F02634E4AF000B5361 /* AddItem */ = {
 			isa = PBXGroup;
 			children = (
+				FF164DD026362E7800EDD69E /* Examples */,
 				FF93D9102634F578000B5361 /* Views */,
 				FF93D8F62634E53E000B5361 /* Protocols */,
 				FF93D8F12634E4BD000B5361 /* AddItemViewController.swift */,
@@ -325,6 +351,7 @@
 				FF93D8F72634E544000B5361 /* AddItemPresenter.swift */,
 				FF93D8FF2634E578000B5361 /* AddItemViewDisplay.swift */,
 				FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */,
+				FF164DD926362FC000EDD69E /* AddItemExamplesDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -362,6 +389,7 @@
 			children = (
 				FFE577042633B13B00BEE65E /* BottomBarProvider.swift */,
 				FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */,
+				FF164DE72636310F00EDD69E /* Reusable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -543,17 +571,21 @@
 				35868D2825E03F090028AF1D /* WelcomeViewPresenter.swift in Sources */,
 				FF93D8B62634C56A000B5361 /* Item.swift in Sources */,
 				FF93D8CA2634C7C3000B5361 /* String+Localizable.swift in Sources */,
+				FF164DE82636310F00EDD69E /* Reusable.swift in Sources */,
 				FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */,
 				FFE577162633B28A00BEE65E /* MainViewController.swift in Sources */,
 				350AF6ED25E0365A0000F698 /* UIImage+Badge.swift in Sources */,
 				FF93D8C52634C6AB000B5361 /* ItemCategory.swift in Sources */,
+				FF164DE0263630EA00EDD69E /* AddItemTableViewCell.swift in Sources */,
 				FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */,
 				FF93D9082634E5E9000B5361 /* AddItemViewControllerPresenter.swift in Sources */,
 				FF93D8E92634DF14000B5361 /* MainTableViewDataSource.swift in Sources */,
 				DECA257025CC8D4200851431 /* WelcomeViewController.swift in Sources */,
+				FF164DD226362E8000EDD69E /* AddItemExamplesViewController.swift in Sources */,
 				DECA256C25CC8D4200851431 /* AppDelegate.swift in Sources */,
 				DE3EBACC25E048CE00DA1E0D /* Button.swift in Sources */,
 				FF93D9122634F597000B5361 /* ProgressIndicatorTextField.swift in Sources */,
+				FF164DDA26362FC000EDD69E /* AddItemExamplesDelegate.swift in Sources */,
 				35EAFB7925CC9E3B00DCFE10 /* Networking.m in Sources */,
 				FF93D9222634F922000B5361 /* AddItemView.swift in Sources */,
 				FF93D8E32634CC06000B5361 /* MainViewDisplay.swift in Sources */,
