@@ -3,6 +3,7 @@ import UIKit
 public enum ColorName: String, CaseIterable {
     case accent = "AccentColor"
     case background = "Background"
+    case barBackground = "BarBackground"
     case buttonText = "ButtonText"
     case descriptionText = "descriptionText"
     case disabledText = "DisabledText"
@@ -28,6 +29,8 @@ extension CountersNamespace where Base: UIColor {
     public static var accent: UIColor { ColorName.accent.color }
     /// Background white. Hex: #ECECEC
     public static var background: UIColor { ColorName.background.color }
+    /// Background white for use in navigation bar and toolbar. Hex: #F7F7F7
+    public static var barBackground: UIColor { ColorName.barBackground.color }
     /// White. Hex: #FFFFFF
     public static var buttonText: UIColor { ColorName.buttonText.color }
     /// Description primary color. Light Mode: #2B2B2B - Dark Mode: #D3D3D3

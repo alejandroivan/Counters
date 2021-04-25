@@ -102,8 +102,10 @@ extension MainViewController: TopBarProvider {
     }
 
     var topBarLeftItems: [UIBarButtonItem]? {
-        guard !items.isEmpty else { return nil }
         let item = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
+        if items.isEmpty {
+            item.isEnabled = false
+        }
         return [item]
     }
 

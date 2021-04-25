@@ -5,6 +5,7 @@ final class ProgressIndicatorTextField: UITextField {
     // MARK: - View Data
 
     struct ViewData {
+        let text: String?
         let placeholderText: String?
         let isAnimating: Bool
     }
@@ -89,6 +90,7 @@ final class ProgressIndicatorTextField: UITextField {
     }
 
     private func updateContent() {
+        text = viewData?.text
         placeholder = viewData?.placeholderText
 
         if viewData?.isAnimating == true {

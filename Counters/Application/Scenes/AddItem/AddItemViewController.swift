@@ -7,11 +7,28 @@ final class AddItemViewController: UIViewController {
     private lazy var addItemView: AddItemView = {
         let viewData = AddItemView.ViewData(
             placeholderText: "ADD_ITEM_PLACEHOLDER".localized,
+            subtitle: Self.placeholderAttributedText,
             isAnimating: true
         )
         let addItemView = AddItemView(viewData: viewData)
         return addItemView
     }()
+
+    private static var placeholderAttributedText: NSAttributedString {
+        let text = "ADD_ITEM_SUBTITLE".localized
+        let linkText = "ADD_ITEM_SUBTITLE_UNDERLINED".localized
+        let attributedText = NSMutableAttributedString(string: text)
+
+        let nsText = text as NSString
+        let nsRange = nsText.range(of: linkText)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .underlineStyle: NSUnderlineStyle.single
+        ]
+
+        attributedText.addAttributes(attributes, range: nsRange)
+
+        return attributedText
+    }
 
     // MARK: - Styling
 

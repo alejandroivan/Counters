@@ -34,10 +34,17 @@ final class AddItemView: UIView {
 
         struct StackView {
             static let insets = UIEdgeInsets(top: 25, left: 12, bottom: 25, right: 12)
+            static let interItemSpacing: CGFloat = 13
         }
 
         struct TextField {
             static let placeholder = "ADD_ITEM_PLACEHOLDER".localized
+        }
+
+        struct Subtitle {
+            static let font = UIFont.systemFont(ofSize: 15, weight: .regular)
+            static let textColor = UIColor.counters.secondaryText
+            static let insets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         }
     }
 
@@ -56,16 +63,29 @@ final class AddItemView: UIView {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = Constants.StackView.interItemSpacing
         return stackView
     }()
 
     private lazy var textField: ProgressIndicatorTextField = {
         let viewData = ProgressIndicatorTextField.ViewData(
+            text: self.viewData?.text,
             placeholderText: self.viewData?.placeholderText,
             isAnimating: false
         )
         let textField = ProgressIndicatorTextField(viewData: viewData)
         return textField
+    }()
+
+    private let subtitleLabelContainer = UIView()
+
+    private lazy var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = Constants.Subtitle.font
+        label.textColor = Constants.Subtitle.textColor
+        label.attributedText = viewData?.subtitle
+        return label
     }()
 
     // MARK: - Initialization
@@ -93,7 +113,21 @@ final class AddItemView: UIView {
         // allow to translate the autoresizing mask automatically.
 
         backgroundColor = Constants.backgroundColor
+        configureSubtitleLabel()
         configureStackView()
+    }
+
+    private func configureSubtitleLabel() {
+        subtitleLabelContainer.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabelContainer.addSubview(subtitleLabel)
+
+        let insets = Constants.Subtitle.insets
+        NSLayoutConstraint.activate([
+            subtitleLabel.topAnchor.constraint(equalTo: subtitleLabelContainer.topAnchor, constant: insets.top),
+            subtitleLabel.bottomAnchor.constraint(equalTo: subtitleLabelContainer.bottomAnchor, constant: -insets.bottom),
+            subtitleLabel.leadingAnchor.constraint(equalTo: subtitleLabelContainer.leadingAnchor, constant: insets.left),
+            subtitleLabel.trailingAnchor.constraint(equalTo: subtitleLabelContainer.trailingAnchor, constant: -insets.right)
+        ])
     }
 
     private func configureStackView() {
@@ -107,15 +141,29 @@ final class AddItemView: UIView {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -insets.right)
         ])
 
-        stackView.addArrangedSubview(textField)
+        arrangedSubviews.forEach { stackView.addArrangedSubview($0) }
     }
 
     // MARK: - Private
 
+
+    /// Defines the views that should be added as arranged views
+    /// into the stackView.
+    private var arrangedSubviews: [UIView] {
+        [
+            textField,
+            subtitleLabelContainer
+        ]
+    }
+
     private func updateContent() {
-        textField.placeholder = viewData?.placeholderText
-        textField.text = textField.text ?? viewData?.text
-//        subtitleLabel.attributedText = viewData?.subtitle
+        let textFieldViewData = ProgressIndicatorTextField.ViewData(
+            text: textField.text ?? viewData?.text,
+            placeholderText: viewData?.placeholderText,
+            isAnimating: false
+        )
+        textField.viewData = textFieldViewData
+        subtitleLabel.attributedText = viewData?.subtitle
 
         if viewData?.isAnimating == true {
             startAnimating()

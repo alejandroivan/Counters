@@ -4,6 +4,13 @@ final class MainNavigationController: UINavigationController {
 
     typealias BarProvider = TopBarProvider & BottomBarProvider
 
+    // MARK: - Styling
+
+    private struct Constants {
+        static let itemColor = UIColor.counters.accent
+        static let barColor = UIColor.counters.barBackground
+    }
+
     // MARK: - Initialization
 
     public init(rootViewController: BarProvider) {
@@ -31,6 +38,7 @@ final class MainNavigationController: UINavigationController {
         modalPresentationStyle = .fullScreen
         view.backgroundColor = UIColor.counters.background
         configureNavigationBar()
+        configureToolBar()
     }
 
     // MARK: - Styling
@@ -41,10 +49,25 @@ final class MainNavigationController: UINavigationController {
     }
 
     private func configureNavigationBar() {
-        navigationBar.isTranslucent = false
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = Constants.barColor
+
         navigationBar.prefersLargeTitles = true
-        navigationBar.barTintColor = UIColor.counters.background
+        navigationBar.tintColor = Constants.itemColor
         navigationBar.setBackgroundImage(UIImage(), for: .default)
+
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
+    }
+
+    private func configureToolBar() {
+        let appearance = UIToolbarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = Constants.barColor
+
+        toolbar.standardAppearance = appearance
+        toolbar.tintColor = Constants.itemColor
     }
 }
 
