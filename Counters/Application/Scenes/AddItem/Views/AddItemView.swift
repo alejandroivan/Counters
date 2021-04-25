@@ -118,9 +118,9 @@ final class AddItemView: UIView {
 //        subtitleLabel.attributedText = viewData?.subtitle
 
         if viewData?.isAnimating == true {
-            textField.startAnimating()
+            startAnimating()
         } else {
-            textField.stopAnimating()
+            stopAnimating()
         }
     }
 
