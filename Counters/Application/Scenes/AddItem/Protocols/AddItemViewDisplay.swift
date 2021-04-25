@@ -5,4 +5,6 @@ protocol AddItemViewDisplay: class {
 
     /// Passthrough for the same method in UIViewController
     func dismiss(animated flag: Bool, completion: (() -> Void)?)
+
+    var isSaving: Bool { get set }
 }

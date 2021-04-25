@@ -5,7 +5,7 @@ public extension String {
         localized(self)
     }
 
-    func localized(_ comment: String = Constants.empty) -> Self {
+    func localized(_ comment: String = GlobalConstants.empty) -> Self {
         NSLocalizedString(self, comment: comment)
     }
 }

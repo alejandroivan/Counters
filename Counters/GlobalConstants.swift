@@ -1,5 +1,5 @@
 import Foundation
 
-public struct Constants {
+public struct GlobalConstants {
     public static let empty: String = ""
 }

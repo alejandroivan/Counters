@@ -31,3 +31,4 @@
 // MARK: - New Item
 
 "CREATE_A_COUNTER" = "Create a counter";
+"ADD_ITEM_PLACEHOLDER" = "Enter the name of the new counter";

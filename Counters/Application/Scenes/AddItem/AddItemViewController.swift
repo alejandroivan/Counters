@@ -4,6 +4,15 @@ final class AddItemViewController: UIViewController {
 
     private let presenter: AddItemPresenter
 
+    private lazy var addItemView: AddItemView = {
+        let viewData = AddItemView.ViewData(
+            placeholderText: "ADD_ITEM_PLACEHOLDER".localized,
+            isAnimating: true
+        )
+        let addItemView = AddItemView(viewData: viewData)
+        return addItemView
+    }()
+
     // MARK: - Styling
 
     private struct Constants {
@@ -26,6 +35,10 @@ final class AddItemViewController: UIViewController {
 
     // MARK: - View controller lifecycle
 
+    override func loadView() {
+        view = addItemView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.counters.background
@@ -46,6 +59,18 @@ final class AddItemViewController: UIViewController {
 
 extension AddItemViewController: AddItemViewDisplay {
     var mainNavigationController: MainNavigationController? { navigationController as? MainNavigationController }
+
+    var isSaving: Bool {
+        set {
+            if newValue {
+                addItemView.startAnimating()
+            } else {
+                addItemView.stopAnimating()
+            }
+        }
+
+        get { addItemView.isAnimating }
+    }
 }
 
 // MARK: Top/Bottom Bars

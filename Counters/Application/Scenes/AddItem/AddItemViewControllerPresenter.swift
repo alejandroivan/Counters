@@ -17,7 +17,7 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
 
     func saveItem() {
         isNetworkOperationInProgress = true
-        print("SAVE!")
+        viewController?.isSaving = true
     }
 
     func cancelItemCreation() {
