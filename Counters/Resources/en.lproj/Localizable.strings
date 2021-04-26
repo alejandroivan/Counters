@@ -24,7 +24,7 @@
 // MARK: - Items
 
 "CATEGORY_DRINK" = "Drink";
-"CATEGORY_FRINK_PLURALIZED" = "Drinks";
+"CATEGORY_DRINK_PLURALIZED" = "Drinks";
 "CATEGORY_FOOD" = "Food";
 "CATEGORY_MISC" = "Misc";
 

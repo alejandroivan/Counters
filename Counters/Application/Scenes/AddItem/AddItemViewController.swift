@@ -90,7 +90,8 @@ extension AddItemViewController: AddItemViewDisplay {
     }
 
     func routeToExamples() {
-        let viewController = AddItemExamplesViewController()
+        let dataSource = AddItemExamplesTableViewDataSource()
+        let viewController = AddItemExamplesViewController(dataSource: dataSource)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }

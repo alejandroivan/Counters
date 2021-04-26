@@ -8,7 +8,7 @@ enum ItemCategory: String, Decodable {
 
 extension ItemCategory {
 
-    private static let pluralizedSuffix = "_LOCALIZED"
+    private static let pluralizedSuffix = "_PLURALIZED"
 
     /// Implement a case when the pluralized word differs from the actual noun.
     /// This is done because not all words are pluralized by just adding a "s"
@@ -24,4 +24,7 @@ extension ItemCategory {
         guard localizableKey != localizedString else { return rawValue.localized }
         return localizedString
     }
+
+    /// Convenience method for calling `.drink.localized` instead of `.drink.rawValue.localized`.
+    var localized: String { rawValue.localized }
 }

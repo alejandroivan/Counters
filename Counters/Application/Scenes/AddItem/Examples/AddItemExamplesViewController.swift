@@ -1,6 +1,26 @@
 import UIKit
 
-final class AddItemExamplesViewController: UIViewController {
+final class AddItemExamplesViewController: UIViewController, AddItemExamplesTableViewShowcaseProvider {
+
+    // MARK: - Showcase
+
+    var showcase: [ItemCategory: [Item]] = [
+        .drink: [
+            Item(title: "Cups of coffee", count: 1),
+            Item(title: "Glasses of water", count: 1),
+            Item(title: "Piscolas", count: 1000)
+        ],
+        .food: [
+            Item(title: "Hot-dogs", count: 1),
+            Item(title: "Cupcakes eaten", count: 1),
+            Item(title: "Chicken strips", count: 1)
+        ],
+        .misc: [
+            Item(title: "Times sneezed", count: 1000),
+            Item(title: "Naps 🥺", count: 0),
+            Item(title: "Day dreaming", count: 0),
+        ]
+    ]
 
     // MARK: - Constants
 
@@ -26,12 +46,15 @@ final class AddItemExamplesViewController: UIViewController {
 
     // MARK: - Properties
 
+    var dataSource: AddItemExamplesTableViewDataSource?
     weak var delegate: AddItemExamplesDelegate?
 
     // MARK: - Initialization
 
-    init(delegate: AddItemExamplesDelegate? = nil) {
+    init(dataSource: AddItemExamplesTableViewDataSource, delegate: AddItemExamplesDelegate? = nil) {
         super.init(nibName: nil, bundle: nil)
+        self.dataSource = dataSource
+        self.dataSource?.showcaseSource = self
         self.delegate = delegate
     }
 
@@ -114,6 +137,7 @@ final class AddItemExamplesViewController: UIViewController {
     private func configureTableView() {
         tableView.backgroundColor = Constants.TableView.backgroundColor
         tableView.separatorStyle = .none
+        tableView.dataSource = dataSource
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
