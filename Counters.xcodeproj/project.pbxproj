@@ -26,6 +26,7 @@
 		FF164DE0263630EA00EDD69E /* AddItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DDF263630EA00EDD69E /* AddItemTableViewCell.swift */; };
 		FF164DE82636310F00EDD69E /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DE72636310F00EDD69E /* Reusable.swift */; };
 		FF164DEE2636427700EDD69E /* AddItemExamplesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DED2636427700EDD69E /* AddItemExamplesTableViewDataSource.swift */; };
+		FF164DF62636537E00EDD69E /* SwiftNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DF52636537E00EDD69E /* SwiftNetworking.swift */; };
 		FF93D8B02634C522000B5361 /* MainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */; };
 		FF93D8B62634C56A000B5361 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8B52634C56A000B5361 /* Item.swift */; };
 		FF93D8C52634C6AB000B5361 /* ItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D8C42634C6AB000B5361 /* ItemCategory.swift */; };
@@ -93,6 +94,7 @@
 		FF164DDF263630EA00EDD69E /* AddItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewCell.swift; sourceTree = "<group>"; };
 		FF164DE72636310F00EDD69E /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		FF164DED2636427700EDD69E /* AddItemExamplesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesTableViewDataSource.swift; sourceTree = "<group>"; };
+		FF164DF52636537E00EDD69E /* SwiftNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNetworking.swift; sourceTree = "<group>"; };
 		FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
 		FF93D8B52634C56A000B5361 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		FF93D8C42634C6AB000B5361 /* ItemCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCategory.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				35EAFB7725CC9E3B00DCFE10 /* Networking.h */,
 				35EAFB7825CC9E3B00DCFE10 /* Networking.m */,
+				FF164DF52636537E00EDD69E /* SwiftNetworking.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				FF93D8B62634C56A000B5361 /* Item.swift in Sources */,
 				FF93D8CA2634C7C3000B5361 /* String+Localizable.swift in Sources */,
 				FF164DE82636310F00EDD69E /* Reusable.swift in Sources */,
+				FF164DF62636537E00EDD69E /* SwiftNetworking.swift in Sources */,
 				FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */,
 				FFE577162633B28A00BEE65E /* MainViewController.swift in Sources */,
 				350AF6ED25E0365A0000F698 /* UIImage+Badge.swift in Sources */,
