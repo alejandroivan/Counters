@@ -49,7 +49,7 @@ final class AddItemExamplesViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        updateHeaderShadowFrame()
+        updateHeaderFrame()
     }
 
     // MARK: - Subviews
@@ -84,21 +84,23 @@ final class AddItemExamplesViewController: UIViewController {
             height: Constants.Header.Shadow.verticalOffset
         )
 
-        headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(headerLabel)
-
-        NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: view.topAnchor),
-            headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerLabel.heightAnchor.constraint(equalToConstant: Constants.Header.height)
-        ])
+        /// This header view doesn't require constraints, but rather a frame for its height
+        /// to be set property. This should be done in viewDidLayoutSubviews.
+        tableView.tableHeaderView = headerLabel
     }
 
     /// This method should be called on viewDidLayoutSubviews, and will calculate the
     /// UIBezierPath for the shadow in the header. This shouldn't be done before, because
     /// frames/bounds are not calculated before this method is called.
-    private func updateHeaderShadowFrame() {
+    /// It also calculates the correct size for the whole header.
+    private func updateHeaderFrame() {
+        headerLabel.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: tableView.frame.size.width,
+            height: Constants.Header.height
+        )
+
         let frame = CGRect(
             x: 0,
             y: headerLabel.bounds.maxY - headerLabel.layer.shadowRadius,
@@ -111,12 +113,13 @@ final class AddItemExamplesViewController: UIViewController {
 
     private func configureTableView() {
         tableView.backgroundColor = Constants.TableView.backgroundColor
+        tableView.separatorStyle = .none
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
