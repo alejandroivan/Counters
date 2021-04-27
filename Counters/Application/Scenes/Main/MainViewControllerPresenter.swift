@@ -13,14 +13,21 @@ final class MainViewControllerPresenter: MainPresenter {
 
     func viewDidLoad() {
         // We should present an activity indicator here and fetch data.
-        viewController?.displayItems()
-        SwiftNetworking.get(url: "v1/counters", parameters: ["a": "b"], resultType: Items.self) { (items, error) in
-            guard error == nil else {
+        SwiftNetworking.get(url: "v1/counters", parameters: ["a": "b"], resultType: Items.self) { [weak self] items, error in
+            guard error == nil, let items = items else {
                 print("ERROR: \(String(describing: error))")
                 return
             }
 
-            print("ITEMS: \(items)")
+            self?.items = items
+
+            DispatchQueue.main.async {
+                if items.isEmpty {
+                    self?.viewController?.displayEmptyError()
+                } else {
+                    self?.viewController?.displayItems()
+                }
+            }
         }
     }
 }

@@ -5,6 +5,10 @@ final class MainViewController: UIViewController {
     var items: Items { presenter.items }
     private let presenter: MainPresenter
 
+    private struct Constants {
+        static let backgroundColor = UIColor.counters.background
+    }
+
     // MARK: - Views
 
     private weak var mainNavigationController: MainNavigationController? { navigationController as? MainNavigationController }
@@ -33,16 +37,18 @@ final class MainViewController: UIViewController {
     }
 
     private func configureView() {
-        view.backgroundColor = UIColor.counters.background
+        view.backgroundColor = Constants.backgroundColor
         configureTableView()
     }
 
     private func configureTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = view.backgroundColor
+        tableView.backgroundColor = Constants.backgroundColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.dataSource = presenter.dataSource
+
+        tableView.registerReusable(MainViewItemCell.self)
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -78,6 +84,10 @@ extension MainViewController: MainViewDisplay {
     func displayItems() {
         mainNavigationController?.updateBars()
         tableView.reloadData()
+    }
+
+    func displayEmptyError() {
+        print("ERROR: Empty response!")
     }
 
     // MARK: - Routing

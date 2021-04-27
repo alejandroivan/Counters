@@ -1,18 +1,22 @@
 import UIKit
 
 final class MainTableViewDataSource: NSObject, UITableViewDataSource {
-    var presenter: MainPresenter?
+    weak var presenter: MainPresenter?
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
 
     func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        presenter?.items.count ?? 0
+        let rows = presenter?.items.count ?? 0
+        return rows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = presenter?.items[indexPath.row].title
+        let cell: MainViewItemCell = tableView.dequeueReusable(for: indexPath)
         return cell
     }
 }

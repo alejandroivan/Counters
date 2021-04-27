@@ -11,15 +11,24 @@ extension Reusable {
 }
 
 extension UITableViewCell: Reusable {}
+extension UICollectionViewCell: Reusable {}
 
 extension UITableView {
-    public func dequeueReusable<T: Reusable>(for indexPath: IndexPath) -> T {
+    public func registerReusable<T: UITableViewCell>(_: T.Type) {
+        register(T.self, forCellReuseIdentifier: T.reuseIdentifier)
+    }
+
+    public func dequeueReusable<T: UITableViewCell>(for indexPath: IndexPath) -> T {
         return dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath) as! T
     }
 }
 
 extension UICollectionView: Reusable {
-    public func dequeueReusable<T: Reusable>(for indexPath: IndexPath) -> T {
+    public func registerReusable<T: UICollectionViewCell>(_: T.Type) {
+        register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)
+    }
+
+    public func dequeueReusable<T: UICollectionViewCell>(for indexPath: IndexPath) -> T {
         return dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath) as! T
     }
 }

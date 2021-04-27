@@ -5,6 +5,7 @@ public enum ColorName: String, CaseIterable {
     case background = "Background"
     case barBackground = "BarBackground"
     case buttonText = "ButtonText"
+    case cardBackground = "CardBackground"
     case descriptionText = "descriptionText"
     case disabledText = "DisabledText"
     case green = "Green"
@@ -33,6 +34,8 @@ extension CountersNamespace where Base: UIColor {
     public static var barBackground: UIColor { ColorName.barBackground.color }
     /// White. Hex: #FFFFFF
     public static var buttonText: UIColor { ColorName.buttonText.color }
+    /// Card background white. Hex: #FDFDFD
+    public static var cardBackground: UIColor { ColorName.cardBackground.color }
     /// Description primary color. Light Mode: #2B2B2B - Dark Mode: #D3D3D3
     public static var descriptionText: UIColor { ColorName.descriptionText.color }
     /// Disabled text gray. Hex: #DCDCDF
