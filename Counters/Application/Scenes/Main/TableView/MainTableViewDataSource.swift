@@ -18,6 +18,7 @@ final class MainTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MainViewItemCell = tableView.dequeueReusable(for: indexPath)
         cell.viewData = presenter?.items[indexPath.row]
+        cell.delegate = presenter?.tableViewDelegate
         return cell
     }
 }

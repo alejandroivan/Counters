@@ -11,6 +11,8 @@ final class MainViewItemCell: UITableViewCell {
         }
     }
 
+    weak var delegate: MainViewItemCellDelegate?
+
     // MARK: - Private properties
 
     private let containerView = UIView()
@@ -60,14 +62,6 @@ final class MainViewItemCell: UITableViewCell {
     }
 
     // MARK: - Initialization
-
-    convenience init(
-        item: Item
-    ) {
-        self.init(frame: .zero)
-        self.viewData = item
-        configureView()
-    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -172,7 +166,14 @@ final class MainViewItemCell: UITableViewCell {
         counterStepper.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(counterStepper)
 
-        // Customize...
+        /// We'll use value = 1 as the initial value.
+        /// When incrementing, it will get to 2, we'll detect it as an
+        /// increment and then set it back to 1. The same for decrementing.
+        counterStepper.value = 1
+        counterStepper.minimumValue = 0
+        counterStepper.maximumValue = 2
+        counterStepper.stepValue = 1
+        counterStepper.addTarget(self, action: #selector(stepperDidChangeValue(_:)), for: .valueChanged)
 
         NSLayoutConstraint.activate([
             counterStepper.widthAnchor.constraint(equalToConstant: Constants.Stepper.size.width),
@@ -190,6 +191,26 @@ final class MainViewItemCell: UITableViewCell {
                 constant: -Constants.Stepper.bottomSpacing
             )
         ])
+    }
+
+    private func resetCounterStepperValue() {
+        counterStepper.value = 1
+    }
+
+    // MARK: - Private methods
+
+    @objc
+    private func stepperDidChangeValue(_ stepper: UIStepper) {
+        switch stepper.value {
+        case 0:
+            delegate?.mainViewCell(self, countAction: .decrement)
+        case 2:
+            delegate?.mainViewCell(self, countAction: .increment)
+        default:
+            break
+        }
+
+        resetCounterStepperValue()
     }
 
     // MARK: - Content
