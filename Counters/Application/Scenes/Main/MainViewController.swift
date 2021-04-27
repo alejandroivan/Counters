@@ -46,7 +46,8 @@ final class MainViewController: UIViewController {
         tableView.backgroundColor = Constants.backgroundColor
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.dataSource = presenter.dataSource
+        tableView.dataSource = presenter.tableViewDataSource
+        tableView.delegate = presenter.tableViewDelegate
 
         tableView.registerReusable(MainViewItemCell.self)
 
@@ -129,7 +130,12 @@ extension MainViewController: BottomBarProvider {
 
     var bottomBarCenterText: String? {
         guard !items.isEmpty else { return nil }
-        return "\(items.count) items"
+
+        let localized = items.count == 1 ? "ITEMS_COUNT".localized : "ITEMS_COUNT".pluralized
+        let totalCount = items.reduce(0) { (result, item) -> Int in result + item.count }
+        let finalString = String(format: localized, items.count, totalCount)
+
+        return finalString
     }
 
     var bottomBarRightItems: [UIBarButtonItem]? {

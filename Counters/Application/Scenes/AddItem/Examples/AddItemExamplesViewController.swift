@@ -6,19 +6,19 @@ final class AddItemExamplesViewController: UIViewController, AddItemExamplesTabl
 
     var showcase: [ItemCategory: [Item]] = [
         .drink: [
-            Item(title: "Cups of coffee", count: 1),
-            Item(title: "Glasses of water", count: 1),
-            Item(title: "Piscolas", count: 1000)
+            Item(identifier: "asdf", title: "Cups of coffee", count: 1),
+            Item(identifier: "asdf", title: "Glasses of water", count: 1),
+            Item(identifier: "asdf", title: "Piscolas", count: 1000)
         ],
         .food: [
-            Item(title: "Hot-dogs", count: 1),
-            Item(title: "Cupcakes eaten", count: 1),
-            Item(title: "Chicken strips", count: 1)
+            Item(identifier: "asdf", title: "Hot-dogs", count: 1),
+            Item(identifier: "asdf", title: "Cupcakes eaten", count: 1),
+            Item(identifier: "asdf", title: "Chicken strips", count: 1)
         ],
         .misc: [
-            Item(title: "Times sneezed", count: 1000),
-            Item(title: "Naps 🥺", count: 0),
-            Item(title: "Day dreaming", count: 0),
+            Item(identifier: "asdf", title: "Times sneezed", count: 1000),
+            Item(identifier: "asdf", title: "Naps 🥺", count: 0),
+            Item(identifier: "asdf", title: "Day dreaming", count: 0),
         ]
     ]
 

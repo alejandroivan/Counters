@@ -21,6 +21,10 @@
 
 "WELCOME_PRIMARY_ACTION_TITLE" = "Continue";
 
+// MARK: - Main
+"ITEMS_COUNT" = "1 item • Counted %d times";
+"ITEMS_COUNT_PLURALIZED" = "%d items • Counted %d times";
+
 // MARK: - Items
 
 "CATEGORY_DRINK" = "Drink";

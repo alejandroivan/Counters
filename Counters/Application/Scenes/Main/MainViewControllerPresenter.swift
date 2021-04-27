@@ -4,11 +4,18 @@ final class MainViewControllerPresenter: MainPresenter {
     var items: Items = []
 
     weak var viewController: MainViewDisplay?
-    private(set) var dataSource: MainTableViewDataSource
 
-    init(dataSource: MainTableViewDataSource) {
-        self.dataSource = dataSource
-        self.dataSource.presenter = self
+    private(set) var tableViewDataSource: MainTableViewDataSource
+    private(set) var tableViewDelegate: MainTableViewDelegate
+
+    init(
+        tableViewDataSource: MainTableViewDataSource,
+        tableViewDelegate: MainTableViewDelegate
+    ) {
+        self.tableViewDataSource = tableViewDataSource
+        self.tableViewDelegate = tableViewDelegate
+        self.tableViewDataSource.presenter = self
+        self.tableViewDelegate.presenter = self
     }
 
     func viewDidLoad() {
@@ -19,6 +26,7 @@ final class MainViewControllerPresenter: MainPresenter {
                 return
             }
 
+            print("GOT ITEMS: \(items)")
             self?.items = items
 
             DispatchQueue.main.async {

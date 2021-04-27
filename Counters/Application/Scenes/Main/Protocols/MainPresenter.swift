@@ -3,7 +3,8 @@ import Foundation
 protocol MainPresenter: class {
 
     var viewController: MainViewDisplay? { get set }
-    var dataSource: MainTableViewDataSource { get }
+    var tableViewDataSource: MainTableViewDataSource { get }
+    var tableViewDelegate: MainTableViewDelegate { get }
 
     var items: Items { get }
 

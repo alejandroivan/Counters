@@ -44,7 +44,8 @@ extension WelcomeViewController: WelcomeViewButtonDelegate {
     private func routeToMainScreen() {
         let viewController = MainViewController(
             presenter: MainViewControllerPresenter(
-                dataSource: MainTableViewDataSource()
+                tableViewDataSource: MainTableViewDataSource(),
+                tableViewDelegate: MainTableViewDelegate()
             )
         )
         let navigationController = MainNavigationController(rootViewController: viewController)
