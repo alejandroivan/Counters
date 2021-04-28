@@ -135,7 +135,11 @@ extension MainViewController: MainViewDisplay {
         errorKind = nil
         errorView?.removeFromSuperview()
 
-        let presenter = AddItemViewControllerPresenter()
+        let presenter = AddItemViewControllerPresenter(
+            useCase: AddItemViewControllerUseCase(
+                networking: SwiftNetworking()
+            )
+        )
         let viewController = AddItemViewController(presenter: presenter)
         let navigationController = MainNavigationController(rootViewController: viewController)
         present(navigationController, animated: true)

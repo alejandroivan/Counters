@@ -40,6 +40,13 @@
 "CREATE_A_COUNTER" = "Create a counter";
 "CREATE_A_COUNTER_BACK_BUTTON" = "Create";
 
+"ADD_ITEM_ERROR_SAVING_TITLE" = "Couldn't create the counter";
+"ADD_ITEM_ERROR_SAVING_MESSAGE" = "The Internet connection appears to be offline.";
+"ADD_ITEM_ERROR_SAVING_DISMISS_BUTTON" = "Dismiss";
+"ADD_ITEM_SUCCESS_SAVING_TITLE" = "Counter created";
+"ADD_ITEM_SUCCESS_SAVING_MESSAGE" = "Your new counter called \"%@\" has been created successfully.";
+"ADD_ITEM_SUCCESS_SAVING_DISMISS_BUTTON" = "Dismiss";
+
 "ADD_ITEM_PLACEHOLDER" = "Enter the name of the new counter";
 "ADD_ITEM_SUBTITLE" = "Give it a name. Creative block? See examples.";
 "ADD_ITEM_SUBTITLE_UNDERLINED" = "examples";

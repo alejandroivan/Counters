@@ -102,6 +102,37 @@ final class AddItemViewController: UIViewController, TopBarProvider {
         let itemName = addItemView.text
         presenter.saveItem(name: itemName)
     }
+
+    // MARK: - Alerts
+
+    private func showAlert(
+        title: String,
+        message: String,
+        buttonTitle: String,
+        action: ((UIAlertAction) -> Void)?
+    ) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+
+        alertController.addAction(
+            UIAlertAction(
+                title: buttonTitle,
+                style: .cancel,
+                handler: { actionHandler in
+                    DispatchQueue.main.async {
+                        action?(actionHandler)
+                    }
+                }
+            )
+        )
+
+        DispatchQueue.main.async {
+            self.navigationController?.present(alertController, animated: true, completion: nil)
+        }
+    }
 }
 
 extension AddItemViewController: AddItemViewDisplay {
@@ -121,6 +152,31 @@ extension AddItemViewController: AddItemViewDisplay {
 
     func setTextFieldError() {
         addItemView.hasError = true
+    }
+
+    func showSavingError() {
+        showAlert(
+            title: "ADD_ITEM_ERROR_SAVING_TITLE".localized,
+            message: "ADD_ITEM_ERROR_SAVING_MESSAGE".localized,
+            buttonTitle: "ADD_ITEM_ERROR_SAVING_DISMISS_BUTTON".localized
+        ) { action in
+            self.addItemView.stopAnimating()
+        }
+
+    }
+
+    func showSavingSuccess() {
+        let format = "ADD_ITEM_SUCCESS_SAVING_MESSAGE".localized
+        let message = String(format: format, addItemView.text)
+        
+        showAlert(
+            title: "ADD_ITEM_SUCCESS_SAVING_TITLE".localized,
+            message: message,
+            buttonTitle: "ADD_ITEM_SUCCESS_SAVING_DISMISS_BUTTON".localized
+        ) { action in
+            self.addItemView.stopAnimating()
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
     }
 
     func routeToExamples() {

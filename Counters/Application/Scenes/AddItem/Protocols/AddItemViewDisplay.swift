@@ -9,5 +9,7 @@ protocol AddItemViewDisplay: class {
     var isSaving: Bool { get set }
 
     func setTextFieldError()
+    func showSavingError()
+    func showSavingSuccess()
     func routeToExamples()
 }

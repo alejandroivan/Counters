@@ -3,6 +3,11 @@ import UIKit
 final class AddItemViewControllerPresenter: AddItemPresenter {
 
     weak var viewController: AddItemViewDisplay?
+    private let useCase: AddItemViewControllerUseCase
+
+    init(useCase: AddItemViewControllerUseCase) {
+        self.useCase = useCase
+    }
 
     private(set) var isNetworkOperationInProgress: Bool = false {
         didSet {
@@ -11,7 +16,6 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
     }
 
     func saveItem(name: String) {
-        // TODO: Add user feedback.
         guard name != GlobalConstants.empty else {
             viewController?.setTextFieldError()
             return
@@ -19,7 +23,18 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
         isNetworkOperationInProgress = true
         viewController?.isSaving = true
 
+        useCase.saveItem(name: name) { [weak self] response, error in
+            guard error == nil else {
+                DispatchQueue.main.async {
+                    self?.isNetworkOperationInProgress = false
+                    self?.viewController?.isSaving = false
+                    self?.viewController?.showSavingError()
+                }
+                return
+            }
 
+            self?.viewController?.showSavingSuccess()
+        }
     }
 
     func cancelItemCreation() {
