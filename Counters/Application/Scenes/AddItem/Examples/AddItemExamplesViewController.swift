@@ -1,10 +1,12 @@
 import UIKit
 
-/*
- This class implements a UITableView whose cells have UICollectionViews inside.
- This could have easily been done using a UIScrollView+UIStackView+UICollectionView,
- but, for the sake of showing something different, it was made like this.
- */
+
+/// This class implements a UITableView whose cells have UICollectionViews inside.
+/// This could have easily been done using a UIScrollView+UIStackView+UICollectionView,
+/// but, for the sake of showing something different, it was made like this.
+///
+/// Also, this view controller SHOULD NOT pop itself on the navigation controller, that
+/// is delegated to the presenting view controller (a.k.a AddItemViewController).
 
 final class AddItemExamplesViewController: UIViewController, AddItemExamplesTableViewShowcaseProvider {
 

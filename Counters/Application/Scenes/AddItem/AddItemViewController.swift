@@ -36,6 +36,10 @@ final class AddItemViewController: UIViewController, TopBarProvider {
         struct SaveItem {
             static let font = UIFont.systemFont(ofSize: 17, weight: .bold)
         }
+
+        struct Alert {
+            static let tintColor = UIColor.counters.accent
+        }
     }
 
     // MARK: - Initialization
@@ -129,6 +133,7 @@ final class AddItemViewController: UIViewController, TopBarProvider {
             )
         )
 
+        alertController.view.tintColor = Constants.Alert.tintColor
         self.navigationController?.present(alertController, animated: true, completion: nil)
     }
 }
@@ -167,6 +172,9 @@ extension AddItemViewController: AddItemViewDisplay {
     func showSavingSuccess() {
         let format = "ADD_ITEM_SUCCESS_SAVING_MESSAGE".localized
 
+        /// I would have preferred to have the async in showAlert(), but
+        /// since addItemView.text needs to be run on the main queue, I
+        /// had to leave it here.
         DispatchQueue.main.async {
             let message = String(format: format, self.addItemView.text)
 
