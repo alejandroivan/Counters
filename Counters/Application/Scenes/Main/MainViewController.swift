@@ -133,9 +133,6 @@ extension MainViewController: MainViewDisplay {
 
     // TODO: Delegate this to a router/coordinator object (later).
     func routeToAddItem() {
-        errorKind = nil
-        errorView?.removeFromSuperview()
-
         let presenter = AddItemViewControllerPresenter(
             useCase: AddItemViewControllerUseCase(
                 networking: SwiftNetworking()
@@ -143,7 +140,10 @@ extension MainViewController: MainViewDisplay {
         )
         let viewController = AddItemViewController(presenter: presenter)
         let navigationController = MainNavigationController(rootViewController: viewController)
-        present(navigationController, animated: true)
+        present(navigationController, animated: true) {
+            self.errorKind = nil
+            self.errorView?.removeFromSuperview()
+        }
     }
 }
 
