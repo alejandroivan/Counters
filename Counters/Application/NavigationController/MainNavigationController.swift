@@ -43,8 +43,13 @@ final class MainNavigationController: UINavigationController {
 
     // MARK: - Styling
 
-    public func updateBars() {
-        guard let viewController = presentedViewController ?? topViewController else { return }
+    public func updateBars(for viewController: UIViewController? = nil) {
+        guard let viewController = viewController else {
+            let presenting = presentedViewController ?? topViewController ?? visibleViewController ?? self
+            setupStyle(on: presenting)
+            return
+        }
+
         setupStyle(on: viewController)
     }
 

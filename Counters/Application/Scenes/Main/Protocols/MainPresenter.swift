@@ -12,15 +12,15 @@ protocol MainPresenter: class {
     /// Basically starts whatever the presenter needs to do at initialization,
     /// but delayed to when the view has loaded.
     func viewDidLoad()
-    func viewWillAppear()
 
     // MARK: - Edit button
 
     func editItems()
 
-    // MARK: - Add item button
+    // MARK: - Add item
 
     func addItem()
+    func addItemDidFinish(_ addItemView: AddItemViewDisplay?)
 
     // MARK: - Fetch items
 

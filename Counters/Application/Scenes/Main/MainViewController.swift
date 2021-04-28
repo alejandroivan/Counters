@@ -44,11 +44,6 @@ final class MainViewController: UIViewController {
         presenter.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter.viewWillAppear()
-    }
-
     private func configureView() {
         view.backgroundColor = Constants.backgroundColor
         configureTableView()
@@ -97,7 +92,7 @@ extension MainViewController: MainViewDisplay {
     // MARK: - Data
 
     func displayItems() {
-        mainNavigationController?.updateBars()
+        mainNavigationController?.updateBars(for: self)
         tableView.reloadData()
     }
 
@@ -133,12 +128,15 @@ extension MainViewController: MainViewDisplay {
 
     // TODO: Delegate this to a router/coordinator object (later).
     func routeToAddItem() {
-        let presenter = AddItemViewControllerPresenter(
+        let addItemPresenter = AddItemViewControllerPresenter(
             useCase: AddItemViewControllerUseCase(
                 networking: SwiftNetworking()
             )
         )
-        let viewController = AddItemViewController(presenter: presenter)
+        let viewController = AddItemViewController(
+            presenter: addItemPresenter,
+            sourcePresenter: presenter
+        )
         let navigationController = MainNavigationController(rootViewController: viewController)
         present(navigationController, animated: true) {
             self.errorKind = nil

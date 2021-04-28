@@ -3,6 +3,7 @@ import UIKit
 final class AddItemViewController: UIViewController, TopBarProvider {
 
     private let presenter: AddItemPresenter
+    private let sourcePresenter: MainPresenter
 
     private lazy var addItemView: AddItemView = {
         let viewData = AddItemView.ViewData(
@@ -44,8 +45,9 @@ final class AddItemViewController: UIViewController, TopBarProvider {
 
     // MARK: - Initialization
 
-    init(presenter: AddItemPresenter) {
+    init(presenter: AddItemPresenter, sourcePresenter: MainPresenter) {
         self.presenter = presenter
+        self.sourcePresenter = sourcePresenter
         super.init(nibName: nil, bundle: nil)
         self.presenter.viewController = self
     }
@@ -184,7 +186,7 @@ extension AddItemViewController: AddItemViewDisplay {
                 buttonTitle: "ADD_ITEM_SUCCESS_SAVING_DISMISS_BUTTON".localized
             ) { action in
                 self.addItemView.stopAnimating()
-                self.navigationController?.dismiss(animated: true, completion: nil)
+                self.routeToMain()
             }
         }
     }
@@ -196,6 +198,11 @@ extension AddItemViewController: AddItemViewDisplay {
             delegate: self
         )
         navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func routeToMain() {
+        sourcePresenter.addItemDidFinish(self)
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 }
 

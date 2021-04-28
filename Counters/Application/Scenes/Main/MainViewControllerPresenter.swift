@@ -26,10 +26,6 @@ final class MainViewControllerPresenter: MainPresenter {
     func viewDidLoad() {
         fetchAllItems()
     }
-
-    func viewWillAppear() {
-        fetchAllItems()
-    }
 }
 
 extension MainViewControllerPresenter {
@@ -40,10 +36,15 @@ extension MainViewControllerPresenter {
         print("EDIT ITEMS")
     }
 
-    // MARK: - Add item button
+    // MARK: - Add item
 
     func addItem() {
         viewController?.routeToAddItem()
+    }
+
+    func addItemDidFinish(_ addItemView: AddItemViewDisplay?) {
+        print("New item!")
+        fetchAllItems()
     }
 
     // MARK: - Fetch items
