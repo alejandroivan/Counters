@@ -76,12 +76,16 @@ extension MainViewControllerPresenter {
     // MARK: - Counting
 
     func incrementItem(at index: Int) {
-        items[index].count += 1
+        /// This login shouldn't be needed, but if we, for some weird reason, get into the
+        /// integer overflow limit, we'll get back to 0 and NOT the least negative number.
+        let newCount = items[index].count + 1
+        items[index].count = max(0, newCount)
         viewController?.displayItems()
     }
 
     func decrementItem(at index: Int) {
-        items[index].count -= 1
+        let newCount = items[index].count - 1
+        items[index].count = max(0, newCount)
         viewController?.displayItems()
     }
 }
