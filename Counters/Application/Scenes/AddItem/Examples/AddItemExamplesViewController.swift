@@ -1,24 +1,30 @@
 import UIKit
 
+/*
+ This class implements a UITableView whose cells have UICollectionViews inside.
+ This could have easily been done using a UIScrollView+UIStackView+UICollectionView,
+ but, for the sake of showing something different, it was made like this.
+ */
+
 final class AddItemExamplesViewController: UIViewController, AddItemExamplesTableViewShowcaseProvider {
 
     // MARK: - Showcase
 
-    var showcase: [ItemCategory: [Item]] = [
+    var showcase: [ItemCategory: [String]] = [
         .drink: [
-            Item(identifier: "asdf", title: "Cups of coffee", count: 1),
-            Item(identifier: "asdf", title: "Glasses of water", count: 1),
-            Item(identifier: "asdf", title: "Piscolas", count: 1000)
+            "Cups of coffee",
+            "Glasses of water",
+            "Piscolas"
         ],
         .food: [
-            Item(identifier: "asdf", title: "Hot-dogs", count: 1),
-            Item(identifier: "asdf", title: "Cupcakes eaten", count: 1),
-            Item(identifier: "asdf", title: "Chicken strips", count: 1)
+            "Hot-dogs",
+            "Cupcakes eaten",
+            "Chicken strips"
         ],
         .misc: [
-            Item(identifier: "asdf", title: "Times sneezed", count: 1000),
-            Item(identifier: "asdf", title: "Naps 🥺", count: 0),
-            Item(identifier: "asdf", title: "Day dreaming", count: 0),
+            "Times sneezed",
+            "Naps 🥺",
+            "Day dreams"
         ]
     ]
 
@@ -46,15 +52,22 @@ final class AddItemExamplesViewController: UIViewController, AddItemExamplesTabl
 
     // MARK: - Properties
 
-    var dataSource: AddItemExamplesTableViewDataSource?
+    private var tableViewDataSource: AddItemExamplesTableViewDataSource?
+    private var tableViewDelegate: AddItemExamplesTableViewDelegate?
     weak var delegate: AddItemExamplesDelegate?
 
     // MARK: - Initialization
 
-    init(dataSource: AddItemExamplesTableViewDataSource, delegate: AddItemExamplesDelegate? = nil) {
+    init(
+        tableViewDataSource: AddItemExamplesTableViewDataSource,
+        tableViewDelegate: AddItemExamplesTableViewDelegate,
+        delegate: AddItemExamplesDelegate? = nil
+    ) {
         super.init(nibName: nil, bundle: nil)
-        self.dataSource = dataSource
-        self.dataSource?.showcaseSource = self
+        self.tableViewDataSource = tableViewDataSource
+        self.tableViewDataSource?.showcaseSource = self
+        self.tableViewDelegate = tableViewDelegate
+        self.tableViewDelegate?.showcaseSource = self
         self.delegate = delegate
     }
 
@@ -137,7 +150,11 @@ final class AddItemExamplesViewController: UIViewController, AddItemExamplesTabl
     private func configureTableView() {
         tableView.backgroundColor = Constants.TableView.backgroundColor
         tableView.separatorStyle = .none
-        tableView.dataSource = dataSource
+        tableViewDataSource?.selectItemDelegate = self
+        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDelegate
+
+        tableView.registerReusable(AddItemTableViewCell.self)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
@@ -148,5 +165,11 @@ final class AddItemExamplesViewController: UIViewController, AddItemExamplesTabl
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+}
+
+extension AddItemExamplesViewController: AddItemExamplesDelegate {
+    func userDidChooseExample(title: String) {
+        delegate?.userDidChooseExample(title: title)
     }
 }

@@ -5,5 +5,5 @@ import Foundation
 
 protocol AddItemExamplesDelegate: class {
 
-    func userDidChooseExample(_ item: Item)
+    func userDidChooseExample(title: String)
 }

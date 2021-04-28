@@ -8,7 +8,7 @@ final class AddItemViewController: UIViewController, TopBarProvider {
         let viewData = AddItemView.ViewData(
             placeholderText: "ADD_ITEM_PLACEHOLDER".localized,
             subtitle: Self.placeholderAttributedText,
-            isAnimating: true
+            isAnimating: false
         )
         let addItemView = AddItemView(viewData: viewData, delegate: presenter as? AddItemViewDelegate)
         return addItemView
@@ -180,8 +180,23 @@ extension AddItemViewController: AddItemViewDisplay {
     }
 
     func routeToExamples() {
-        let dataSource = AddItemExamplesTableViewDataSource()
-        let viewController = AddItemExamplesViewController(dataSource: dataSource)
+        let viewController = AddItemExamplesViewController(
+            tableViewDataSource: AddItemExamplesTableViewDataSource(),
+            tableViewDelegate: AddItemExamplesTableViewDelegate(),
+            delegate: self
+        )
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension AddItemViewController: AddItemExamplesDelegate {
+    func userDidChooseExample(title: String) {
+        addItemView.viewData = AddItemView.ViewData(
+            text: title,
+            placeholderText: "ADD_ITEM_PLACEHOLDER".localized,
+            subtitle: Self.placeholderAttributedText,
+            isAnimating: false
+        )
+        navigationController?.popViewController(animated: true)
     }
 }

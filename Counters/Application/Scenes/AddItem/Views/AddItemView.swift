@@ -163,7 +163,7 @@ final class AddItemView: UIView {
 
     private func updateContent() {
         let textFieldViewData = ProgressIndicatorTextField.ViewData(
-            text: textField.text ?? viewData?.text,
+            text: viewData?.text,
             placeholderText: viewData?.placeholderText,
             isAnimating: false
         )
