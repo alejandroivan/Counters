@@ -6,7 +6,7 @@ protocol MainPresenter: class {
     var tableViewDataSource: MainTableViewDataSource { get }
     var tableViewDelegate: MainTableViewDelegate { get }
 
-    var items: Items { get }
+    var items: Items { get set }
 
     /// Must be called at the end of viewDidLoad() in the view controller.
     /// Basically starts whatever the presenter needs to do at initialization,
@@ -25,4 +25,9 @@ protocol MainPresenter: class {
     // MARK: - Fetch items
 
     func fetchAllItems()
+
+    // MARK: - Counting
+
+    func incrementItem(at index: Int)
+    func decrementItem(at index: Int)
 }

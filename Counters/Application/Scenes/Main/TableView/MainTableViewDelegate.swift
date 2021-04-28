@@ -2,6 +2,7 @@ import UIKit
 
 final class MainTableViewDelegate: NSObject, UITableViewDelegate {
     weak var presenter: MainPresenter?
+    weak var tableView: UITableView?
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
@@ -18,11 +19,13 @@ extension MainTableViewDelegate: MainViewItemCellDelegate {
     // Using the tablView and the cell, we can get the indexPath of the cell
     // and get the item from there.
     func mainViewCell(_ cell: MainViewItemCell, countAction: MainViewItemAction) {
+        guard let indexPath = tableView?.indexPath(for: cell) else { return }
+
         switch countAction {
         case .increment:
-            print("Incrementing!")
+            presenter?.incrementItem(at: indexPath.row)
         case .decrement:
-            print("Decrementing!")
+            presenter?.decrementItem(at: indexPath.row)
         }
     }
 }

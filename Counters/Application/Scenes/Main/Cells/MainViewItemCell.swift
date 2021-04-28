@@ -219,6 +219,5 @@ final class MainViewItemCell: UITableViewCell {
         guard let viewData = viewData else { return }
         counterLabel.text = String(viewData.count)
         titleLabel.text = viewData.title
-        print("Content updated: \(viewData)")
     }
 }

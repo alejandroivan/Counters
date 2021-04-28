@@ -61,6 +61,7 @@ final class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = presenter.tableViewDataSource
         tableView.delegate = presenter.tableViewDelegate
+        presenter.tableViewDelegate.tableView = tableView
 
         tableView.registerReusable(MainViewItemCell.self)
 

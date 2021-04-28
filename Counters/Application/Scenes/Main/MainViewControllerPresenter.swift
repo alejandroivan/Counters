@@ -72,4 +72,16 @@ extension MainViewControllerPresenter {
             }
         }
     }
+
+    // MARK: - Counting
+
+    func incrementItem(at index: Int) {
+        items[index].count += 1
+        viewController?.displayItems()
+    }
+
+    func decrementItem(at index: Int) {
+        items[index].count -= 1
+        viewController?.displayItems()
+    }
 }

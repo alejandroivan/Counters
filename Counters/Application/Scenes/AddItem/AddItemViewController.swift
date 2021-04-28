@@ -129,9 +129,7 @@ final class AddItemViewController: UIViewController, TopBarProvider {
             )
         )
 
-        DispatchQueue.main.async {
-            self.navigationController?.present(alertController, animated: true, completion: nil)
-        }
+        self.navigationController?.present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -155,27 +153,31 @@ extension AddItemViewController: AddItemViewDisplay {
     }
 
     func showSavingError() {
-        showAlert(
-            title: "ADD_ITEM_ERROR_SAVING_TITLE".localized,
-            message: "ADD_ITEM_ERROR_SAVING_MESSAGE".localized,
-            buttonTitle: "ADD_ITEM_ERROR_SAVING_DISMISS_BUTTON".localized
-        ) { action in
-            self.addItemView.stopAnimating()
+        DispatchQueue.main.async {
+            self.showAlert(
+                title: "ADD_ITEM_ERROR_SAVING_TITLE".localized,
+                message: "ADD_ITEM_ERROR_SAVING_MESSAGE".localized,
+                buttonTitle: "ADD_ITEM_ERROR_SAVING_DISMISS_BUTTON".localized
+            ) { action in
+                self.addItemView.stopAnimating()
+            }
         }
-
     }
 
     func showSavingSuccess() {
         let format = "ADD_ITEM_SUCCESS_SAVING_MESSAGE".localized
-        let message = String(format: format, addItemView.text)
-        
-        showAlert(
-            title: "ADD_ITEM_SUCCESS_SAVING_TITLE".localized,
-            message: message,
-            buttonTitle: "ADD_ITEM_SUCCESS_SAVING_DISMISS_BUTTON".localized
-        ) { action in
-            self.addItemView.stopAnimating()
-            self.navigationController?.dismiss(animated: true, completion: nil)
+
+        DispatchQueue.main.async {
+            let message = String(format: format, self.addItemView.text)
+
+            self.showAlert(
+                title: "ADD_ITEM_SUCCESS_SAVING_TITLE".localized,
+                message: message,
+                buttonTitle: "ADD_ITEM_SUCCESS_SAVING_DISMISS_BUTTON".localized
+            ) { action in
+                self.addItemView.stopAnimating()
+                self.navigationController?.dismiss(animated: true, completion: nil)
+            }
         }
     }
 
