@@ -12,11 +12,14 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
 
     func saveItem(name: String) {
         // TODO: Add user feedback.
-        guard name != GlobalConstants.empty else { return }
+        guard name != GlobalConstants.empty else {
+            viewController?.setTextFieldError()
+            return
+        }
         isNetworkOperationInProgress = true
         viewController?.isSaving = true
 
-        
+
     }
 
     func cancelItemCreation() {

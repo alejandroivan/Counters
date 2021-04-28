@@ -65,6 +65,7 @@ final class AddItemViewController: UIViewController {
 
     @objc
     private func didTapCancelItem() {
+        addItemView.resignFirstResponder()
         presenter.cancelItemCreation()
     }
 
@@ -88,6 +89,10 @@ extension AddItemViewController: AddItemViewDisplay {
         }
 
         get { addItemView.isAnimating }
+    }
+
+    func setTextFieldError() {
+        addItemView.hasError = true
     }
 
     func routeToExamples() {

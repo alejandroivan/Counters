@@ -185,11 +185,13 @@ final class AddItemView: UIView {
     // MARK: - Public interface
 
     public func startAnimating() {
+        isUserInteractionEnabled = false
         textField.startAnimating()
         delegate?.progressIndicatorTextField(textField, isAnimating: true)
     }
 
     public func stopAnimating() {
+        isUserInteractionEnabled = true
         textField.stopAnimating()
         delegate?.progressIndicatorTextField(textField, isAnimating: false)
     }
@@ -197,4 +199,16 @@ final class AddItemView: UIView {
     public var isAnimating: Bool { textField.isAnimating }
 
     public var text: String { textField.text ?? GlobalConstants.empty }
+
+    public var hasError: Bool {
+        get { textField.hasError }
+        set { textField.hasError = newValue }
+    }
+
+    // MARK: - Overrides
+
+    @discardableResult
+    override func resignFirstResponder() -> Bool {
+        return textField.resignFirstResponder() && super.resignFirstResponder()
+    }
 }

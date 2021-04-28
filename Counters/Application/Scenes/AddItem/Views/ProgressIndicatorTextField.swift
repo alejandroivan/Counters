@@ -19,6 +19,9 @@ final class ProgressIndicatorTextField: UITextField {
 
         static let textInsets = UIEdgeInsets(top: 17, left: 17, bottom: 17, right: 17)
 
+        static let placeholderColor = UIColor.counters.disabledText
+        static let placeholderErrorColor = UIColor.counters.red
+
         struct ActivityIndicator {
             static let color: UIColor = UIColor.counters.background
             static let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
@@ -70,6 +73,7 @@ final class ProgressIndicatorTextField: UITextField {
     }
 
     private func commonInit() {
+        delegate = self
         configureStyle()
         configureRightView()
         updateContent()
@@ -89,15 +93,39 @@ final class ProgressIndicatorTextField: UITextField {
         rightViewMode = .always
     }
 
+    // MARK: - Content
+
     private func updateContent() {
         text = viewData?.text
-        placeholder = viewData?.placeholderText
+        setPlaceholder(placeholderText: viewData?.placeholderText)
 
         if viewData?.isAnimating == true {
             startAnimating()
         } else {
             stopAnimating()
         }
+    }
+
+    private func setPlaceholder(placeholderText: String?) {
+        guard let placeholderText = placeholderText else {
+            self.placeholder = nil
+            self.attributedPlaceholder = nil
+            return
+        }
+
+        let attributedString = NSMutableAttributedString(string: placeholderText)
+        let nsString = placeholderText as NSString
+        let range = nsString.range(of: placeholderText)
+
+        let attributes: [NSAttributedString.Key: Any]
+        if hasError {
+            attributes = [.foregroundColor: Constants.placeholderErrorColor]
+        } else {
+            attributes = [.foregroundColor: Constants.placeholderColor]
+        }
+
+        attributedString.addAttributes(attributes, range: range)
+        attributedPlaceholder = attributedString
     }
 
     // MARK: - Public interface
@@ -110,6 +138,7 @@ final class ProgressIndicatorTextField: UITextField {
     }
 
     public func stopAnimating() {
+        becomeFirstResponder()
         activityIndicator.stopAnimating()
         rightView = nil
         isUserInteractionEnabled = true
@@ -117,5 +146,18 @@ final class ProgressIndicatorTextField: UITextField {
 
     public var isAnimating: Bool {
         activityIndicator.isAnimating
+    }
+
+    public var hasError: Bool = false {
+        didSet {
+            setPlaceholder(placeholderText: viewData?.placeholderText)
+        }
+    }
+}
+
+extension ProgressIndicatorTextField: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard textField == self else { return }
+        hasError = false
     }
 }
