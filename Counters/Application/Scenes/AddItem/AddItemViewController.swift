@@ -68,7 +68,7 @@ final class AddItemViewController: UIViewController, TopBarProvider {
     }
 
     var topBarBackButtonText: String? {
-        "Create"
+        "CREATE_A_COUNTER_BACK_BUTTON".localized
     }
 
     var topBarLeftItems: [UIBarButtonItem]? = [

@@ -132,6 +132,9 @@ extension MainViewController: MainViewDisplay {
 
     // TODO: Delegate this to a router/coordinator object (later).
     func routeToAddItem() {
+        errorKind = nil
+        errorView?.removeFromSuperview()
+
         let presenter = AddItemViewControllerPresenter()
         let viewController = AddItemViewController(presenter: presenter)
         let navigationController = MainNavigationController(rootViewController: viewController)
@@ -145,8 +148,6 @@ extension MainViewController: ErrorViewDelegate {
 
     func didPressActionButton() {
         let kind = errorKind
-        errorKind = nil
-        errorView?.removeFromSuperview()
 
         switch kind {
         case .noItems:

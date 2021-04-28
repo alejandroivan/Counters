@@ -38,6 +38,8 @@
 // MARK: - New Item
 
 "CREATE_A_COUNTER" = "Create a counter";
+"CREATE_A_COUNTER_BACK_BUTTON" = "Create";
+
 "ADD_ITEM_PLACEHOLDER" = "Enter the name of the new counter";
 "ADD_ITEM_SUBTITLE" = "Give it a name. Creative block? See examples.";
 "ADD_ITEM_SUBTITLE_UNDERLINED" = "examples";
