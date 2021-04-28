@@ -29,7 +29,8 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
 
 extension AddItemViewControllerPresenter: AddItemViewDelegate {
     func progressIndicatorTextField(_ textField: ProgressIndicatorTextField, isAnimating: Bool) {
-        print("\(textField) animating: \(isAnimating)")
+        guard let viewController = viewController as? TopBarProvider else { return }
+        viewController.topBarLeftItems?.forEach { $0.isEnabled = !isAnimating }
     }
 
     func didPressExamples() {

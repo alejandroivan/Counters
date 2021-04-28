@@ -1,6 +1,6 @@
 import UIKit
 
-final class AddItemViewController: UIViewController {
+final class AddItemViewController: UIViewController, TopBarProvider {
 
     private let presenter: AddItemPresenter
 
@@ -61,6 +61,34 @@ final class AddItemViewController: UIViewController {
         view.backgroundColor = UIColor.counters.background
     }
 
+    // MARK: TopBarProvider
+
+    var topBarTitle: String? {
+        "CREATE_A_COUNTER".localized
+    }
+
+    var topBarBackButtonText: String? {
+        "Create"
+    }
+
+    var topBarLeftItems: [UIBarButtonItem]? = [
+        UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancelItem))
+    ]
+
+    var topBarRightItems: [UIBarButtonItem]? {
+        let saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveItem))
+        let fontAttributes: [NSAttributedString.Key: Any] = [
+            .font: Constants.SaveItem.font
+        ]
+
+        saveItem.setTitleTextAttributes(fontAttributes, for: .normal)
+        saveItem.isEnabled = !presenter.isNetworkOperationInProgress
+
+        return [saveItem]
+    }
+
+    var topBarPrefersLargeTitles: Bool { false }
+
     // MARK: - Top Bar actions
 
     @objc
@@ -100,38 +128,4 @@ extension AddItemViewController: AddItemViewDisplay {
         let viewController = AddItemExamplesViewController(dataSource: dataSource)
         navigationController?.pushViewController(viewController, animated: true)
     }
-}
-
-// MARK: Top/Bottom Bars
-
-extension AddItemViewController: TopBarProvider {
-    var topBarTitle: String? {
-        "CREATE_A_COUNTER".localized
-    }
-
-    var topBarBackButtonText: String? {
-        "Create"
-    }
-
-    var topBarLeftItems: [UIBarButtonItem]? {
-        [
-            UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancelItem))
-        ]
-    }
-
-    var topBarRightItems: [UIBarButtonItem]? {
-        let saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(didTapSaveItem))
-        let fontAttributes: [NSAttributedString.Key: Any] = [
-            .font: Constants.SaveItem.font
-        ]
-        
-        saveItem.setTitleTextAttributes(fontAttributes, for: .normal)
-        saveItem.isEnabled = !presenter.isNetworkOperationInProgress
-
-        return [
-            saveItem
-        ]
-    }
-
-    var topBarPrefersLargeTitles: Bool { false }
 }
