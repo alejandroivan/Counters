@@ -195,4 +195,6 @@ final class AddItemView: UIView {
     }
 
     public var isAnimating: Bool { textField.isAnimating }
+
+    public var text: String { textField.text ?? GlobalConstants.empty }
 }

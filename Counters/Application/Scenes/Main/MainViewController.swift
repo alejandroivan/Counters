@@ -14,6 +14,14 @@ final class MainViewController: UIViewController {
     private weak var mainNavigationController: MainNavigationController? { navigationController as? MainNavigationController }
 
     private let tableView = UITableView()
+    private weak var errorView: MainErrorView?
+
+    private enum ErrorKind {
+        case noItems
+        case noConnection
+    }
+
+    private var errorKind: ErrorKind?
 
     // MARK: - Initialization
 
@@ -34,6 +42,11 @@ final class MainViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .always
         configureView()
         presenter.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
     }
 
     private func configureView() {
@@ -88,7 +101,31 @@ extension MainViewController: MainViewDisplay {
     }
 
     func displayEmptyError() {
-        print("ERROR: Empty response!")
+        guard errorView == nil else { return }
+        
+        let viewData = MainErrorView.ViewData(
+            title: "MAIN_VIEW_ERROR_NOCOUNTERS_TITLE".localized,
+            subtitle: "MAIN_VIEW_ERROR_NOCOUNTERS_SUBTITLE".localized,
+            buttonTitle: "MAIN_VIEW_ERROR_NOCOUNTERS_BUTTON_TITLE".localized
+        )
+        let errorView = MainErrorView(viewData: viewData, delegate: self)
+
+        view.addSubview(errorView)
+        view.bringSubviewToFront(errorView)
+
+        self.errorView = errorView
+        errorKind = .noItems
+
+        NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+
+    func displayNoNetworkError() {
+        print("ERROR: No network!")
     }
 
     // MARK: - Routing
@@ -99,6 +136,26 @@ extension MainViewController: MainViewDisplay {
         let viewController = AddItemViewController(presenter: presenter)
         let navigationController = MainNavigationController(rootViewController: viewController)
         present(navigationController, animated: true)
+    }
+}
+
+// MARK: - ErrorViewDelegate
+
+extension MainViewController: ErrorViewDelegate {
+
+    func didPressActionButton() {
+        let kind = errorKind
+        errorKind = nil
+        errorView?.removeFromSuperview()
+
+        switch kind {
+        case .noItems:
+            presenter.addItem()
+        case .noConnection:
+            presenter.fetchAllItems()
+        case .none:
+            break
+        }
     }
 }
 

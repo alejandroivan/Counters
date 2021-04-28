@@ -45,6 +45,8 @@
 		FF93D9082634E5E9000B5361 /* AddItemViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D9072634E5E9000B5361 /* AddItemViewControllerPresenter.swift */; };
 		FF93D9122634F597000B5361 /* ProgressIndicatorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D9112634F597000B5361 /* ProgressIndicatorTextField.swift */; };
 		FF93D9222634F922000B5361 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF93D9212634F922000B5361 /* AddItemView.swift */; };
+		FF9FBE3C2638D63E00655141 /* AddItemViewControllerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9FBE3B2638D63E00655141 /* AddItemViewControllerUseCase.swift */; };
+		FF9FBE442638D8DE00655141 /* MainViewControllerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9FBE432638D8DE00655141 /* MainViewControllerUseCase.swift */; };
 		FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576F32633AF9300BEE65E /* MainNavigationController.swift */; };
 		FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */; };
 		FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE577042633B13B00BEE65E /* BottomBarProvider.swift */; };
@@ -117,6 +119,8 @@
 		FF93D9072634E5E9000B5361 /* AddItemViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewControllerPresenter.swift; sourceTree = "<group>"; };
 		FF93D9112634F597000B5361 /* ProgressIndicatorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorTextField.swift; sourceTree = "<group>"; };
 		FF93D9212634F922000B5361 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		FF9FBE3B2638D63E00655141 /* AddItemViewControllerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewControllerUseCase.swift; sourceTree = "<group>"; };
+		FF9FBE432638D8DE00655141 /* MainViewControllerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerUseCase.swift; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
 		FFE577042633B13B00BEE65E /* BottomBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarProvider.swift; sourceTree = "<group>"; };
@@ -383,6 +387,7 @@
 				FF93D8F62634E53E000B5361 /* Protocols */,
 				FF93D8F12634E4BD000B5361 /* AddItemViewController.swift */,
 				FF93D9072634E5E9000B5361 /* AddItemViewControllerPresenter.swift */,
+				FF9FBE3B2638D63E00655141 /* AddItemViewControllerUseCase.swift */,
 			);
 			path = AddItem;
 			sourceTree = "<group>";
@@ -444,6 +449,7 @@
 				FF93D8D92634CB42000B5361 /* Protocols */,
 				FFE577152633B28A00BEE65E /* MainViewController.swift */,
 				FF93D8AF2634C522000B5361 /* MainViewControllerPresenter.swift */,
+				FF9FBE432638D8DE00655141 /* MainViewControllerUseCase.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -607,6 +613,7 @@
 				FF164DCC2636289100EDD69E /* AddItemViewDelegate.swift in Sources */,
 				FF93D8CF2634C7E9000B5361 /* GlobalConstants.swift in Sources */,
 				FF93D9002634E578000B5361 /* AddItemViewDisplay.swift in Sources */,
+				FF9FBE442638D8DE00655141 /* MainViewControllerUseCase.swift in Sources */,
 				FF93D8DB2634CB4F000B5361 /* MainPresenter.swift in Sources */,
 				FFE577212633B8B600BEE65E /* Namespace.swift in Sources */,
 				FF8131AB2637D2D9003BF7BB /* MainViewItemCellDelegate.swift in Sources */,
@@ -618,6 +625,7 @@
 				FF164E002637824F00EDD69E /* MainViewItemCell.swift in Sources */,
 				FF93D8CA2634C7C3000B5361 /* String+Localizable.swift in Sources */,
 				FF164DE82636310F00EDD69E /* Reusable.swift in Sources */,
+				FF9FBE3C2638D63E00655141 /* AddItemViewControllerUseCase.swift in Sources */,
 				FF164DF62636537E00EDD69E /* SwiftNetworking.swift in Sources */,
 				FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */,
 				FFE577162633B28A00BEE65E /* MainViewController.swift in Sources */,

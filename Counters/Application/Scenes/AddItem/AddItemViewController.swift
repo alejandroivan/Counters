@@ -70,7 +70,8 @@ final class AddItemViewController: UIViewController {
 
     @objc
     private func didTapSaveItem() {
-        presenter.saveItem()
+        let itemName = addItemView.text
+        presenter.saveItem(name: itemName)
     }
 }
 

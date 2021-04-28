@@ -45,7 +45,10 @@ extension WelcomeViewController: WelcomeViewButtonDelegate {
         let viewController = MainViewController(
             presenter: MainViewControllerPresenter(
                 tableViewDataSource: MainTableViewDataSource(),
-                tableViewDelegate: MainTableViewDelegate()
+                tableViewDelegate: MainTableViewDelegate(),
+                useCase: MainViewControllerUseCase(
+                    networking: SwiftNetworking()
+                )
             )
         )
         let navigationController = MainNavigationController(rootViewController: viewController)

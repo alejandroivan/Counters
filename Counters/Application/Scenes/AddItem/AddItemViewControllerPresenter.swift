@@ -10,14 +10,13 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
         }
     }
 
-    func viewDidLoad() {
-        // We should present an activity indicator here and fetch data.
-        print("Presenter initialized.")
-    }
-
-    func saveItem() {
+    func saveItem(name: String) {
+        // TODO: Add user feedback.
+        guard name != GlobalConstants.empty else { return }
         isNetworkOperationInProgress = true
         viewController?.isSaving = true
+
+        
     }
 
     func cancelItemCreation() {

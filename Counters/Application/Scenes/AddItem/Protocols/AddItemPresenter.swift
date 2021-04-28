@@ -6,6 +6,6 @@ protocol AddItemPresenter: class {
 
     var isNetworkOperationInProgress: Bool { get }
 
-    func saveItem()
+    func saveItem(name: String)
     func cancelItemCreation()
 }

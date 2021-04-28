@@ -7,11 +7,16 @@ final class MainViewControllerPresenter: MainPresenter {
 
     private(set) var tableViewDataSource: MainTableViewDataSource
     private(set) var tableViewDelegate: MainTableViewDelegate
+    private let useCase: MainViewControllerUseCase
+
+    private var isLoading = false
 
     init(
         tableViewDataSource: MainTableViewDataSource,
-        tableViewDelegate: MainTableViewDelegate
+        tableViewDelegate: MainTableViewDelegate,
+        useCase: MainViewControllerUseCase
     ) {
+        self.useCase = useCase
         self.tableViewDataSource = tableViewDataSource
         self.tableViewDelegate = tableViewDelegate
         self.tableViewDataSource.presenter = self
@@ -19,24 +24,11 @@ final class MainViewControllerPresenter: MainPresenter {
     }
 
     func viewDidLoad() {
-        // We should present an activity indicator here and fetch data.
-        SwiftNetworking.get(url: "v1/counters", parameters: ["a": "b"], resultType: Items.self) { [weak self] items, error in
-            guard error == nil, let items = items else {
-                print("ERROR: \(String(describing: error))")
-                return
-            }
+        fetchAllItems()
+    }
 
-            print("GOT ITEMS: \(items)")
-            self?.items = items
-
-            DispatchQueue.main.async {
-                if items.isEmpty {
-                    self?.viewController?.displayEmptyError()
-                } else {
-                    self?.viewController?.displayItems()
-                }
-            }
-        }
+    func viewWillAppear() {
+        fetchAllItems()
     }
 }
 
@@ -52,5 +44,32 @@ extension MainViewControllerPresenter {
 
     func addItem() {
         viewController?.routeToAddItem()
+    }
+
+    // MARK: - Fetch items
+
+    func fetchAllItems() {
+        guard !isLoading else { return }
+
+        isLoading = true
+
+        useCase.getItems { [weak self] items, error in
+            self?.isLoading = false
+            
+            guard error == nil, let items = items else {
+                self?.viewController?.displayNoNetworkError()
+                return
+            }
+
+            self?.items = items
+
+            DispatchQueue.main.async {
+                if items.isEmpty {
+                    self?.viewController?.displayEmptyError()
+                } else {
+                    self?.viewController?.displayItems()
+                }
+            }
+        }
     }
 }

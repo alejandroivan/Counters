@@ -22,6 +22,9 @@
 "WELCOME_PRIMARY_ACTION_TITLE" = "Continue";
 
 // MARK: - Main
+"MAIN_VIEW_ERROR_NOCOUNTERS_TITLE" = "No counters yet";
+"MAIN_VIEW_ERROR_NOCOUNTERS_SUBTITLE" = "\"When I started counting my blessings, my whole life turned around.\"\n— Willie Nelson";
+"MAIN_VIEW_ERROR_NOCOUNTERS_BUTTON_TITLE" = "Create a counter";
 "ITEMS_COUNT" = "1 item • Counted %d times";
 "ITEMS_COUNT_PLURALIZED" = "%d items • Counted %d times";
 

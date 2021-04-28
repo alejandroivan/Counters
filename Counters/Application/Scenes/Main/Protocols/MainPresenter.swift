@@ -12,6 +12,7 @@ protocol MainPresenter: class {
     /// Basically starts whatever the presenter needs to do at initialization,
     /// but delayed to when the view has loaded.
     func viewDidLoad()
+    func viewWillAppear()
 
     // MARK: - Edit button
 
@@ -20,4 +21,8 @@ protocol MainPresenter: class {
     // MARK: - Add item button
 
     func addItem()
+
+    // MARK: - Fetch items
+
+    func fetchAllItems()
 }

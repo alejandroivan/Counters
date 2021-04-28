@@ -2,7 +2,7 @@
 #import "Networking.h"
 
 // MARK: - Base URL
-NSString *const baseURL = @"http://127.0.0.1:3000/api/";
+NSString *const baseURL = @"http://192.168.0.4:3000/api/";
 
 // MARK: - Error
 NSErrorDomain const CountersErrorDomain = @"counters.network.error.domain";
