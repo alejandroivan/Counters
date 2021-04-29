@@ -22,6 +22,7 @@
 "WELCOME_PRIMARY_ACTION_TITLE" = "Continue";
 
 // MARK: - Main
+"MAIN_VIEW_TITLE" = "Counters";
 "MAIN_VIEW_ERROR_NOCOUNTERS_TITLE" = "No counters yet";
 "MAIN_VIEW_ERROR_NOCOUNTERS_SUBTITLE" = "\"When I started counting my blessings, my whole life turned around.\"\n— Willie Nelson";
 "MAIN_VIEW_ERROR_NOCOUNTERS_BUTTON_TITLE" = "Create a counter";
@@ -51,3 +52,7 @@
 "ADD_ITEM_SUBTITLE" = "Give it a name. Creative block? See examples.";
 "ADD_ITEM_SUBTITLE_UNDERLINED" = "examples";
 "ADD_ITEM_EXAMPLES_HEADER" = "Select an example to add it to your counters.";
+
+// MARK: - Edit Items
+
+"EDIT_ITEMS_SELECT_ALL" = "Select All";

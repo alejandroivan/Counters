@@ -5,14 +5,6 @@ protocol MainUseCaseProtocol {
     /// the items from the local cache.
     /// - Parameter completion: Completion handler
     func getItems(completion: @escaping (Items?, SwiftNetworkingError?) -> Void)
-
-    /// Get all the items stored in the local cache.
-    func getItemsFromLocalCache() -> Items
-
-    /// Save items to the local cache.
-    /// - Parameter items: The list of items to be saved.
-    @discardableResult
-    func saveItemsToLocalCache(_ items: Items) -> Bool
 }
 
 final class MainViewControllerUseCase: MainUseCaseProtocol {
@@ -38,7 +30,7 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
 
         networking.get(url: url.rawValue, parameters: [:], resultType: Items.self) { response, error in
             guard error == nil else {
-                let items = self.localCache.items
+                let items = self.getItemsFromLocalCache()
 
                 if items.isEmpty {
                     completion(nil, error as? SwiftNetworkingError)
@@ -55,8 +47,13 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         }
     }
 
-    func getItemsFromLocalCache() -> Items { localCache.items }
+    // MARK: - Helpers
+
+    private func getItemsFromLocalCache() -> Items { localCache.items }
 
     @discardableResult
-    func saveItemsToLocalCache(_ items: Items) -> Bool { localCache.saveItems(items) }
+    private func saveItemsToLocalCache(_ items: Items) -> Bool {
+        localCache.deleteItems(nil)
+        return localCache.saveItems(items)
+    }
 }

@@ -84,10 +84,30 @@ final class MainViewController: UIViewController {
         presenter.addItem()
     }
 
+    // MARK: - Editing items
+
     @objc
     private func didFinishEditingItems() {
         setEditingEnabled(false)
         mainNavigationController?.updateBars(for: self)
+    }
+
+    @objc
+    private func selectAllItems() {
+        var indexPaths: [IndexPath?] = []
+
+        for item in items {
+            guard let index = items.firstIndex(of: item) else { continue }
+            let indexPath = IndexPath(row: index, section: 0)
+            indexPaths.append(indexPath)
+        }
+
+        tableView.beginUpdates()
+        /// NOTE: Documentation about `UITableView.ScrollPosition` is wrong from Apple.
+        /// This method does NOT scroll the selected row to visible, even though the docs say so.
+        /// Link: https://developer.apple.com/documentation/uikit/uitableview/scrollposition
+        indexPaths.forEach { tableView.selectRow(at: $0, animated: true, scrollPosition: .none)}
+        tableView.endUpdates()
     }
 }
 
@@ -184,7 +204,7 @@ extension MainViewController: ErrorViewDelegate {
 
 extension MainViewController: TopBarProvider {
 
-    var topBarTitle: String? { "Counters" }
+    var topBarTitle: String? { "MAIN_VIEW_TITLE".localized }
 
     var topBarBackButtonText: String? {
         nil
@@ -224,10 +244,10 @@ extension MainViewController: TopBarProvider {
         if tableView.isEditing {
             items = [
                 UIBarButtonItem(
-                    title: "Select All",
+                    title: "EDIT_ITEMS_SELECT_ALL".localized,
                     style: .plain,
-                    target: nil,
-                    action: nil
+                    target: self,
+                    action: #selector(selectAllItems)
                 )
             ]
         }
