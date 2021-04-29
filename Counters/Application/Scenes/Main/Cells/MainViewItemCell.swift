@@ -77,7 +77,8 @@ final class MainViewItemCell: UITableViewCell {
 
     private func configureView() {
         backgroundColor = .clear
-        selectionStyle = .none
+        selectionStyle = .default
+        selectedBackgroundView = UIView()
         configureContainerView()
         configureVerticalSeparator()
         configureCounterLabel()

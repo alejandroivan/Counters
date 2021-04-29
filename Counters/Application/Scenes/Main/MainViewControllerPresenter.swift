@@ -33,7 +33,8 @@ extension MainViewControllerPresenter {
     // MARK: - Edit button
 
     func editItems() {
-        print("EDIT ITEMS")
+        let isEditing = viewController?.isEditingItems ?? false
+        viewController?.setEditingEnabled(!isEditing)
     }
 
     // MARK: - Add item
@@ -43,7 +44,6 @@ extension MainViewControllerPresenter {
     }
 
     func addItemDidFinish(_ addItemView: AddItemViewDisplay?) {
-        print("New item!")
         fetchAllItems()
     }
 

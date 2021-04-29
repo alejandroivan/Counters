@@ -11,6 +11,16 @@ final class MainTableViewDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard tableView.isEditing, let item = presenter?.items[indexPath.row] else { return }
+        print("SELECTED ITEM: \(item)")
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard tableView.isEditing, let item = presenter?.items[indexPath.row] else { return }
+        print("DESELECTED ITEM: \(item)")
+    }
 }
 
 extension MainTableViewDelegate: MainViewItemCellDelegate {

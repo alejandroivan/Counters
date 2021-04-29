@@ -9,4 +9,8 @@ protocol MainViewDisplay: class {
 
     // MARK: - Routing
     func routeToAddItem()
+
+    // MARK: - Editing
+    func setEditingEnabled(_ isEditing: Bool)
+    var isEditingItems: Bool { get }
 }

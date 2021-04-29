@@ -83,6 +83,12 @@ final class MainViewController: UIViewController {
     private func didTapAddItemButton(_ button: UIBarButtonItem) {
         presenter.addItem()
     }
+
+    @objc
+    private func didFinishEditingItems() {
+        setEditingEnabled(false)
+        mainNavigationController?.updateBars(for: self)
+    }
 }
 
 // MARK: - MainViewDisplay protocol
@@ -123,6 +129,17 @@ extension MainViewController: MainViewDisplay {
     func displayNoNetworkError() {
         print("ERROR: No network!")
     }
+
+    // MARK: - Editing
+
+    func setEditingEnabled(_ isEditing: Bool) {
+        tableView.allowsMultipleSelection = isEditing
+        tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.setEditing(isEditing, animated: true)
+        mainNavigationController?.updateBars(for: self)
+    }
+
+    var isEditingItems: Bool { tableView.isEditing }
 
     // MARK: - Routing
 
@@ -174,14 +191,49 @@ extension MainViewController: TopBarProvider {
     }
 
     var topBarLeftItems: [UIBarButtonItem]? {
-        let item = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButton))
-        if items.isEmpty {
-            item.isEnabled = false
+        var leftItems: [UIBarButtonItem] = []
+
+        if tableView.isEditing {
+            leftItems = [
+                UIBarButtonItem(
+                    barButtonSystemItem: .done,
+                    target: self,
+                    action: #selector(didFinishEditingItems)
+                )
+            ]
+        } else {
+            let item = UIBarButtonItem(
+                barButtonSystemItem: .edit,
+                target: self,
+                action: #selector(didTapEditButton)
+            )
+
+            if items.isEmpty {
+                item.isEnabled = false
+            }
+
+            leftItems = [item]
         }
-        return [item]
+
+        return leftItems
     }
 
-    var topBarRightItems: [UIBarButtonItem]? { [] }
+    var topBarRightItems: [UIBarButtonItem]? {
+        var items: [UIBarButtonItem] = []
+
+        if tableView.isEditing {
+            items = [
+                UIBarButtonItem(
+                    title: "Select All",
+                    style: .plain,
+                    target: nil,
+                    action: nil
+                )
+            ]
+        }
+
+        return items
+    }
 }
 
 extension MainViewController: BottomBarProvider {
