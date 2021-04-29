@@ -72,7 +72,15 @@ private extension Button {
                                          right: LayoutConstants.edgeInsets)
         layer.cornerRadius = LayoutConstants.cornerRadius
         backgroundColor = ColorConstants.accentColor
-        setTitleColor(ColorConstants.textColor, for: .normal)
+
+        /// There's a bug in iOS 13.0 that won't set the correct color using `setTitleColor(_:, for:)`.
+        /// So we'll set it directly into its text label (OCD mode off).
+        /// Tested on: iPhone 7 Simulator (iOS version: 13.0)
+        if #available(iOS 14.0, *) {
+            setTitleColor(ColorConstants.textColor, for: .normal)
+        } else {
+            titleLabel?.textColor = ColorConstants.textColor
+        }
         titleLabel?.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: Font.title)
     }
 }
