@@ -4,8 +4,15 @@ import Foundation
 protocol Cache {
     associatedtype T
 
+    /// Gets all the items saved in the cache.
     var items: [T] { get }
+    /// Saves all the items passed into the cache.
     func saveItems(_ items: [T]) -> Bool
+
+    /// Deletes items from the cache.
+    /// - Parameter filter: A closure that determines if a particular item should be deleted or not.
+    /// If `filter` is nil, then all items will be deleted.
+    func deleteItems(_ shouldRemove: ((T) -> Bool)?)
 }
 
 final class LocalCache {
@@ -13,6 +20,8 @@ final class LocalCache {
     private static let dataModelName = "LocalCache"
     private static let entityName = "Counters"
     private static let jsonKey = "json"
+    private static let decoder = JSONDecoder()
+    private static let encoder = JSONEncoder()
 
     // MARK: - Core Data
 
@@ -60,19 +69,19 @@ final class LocalCache {
             return []
         }
 
-        let decoder = JSONDecoder()
-
-        let result: [T?] = objects.map {
-            guard
-                let json = $0.value(forKey: Self.jsonKey) as? String,
-                let data = json.data(using: .utf8)
-            else { return nil }
-
-            return try? decoder.decode(T.self, from: data)
-        }
+        let result: [T?] = objects.map { decodableItem(from: $0, type: T.self) }
 
         // We'll use compactMap to ensure there are no nil values
         return result.compactMap { $0 }
+    }
+
+    private func decodableItem<T: Decodable>(from object: NSManagedObject, type: T.Type) -> T? {
+        guard
+            let json = object.value(forKey: Self.jsonKey) as? String,
+            let data = json.data(using: .utf8)
+        else { return nil }
+
+        return try? Self.decoder.decode(T.self, from: data)
     }
 }
 
@@ -84,21 +93,42 @@ extension LocalCache: Cache {
     func saveItems(_ items: [Item]) -> Bool {
         guard let entity = self.entity else { return false }
 
-        let encoder = JSONEncoder()
-        var result = true
-
         for item in items {
             guard
-                let data = try? encoder.encode(item),
+                let data = try? Self.encoder.encode(item),
                 let json = String(data: data, encoding: .utf8)
             else { continue }
 
             let counter = NSManagedObject(entity: entity, insertInto: managedContext)
             counter.setValue(json, forKey: Self.jsonKey)
 
-            result = result && saveContext()
+            managedContext.insert(counter)
         }
 
-        return result
+        do {
+            try managedContext.save()
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    func deleteItems(_ shouldRemove: ((Item) -> Bool)?) {
+        let allObjects = try? managedContext.fetch(fetchRequest)
+        var didDeleteItems = false
+
+        allObjects?.forEach {
+            guard let decodable = decodableItem(from: $0, type: Item.self) else { return }
+            let shouldDelete = shouldRemove?(decodable) ?? true
+
+            if shouldDelete {
+                didDeleteItems = true
+                managedContext.delete($0)
+            }
+        }
+
+        if didDeleteItems {
+            try? managedContext.save()
+        }
     }
 }
