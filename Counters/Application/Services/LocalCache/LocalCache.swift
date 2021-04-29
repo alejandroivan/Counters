@@ -20,8 +20,8 @@ final class LocalCache {
     private static let dataModelName = "LocalCache"
     private static let entityName = "Counters"
     private static let jsonKey = "json"
-    private static let decoder = JSONDecoder()
-    private static let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
+    private let encoder = JSONEncoder()
 
     // MARK: - Core Data
 
@@ -81,7 +81,7 @@ final class LocalCache {
             let data = json.data(using: .utf8)
         else { return nil }
 
-        return try? Self.decoder.decode(T.self, from: data)
+        return try? decoder.decode(T.self, from: data)
     }
 }
 
@@ -96,7 +96,7 @@ extension LocalCache: Cache {
 
         for item in items {
             guard
-                let data = try? Self.encoder.encode(item),
+                let data = try? encoder.encode(item),
                 let json = String(data: data, encoding: .utf8)
             else { continue }
 
