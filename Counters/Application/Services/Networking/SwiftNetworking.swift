@@ -9,7 +9,18 @@ enum SwiftNetworkingError: Error {
 
 class SwiftNetworking {
 
-    private static let networking: Networking = Networking()
+    private let networking: Networking
+    private let reachability: SwiftReachability
+
+    // MARK: - Initialization
+
+    init(
+        networking: Networking = Networking(),
+        reachability: SwiftReachability = SwiftReachability.default
+    ) {
+        self.networking = networking
+        self.reachability = reachability
+    }
 
     // MARK: - HTTP Method helpers
 
@@ -19,12 +30,18 @@ class SwiftNetworking {
         resultType: T.Type,
         completion: @escaping (T?, Error?) -> Void
     ) {
+        guard reachability.isNetworkReachable else {
+            let error: SwiftNetworkingError = .noConnection
+            completion(nil, error)
+            return
+        }
+
         let parameters: [URLQueryItem] = parametersDictionary.map { URLQueryItem(name: $0, value: $1) }
         guard let nsArrayParameters = NSArray(array: parameters) as? [URLQueryItem] else {
             return
         }
 
-        Self.networking.getURL(url, parameters: nsArrayParameters) { data, error in
+        networking.getURL(url, parameters: nsArrayParameters) { data, error in
             guard
                 error == nil,
                 let data = data
@@ -49,12 +66,18 @@ class SwiftNetworking {
         resultType: T.Type,
         completion: @escaping (T?, Error?) -> Void
     ) {
+        guard reachability.isNetworkReachable else {
+            let error: SwiftNetworkingError = .noConnection
+            completion(nil, error)
+            return
+        }
+        
         let parameters: [URLQueryItem] = parametersDictionary.map { URLQueryItem(name: $0, value: $1) }
         guard let nsArrayParameters = NSArray(array: parameters) as? [URLQueryItem] else {
             return
         }
 
-        Self.networking.postURL(url, parameters: nsArrayParameters) { data, error in
+        networking.postURL(url, parameters: nsArrayParameters) { data, error in
             guard
                 error == nil,
                 let data = data

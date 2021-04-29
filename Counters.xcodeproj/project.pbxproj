@@ -22,6 +22,8 @@
 		DEED7FCE25CC975D00BA0CDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEED7FD025CC975D00BA0CDB /* Localizable.strings */; };
 		FF0FDF69263A2E1C0007503F /* LocalCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF67263A2E1C0007503F /* LocalCache.xcdatamodeld */; };
 		FF0FDF6E263A2E2A0007503F /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF6D263A2E2A0007503F /* LocalCache.swift */; };
+		FF0FDF74263B65D50007503F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF73263B65D50007503F /* Reachability.m */; };
+		FF0FDF7D263B66410007503F /* SwiftReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF7C263B66410007503F /* SwiftReachability.swift */; };
 		FF164DCC2636289100EDD69E /* AddItemViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */; };
 		FF164DD226362E8000EDD69E /* AddItemExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DD126362E8000EDD69E /* AddItemExamplesViewController.swift */; };
 		FF164DDA26362FC000EDD69E /* AddItemExamplesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DD926362FC000EDD69E /* AddItemExamplesDelegate.swift */; };
@@ -100,6 +102,9 @@
 		DEED7FCF25CC975D00BA0CDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF0FDF68263A2E1C0007503F /* LocalCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalCache.xcdatamodel; sourceTree = "<group>"; };
 		FF0FDF6D263A2E2A0007503F /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
+		FF0FDF73263B65D50007503F /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		FF0FDF7B263B66240007503F /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		FF0FDF7C263B66410007503F /* SwiftReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftReachability.swift; sourceTree = "<group>"; };
 		FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewDelegate.swift; sourceTree = "<group>"; };
 		FF164DD126362E8000EDD69E /* AddItemExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesViewController.swift; sourceTree = "<group>"; };
 		FF164DD926362FC000EDD69E /* AddItemExamplesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +190,7 @@
 		35EAFB7425CC9E0800DCFE10 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FF0FDF72263B65AB0007503F /* Reachability */,
 				FF0FDF66263A2D9D0007503F /* LocalCache */,
 				35EAFB7525CC9E1F00DCFE10 /* Networking */,
 			);
@@ -325,6 +331,16 @@
 				FF0FDF6D263A2E2A0007503F /* LocalCache.swift */,
 			);
 			path = LocalCache;
+			sourceTree = "<group>";
+		};
+		FF0FDF72263B65AB0007503F /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				FF0FDF7B263B66240007503F /* Reachability.h */,
+				FF0FDF73263B65D50007503F /* Reachability.m */,
+				FF0FDF7C263B66410007503F /* SwiftReachability.swift */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		FF164DD026362E7800EDD69E /* Examples */ = {
@@ -635,6 +651,7 @@
 				FF93D9002634E578000B5361 /* AddItemViewDisplay.swift in Sources */,
 				FF9FBE442638D8DE00655141 /* MainViewControllerUseCase.swift in Sources */,
 				FF93D8DB2634CB4F000B5361 /* MainPresenter.swift in Sources */,
+				FF0FDF7D263B66410007503F /* SwiftReachability.swift in Sources */,
 				FFE577212633B8B600BEE65E /* Namespace.swift in Sources */,
 				FF8131AB2637D2D9003BF7BB /* MainViewItemCellDelegate.swift in Sources */,
 				FF93D8B02634C522000B5361 /* MainViewControllerPresenter.swift in Sources */,
@@ -667,6 +684,7 @@
 				FF164DDA26362FC000EDD69E /* AddItemExamplesDelegate.swift in Sources */,
 				35EAFB7925CC9E3B00DCFE10 /* Networking.m in Sources */,
 				FF93D9222634F922000B5361 /* AddItemView.swift in Sources */,
+				FF0FDF74263B65D50007503F /* Reachability.m in Sources */,
 				FF9FBE4E263917C900655141 /* AddItemExamplesTableViewDelegate.swift in Sources */,
 				FF93D8E32634CC06000B5361 /* MainViewDisplay.swift in Sources */,
 				FFE5771B2633B62300BEE65E /* UIColor+Namespace.swift in Sources */,
