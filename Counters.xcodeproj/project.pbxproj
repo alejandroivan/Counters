@@ -20,6 +20,8 @@
 		DECA258325CC8D4300851431 /* CountersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA258225CC8D4300851431 /* CountersTests.swift */; };
 		DECA258E25CC8D4300851431 /* CountersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA258D25CC8D4300851431 /* CountersUITests.swift */; };
 		DEED7FCE25CC975D00BA0CDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEED7FD025CC975D00BA0CDB /* Localizable.strings */; };
+		FF0FDF69263A2E1C0007503F /* LocalCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF67263A2E1C0007503F /* LocalCache.xcdatamodeld */; };
+		FF0FDF6E263A2E2A0007503F /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF6D263A2E2A0007503F /* LocalCache.swift */; };
 		FF164DCC2636289100EDD69E /* AddItemViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */; };
 		FF164DD226362E8000EDD69E /* AddItemExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DD126362E8000EDD69E /* AddItemExamplesViewController.swift */; };
 		FF164DDA26362FC000EDD69E /* AddItemExamplesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DD926362FC000EDD69E /* AddItemExamplesDelegate.swift */; };
@@ -96,6 +98,8 @@
 		DECA258D25CC8D4300851431 /* CountersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersUITests.swift; sourceTree = "<group>"; };
 		DECA258F25CC8D4300851431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEED7FCF25CC975D00BA0CDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FF0FDF68263A2E1C0007503F /* LocalCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalCache.xcdatamodel; sourceTree = "<group>"; };
+		FF0FDF6D263A2E2A0007503F /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 		FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewDelegate.swift; sourceTree = "<group>"; };
 		FF164DD126362E8000EDD69E /* AddItemExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesViewController.swift; sourceTree = "<group>"; };
 		FF164DD926362FC000EDD69E /* AddItemExamplesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 		35EAFB7425CC9E0800DCFE10 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FF0FDF66263A2D9D0007503F /* LocalCache */,
 				35EAFB7525CC9E1F00DCFE10 /* Networking */,
 			);
 			path = Services;
@@ -273,6 +278,7 @@
 			children = (
 				DECA257425CC8D4300851431 /* Assets.xcassets */,
 				DEED7FD025CC975D00BA0CDB /* Localizable.strings */,
+				FF0FDF67263A2E1C0007503F /* LocalCache.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -311,6 +317,14 @@
 				350AF6D825E02D5E0000F698 /* WelcomeView.swift */,
 			);
 			path = Welcome;
+			sourceTree = "<group>";
+		};
+		FF0FDF66263A2D9D0007503F /* LocalCache */ = {
+			isa = PBXGroup;
+			children = (
+				FF0FDF6D263A2E2A0007503F /* LocalCache.swift */,
+			);
+			path = LocalCache;
 			sourceTree = "<group>";
 		};
 		FF164DD026362E7800EDD69E /* Examples */ = {
@@ -639,9 +653,11 @@
 				350AF6ED25E0365A0000F698 /* UIImage+Badge.swift in Sources */,
 				FF93D8C52634C6AB000B5361 /* ItemCategory.swift in Sources */,
 				FF164DE0263630EA00EDD69E /* AddItemTableViewCell.swift in Sources */,
+				FF0FDF69263A2E1C0007503F /* LocalCache.xcdatamodeld in Sources */,
 				FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */,
 				FF93D9082634E5E9000B5361 /* AddItemViewControllerPresenter.swift in Sources */,
 				FF93D8E92634DF14000B5361 /* MainTableViewDataSource.swift in Sources */,
+				FF0FDF6E263A2E2A0007503F /* LocalCache.swift in Sources */,
 				DECA257025CC8D4200851431 /* WelcomeViewController.swift in Sources */,
 				FF164DD226362E8000EDD69E /* AddItemExamplesViewController.swift in Sources */,
 				DECA256C25CC8D4200851431 /* AppDelegate.swift in Sources */,
@@ -987,6 +1003,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FF0FDF67263A2E1C0007503F /* LocalCache.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FF0FDF68263A2E1C0007503F /* LocalCache.xcdatamodel */,
+			);
+			currentVersion = FF0FDF68263A2E1C0007503F /* LocalCache.xcdatamodel */;
+			path = LocalCache.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DECA256025CC8D4200851431 /* Project object */;
 }

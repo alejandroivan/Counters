@@ -42,7 +42,7 @@ final class MainNavigationController: UINavigationController {
     }
 
     // MARK: - Styling
-
+    
     public func updateBars(for viewController: UIViewController) {
         setupStyle(on: viewController)
     }

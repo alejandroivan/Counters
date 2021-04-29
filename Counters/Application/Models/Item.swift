@@ -2,7 +2,7 @@ import Foundation
 
 typealias Items = [Item]
 
-struct Item: Decodable, Equatable {
+struct Item: Codable, Equatable {
     let identifier: String
     let title: String
     var count: Int

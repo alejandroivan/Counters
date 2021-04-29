@@ -11,7 +11,12 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
 
     private(set) var isNetworkOperationInProgress: Bool = false {
         didSet {
-            viewController?.mainNavigationController?.updateBars()
+            guard
+                let addItemViewDisplay = viewController,
+                let viewController = viewController as? UIViewController
+            else { return }
+            
+            addItemViewDisplay.mainNavigationController?.updateBars(for: viewController)
         }
     }
 

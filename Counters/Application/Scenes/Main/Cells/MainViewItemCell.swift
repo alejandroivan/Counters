@@ -158,7 +158,7 @@ final class MainViewItemCell: UITableViewCell {
                 equalTo: containerView.trailingAnchor,
                 constant: -Constants.TitleLabel.rightSpacing
             ),
-            titleLabel.heightAnchor.constraint(equalToConstant: Constants.TitleLabel.minimumHeight)
+            titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Constants.TitleLabel.minimumHeight)
         ])
     }
 
