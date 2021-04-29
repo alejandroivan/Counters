@@ -7,6 +7,14 @@ final class MainViewController: UIViewController {
 
     private struct Constants {
         static let backgroundColor = UIColor.counters.background
+
+        struct ActivityIndicator {
+            /// There should be another ColorName for the ActivityIndicator,
+            /// but I don't want to keep modifying that. So I'll use `.primaryText`,
+            /// although this should be called `.primaryBlack` or similar.
+            static let color = UIColor.counters.primaryText
+            static let style: UIActivityIndicatorView.Style = .large
+        }
     }
 
     // MARK: - Views
@@ -14,6 +22,7 @@ final class MainViewController: UIViewController {
     private weak var mainNavigationController: MainNavigationController? { navigationController as? MainNavigationController }
 
     private let tableView = UITableView()
+    private let activityIndicator = UIActivityIndicatorView(style: Constants.ActivityIndicator.style)
     private weak var errorView: MainErrorView?
 
     private enum ErrorKind {
@@ -47,6 +56,7 @@ final class MainViewController: UIViewController {
     private func configureView() {
         view.backgroundColor = Constants.backgroundColor
         configureTableView()
+        configureActivityIndicator()
     }
 
     private func configureTableView() {
@@ -66,6 +76,23 @@ final class MainViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+
+    private func configureActivityIndicator() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicator)
+        view.bringSubviewToFront(activityIndicator)
+
+        NSLayoutConstraint.activate([
+            activityIndicator.topAnchor.constraint(equalTo: view.topAnchor),
+            activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = Constants.ActivityIndicator.color
+        activityIndicator.backgroundColor = view.backgroundColor
     }
 
     // MARK: - Buttons
@@ -150,16 +177,19 @@ extension MainViewController: MainViewDisplay {
         print("ERROR: No network!")
     }
 
-    // MARK: - Editing
+    // MARK: - Activity
 
-    func setEditingEnabled(_ isEditing: Bool) {
-        tableView.allowsMultipleSelection = isEditing
-        tableView.allowsMultipleSelectionDuringEditing = true
-        tableView.setEditing(isEditing, animated: true)
-        mainNavigationController?.updateBars(for: self)
+    func showActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+        }
     }
 
-    var isEditingItems: Bool { tableView.isEditing }
+    func hideActivityIndicator() {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+        }
+    }
 
     // MARK: - Routing
 
@@ -180,6 +210,17 @@ extension MainViewController: MainViewDisplay {
             self.errorView?.removeFromSuperview()
         }
     }
+
+    // MARK: - Editing
+
+    func setEditingEnabled(_ isEditing: Bool) {
+        tableView.allowsMultipleSelection = isEditing
+        tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.setEditing(isEditing, animated: true)
+        mainNavigationController?.updateBars(for: self)
+    }
+
+    var isEditingItems: Bool { tableView.isEditing }
 }
 
 // MARK: - ErrorViewDelegate

@@ -9,7 +9,15 @@ final class MainViewControllerPresenter: MainPresenter {
     private(set) var tableViewDelegate: MainTableViewDelegate
     private let useCase: MainViewControllerUseCase
 
-    private var isLoading = false
+    private var isLoading = false {
+        didSet {
+            if isLoading {
+                viewController?.showActivityIndicator()
+            } else {
+                viewController?.hideActivityIndicator()
+            }
+        }
+    }
 
     init(
         tableViewDataSource: MainTableViewDataSource,

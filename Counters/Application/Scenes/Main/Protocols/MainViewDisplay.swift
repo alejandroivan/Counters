@@ -7,6 +7,10 @@ protocol MainViewDisplay: class {
     func displayEmptyError()
     func displayNoNetworkError()
 
+    // MARK: - Activity
+    func showActivityIndicator()
+    func hideActivityIndicator()
+
     // MARK: - Routing
     func routeToAddItem()
 
