@@ -86,11 +86,12 @@ final class LocalCache {
 }
 
 extension LocalCache: Cache {
+    typealias T = Item
 
-    var items: [Item] { fetchObjects(T.self) }
+    var items: [T] { fetchObjects(T.self) }
 
     @discardableResult
-    func saveItems(_ items: [Item]) -> Bool {
+    func saveItems(_ items: [T]) -> Bool {
         guard let entity = self.entity else { return false }
 
         for item in items {
@@ -113,12 +114,12 @@ extension LocalCache: Cache {
         }
     }
 
-    func deleteItems(_ shouldRemove: ((Item) -> Bool)?) {
+    func deleteItems(_ shouldRemove: ((T) -> Bool)?) {
         let allObjects = try? managedContext.fetch(fetchRequest)
         var didDeleteItems = false
 
         allObjects?.forEach {
-            guard let decodable = decodableItem(from: $0, type: Item.self) else { return }
+            guard let decodable = decodableItem(from: $0, type: T.self) else { return }
             let shouldDelete = shouldRemove?(decodable) ?? true
 
             if shouldDelete {
