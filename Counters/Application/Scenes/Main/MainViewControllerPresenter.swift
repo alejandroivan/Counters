@@ -60,6 +60,7 @@ extension MainViewControllerPresenter {
     func fetchAllItems() {
         guard !isLoading else { return }
 
+        viewController?.hideErrors()
         isLoading = true
 
         useCase.getItems { [weak self] items, error in

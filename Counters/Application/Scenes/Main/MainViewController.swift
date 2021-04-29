@@ -150,7 +150,9 @@ extension MainViewController: MainViewDisplay {
     }
 
     func displayEmptyError() {
-        guard errorView == nil else { return }
+        if errorView != nil {
+            hideErrors()
+        }
         
         let viewData = MainErrorView.ViewData(
             title: "MAIN_VIEW_ERROR_NOCOUNTERS_TITLE".localized,
@@ -174,7 +176,34 @@ extension MainViewController: MainViewDisplay {
     }
 
     func displayNoNetworkError() {
-        print("ERROR: No network!")
+        if errorView != nil {
+            hideErrors()
+        }
+
+        let viewData = MainErrorView.ViewData(
+            title: "MAIN_VIEW_ERROR_NOCONNECTION_TITLE".localized,
+            subtitle: "MAIN_VIEW_ERROR_NOCONNECTION_SUBTITLE".localized,
+            buttonTitle: "MAIN_VIEW_ERROR_NOCONNECTION_BUTTON_TITLE".localized
+        )
+        let errorView = MainErrorView(viewData: viewData, delegate: self)
+
+        view.addSubview(errorView)
+        view.bringSubviewToFront(errorView)
+
+        self.errorView = errorView
+        errorKind = .noConnection
+
+        NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: view.topAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+
+    func hideErrors() {
+        errorView?.removeFromSuperview()
+        errorKind = nil
     }
 
     // MARK: - Activity
@@ -206,8 +235,7 @@ extension MainViewController: MainViewDisplay {
         )
         let navigationController = MainNavigationController(rootViewController: viewController)
         present(navigationController, animated: true) {
-            self.errorKind = nil
-            self.errorView?.removeFromSuperview()
+            self.hideErrors()
         }
     }
 

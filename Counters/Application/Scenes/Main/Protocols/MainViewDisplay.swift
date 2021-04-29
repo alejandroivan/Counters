@@ -6,6 +6,7 @@ protocol MainViewDisplay: class {
     func displayItems()
     func displayEmptyError()
     func displayNoNetworkError()
+    func hideErrors()
 
     // MARK: - Activity
     func showActivityIndicator()

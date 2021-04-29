@@ -23,11 +23,16 @@
 
 // MARK: - Main
 "MAIN_VIEW_TITLE" = "Counters";
+"ITEMS_COUNT" = "1 item • Counted %d times";
+"ITEMS_COUNT_PLURALIZED" = "%d items • Counted %d times";
+
 "MAIN_VIEW_ERROR_NOCOUNTERS_TITLE" = "No counters yet";
 "MAIN_VIEW_ERROR_NOCOUNTERS_SUBTITLE" = "\"When I started counting my blessings, my whole life turned around.\"\n— Willie Nelson";
 "MAIN_VIEW_ERROR_NOCOUNTERS_BUTTON_TITLE" = "Create a counter";
-"ITEMS_COUNT" = "1 item • Counted %d times";
-"ITEMS_COUNT_PLURALIZED" = "%d items • Counted %d times";
+
+"MAIN_VIEW_ERROR_NOCONNECTION_TITLE" = "Couldn't load the counters";
+"MAIN_VIEW_ERROR_NOCONNECTION_SUBTITLE" = "\"The Internet connection appears to be offline.";
+"MAIN_VIEW_ERROR_NOCONNECTION_BUTTON_TITLE" = "Retry";
 
 // MARK: - Items
 
