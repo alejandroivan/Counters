@@ -96,8 +96,8 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         item: T,
         type: UpdateItemType,
         shouldSaveToLocalCache: Bool = true,
-        completion: @escaping([T]?, SwiftNetworkingError?
-    ) -> Void) {
+        completion: @escaping ([T]?, SwiftNetworkingError?) -> Void
+    ) {
         let endpoint: Endpoint
         let diffType: UpdateItemType
         switch type {
@@ -135,6 +135,15 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         }
 
         dispatchGroup.wait()
+    }
+
+    func deleteItems(
+        _ items: [T],
+        completion: @escaping ([T]?, SwiftNetworkingError?) -> Void
+    ) {
+        // TODO: Delete logic.
+        print("DELETE ITEMS: \(items)")
+        completion([], nil)
     }
 
     // MARK: - Helpers

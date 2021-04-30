@@ -120,6 +120,14 @@ final class MainViewController: UIViewController {
     }
 
     @objc
+    private func didTapDeleteItemsButton() {
+        let itemsToRemove = tableView.indexPathsForSelectedRows?.compactMap {
+            items[$0.row]
+        } ?? []
+        presenter.removeItems(itemsToRemove)
+    }
+
+    @objc
     private func selectAllItems() {
         var indexPaths: [IndexPath?] = []
 
@@ -146,6 +154,7 @@ extension MainViewController: MainViewDisplay {
 
     func displayItems() {
         mainNavigationController?.updateBars(for: self)
+        setEditingEnabled(false)
         tableView.reloadData()
     }
 
@@ -326,7 +335,13 @@ extension MainViewController: TopBarProvider {
 extension MainViewController: BottomBarProvider {
     var showsBottomBar: Bool { true }
 
-    var bottomBarLeftItems: [UIBarButtonItem]? { [] }
+    var bottomBarLeftItems: [UIBarButtonItem]? {
+        guard tableView.isEditing else { return nil }
+
+        return [
+            UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didTapDeleteItemsButton))
+        ]
+    }
 
     var bottomBarCenterText: String? {
         guard !items.isEmpty else { return nil }

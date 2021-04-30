@@ -16,6 +16,7 @@ protocol MainPresenter: class {
     // MARK: - Edit button
 
     func editItems()
+    func removeItems(_ itemsToRemove: Items)
 
     // MARK: - Add item
 

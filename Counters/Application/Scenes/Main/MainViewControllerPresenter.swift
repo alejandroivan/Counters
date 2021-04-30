@@ -45,6 +45,28 @@ extension MainViewControllerPresenter {
         viewController?.setEditingEnabled(!isEditing)
     }
 
+    func removeItems(_ itemsToRemove: Items) {
+        guard !isLoading else { return }
+        isLoading = true
+
+        useCase.deleteItems(itemsToRemove) { [weak self] items, error in
+            self?.isLoading = false
+            guard error == nil, let items = items else { return }
+
+            self?.items = items
+
+            DispatchQueue.main.async {
+                // Since we're deleting items, there might be the case where the list
+                // goes empty. If that's the case, we need to call displayItems() to clear
+                // up the tableView, and then show the empty error.
+                self?.viewController?.displayItems()
+                if items.isEmpty {
+                    self?.viewController?.displayEmptyError()
+                }
+            }
+        }
+    }
+
     // MARK: - Add item
 
     func addItem() {
