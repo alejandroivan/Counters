@@ -37,10 +37,6 @@ final class AddItemViewController: UIViewController, TopBarProvider {
         struct SaveItem {
             static let font = UIFont.systemFont(ofSize: 17, weight: .bold)
         }
-
-        struct Alert {
-            static let tintColor = UIColor.counters.accent
-        }
     }
 
     // MARK: - Initialization
@@ -108,36 +104,6 @@ final class AddItemViewController: UIViewController, TopBarProvider {
         let itemName = addItemView.text
         presenter.saveItem(name: itemName)
     }
-
-    // MARK: - Alerts
-
-    private func showAlert(
-        title: String,
-        message: String,
-        buttonTitle: String,
-        action: ((UIAlertAction) -> Void)?
-    ) {
-        let alertController = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: .alert
-        )
-
-        alertController.addAction(
-            UIAlertAction(
-                title: buttonTitle,
-                style: .cancel,
-                handler: { actionHandler in
-                    DispatchQueue.main.async {
-                        action?(actionHandler)
-                    }
-                }
-            )
-        )
-
-        alertController.view.tintColor = Constants.Alert.tintColor
-        self.navigationController?.present(alertController, animated: true, completion: nil)
-    }
 }
 
 extension AddItemViewController: AddItemViewDisplay {
@@ -164,10 +130,12 @@ extension AddItemViewController: AddItemViewDisplay {
             self.showAlert(
                 title: "ADD_ITEM_ERROR_SAVING_TITLE".localized,
                 message: "ADD_ITEM_ERROR_SAVING_MESSAGE".localized,
-                buttonTitle: "ADD_ITEM_ERROR_SAVING_DISMISS_BUTTON".localized
-            ) { action in
-                self.addItemView.stopAnimating()
-            }
+                actionTitle: "ADD_ITEM_ERROR_SAVING_DISMISS_BUTTON".localized,
+                action: { action in
+                    self.addItemView.stopAnimating()
+                },
+                showsCancelButton: false
+            )
         }
     }
 
@@ -183,11 +151,13 @@ extension AddItemViewController: AddItemViewDisplay {
             self.showAlert(
                 title: "ADD_ITEM_SUCCESS_SAVING_TITLE".localized,
                 message: message,
-                buttonTitle: "ADD_ITEM_SUCCESS_SAVING_DISMISS_BUTTON".localized
-            ) { action in
-                self.addItemView.stopAnimating()
-                self.routeToMain(didCreateItem: true)
-            }
+                actionTitle: "ADD_ITEM_SUCCESS_SAVING_DISMISS_BUTTON".localized,
+                action: { action in
+                    self.addItemView.stopAnimating()
+                    self.routeToMain(didCreateItem: true)
+                },
+                showsCancelButton: false
+            )
         }
     }
 

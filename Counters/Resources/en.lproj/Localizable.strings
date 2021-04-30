@@ -6,6 +6,9 @@
 // MARK: - App Name
 "APP_NAME" = "Counters";
 
+// MARK: - Alerts
+"ALERT_ACTION_CANCEL" = "Cancel";
+
 // MARK: - Welcome
 "WELCOME_TITLE" = "Welcome to Counters";
 "WELCOME_DESCRIPTION" = "An example app that syncs to a Node.js server running on your Mac.";
@@ -61,3 +64,5 @@
 // MARK: - Edit Items
 
 "EDIT_ITEMS_SELECT_ALL" = "Select All";
+"EDIT_ITEMS_DELETE_COUNTER" = "Delete %d counter";
+"EDIT_ITEMS_DELETE_COUNTER_PLURALIZED" = "Delete %d counters";

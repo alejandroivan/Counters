@@ -121,6 +121,27 @@ final class MainViewController: UIViewController {
 
     @objc
     private func didTapDeleteItemsButton() {
+        let selectedItemCount = tableView.indexPathsForSelectedRows?.count ?? 0
+        guard selectedItemCount > 0 else { return }
+
+        let alertBase = "EDIT_ITEMS_DELETE_COUNTER"
+        let alertFormat = selectedItemCount > 1 ? alertBase.pluralized : alertBase.localized
+        let actionTitle = String(format: alertFormat, selectedItemCount)
+
+        showAlert(
+            title: nil,
+            message: nil,
+            actionTitle: actionTitle,
+            style: .actionSheet,
+            actionType: .destructive,
+            action: { action in
+                self.deleteItems()
+            }
+        )
+
+    }
+
+    private func deleteItems() {
         let itemsToRemove = tableView.indexPathsForSelectedRows?.compactMap {
             items[$0.row]
         } ?? []
