@@ -26,8 +26,8 @@
 
 // MARK: - Main
 "MAIN_VIEW_TITLE" = "Counters";
-"ITEMS_COUNT" = "1 item • Counted %d times";
-"ITEMS_COUNT_PLURALIZED" = "%d items • Counted %d times";
+"ITEMS_COUNT" = "%ld item • Counted %ld times";
+"ITEMS_COUNT_PLURALIZED" = "%ld items • Counted %ld times";
 
 "MAIN_VIEW_ERROR_NOCOUNTERS_TITLE" = "No counters yet";
 "MAIN_VIEW_ERROR_NOCOUNTERS_SUBTITLE" = "\"When I started counting my blessings, my whole life turned around.\"\n— Willie Nelson";
@@ -65,5 +65,5 @@
 
 "EDIT_ITEMS_SELECT_ALL" = "Select All";
 "EDIT_ITEMS_SELECT_NONE" = "Select None";
-"EDIT_ITEMS_DELETE_COUNTER" = "Delete %d counter";
-"EDIT_ITEMS_DELETE_COUNTER_PLURALIZED" = "Delete %d counters";
+"EDIT_ITEMS_DELETE_COUNTER" = "Delete %ld counter";
+"EDIT_ITEMS_DELETE_COUNTER_PLURALIZED" = "Delete %ld counters";

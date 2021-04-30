@@ -35,8 +35,8 @@ final class MainViewControllerPresenter: MainPresenter {
         fetchAllItems()
     }
 
-    func updateDeleteButtonState() {
-        viewController?.refreshDeleteButtonIfNeeded()
+    func updateBottomBarButtonsState() {
+        viewController?.refreshBottomBarButtonsIfNeeded()
     }
 }
 

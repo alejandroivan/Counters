@@ -12,7 +12,7 @@ protocol MainPresenter: class {
     /// Basically starts whatever the presenter needs to do at initialization,
     /// but delayed to when the view has loaded.
     func viewDidLoad()
-    func updateDeleteButtonState()
+    func updateBottomBarButtonsState()
 
     // MARK: - Edit button
 

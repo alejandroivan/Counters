@@ -31,6 +31,17 @@ final class MainViewController: UIViewController {
     private let activityIndicator = UIActivityIndicatorView(style: Constants.ActivityIndicator.style)
     private weak var errorView: MainErrorView?
 
+    // MARK: Error
+
+    private enum ErrorKind {
+        case noItems
+        case noConnection
+    }
+
+    private var errorKind: ErrorKind?
+
+    // MARK: Bottom Bar items
+
     /// This property needs to be lazy, in order to be evaluated after initialization.
     /// This is because, if declared as `private let`, it will be available at init,
     /// but the `didTapDeleteItemsButton()` selector is not (yet) evaluated at runtime,
@@ -39,12 +50,15 @@ final class MainViewController: UIViewController {
         UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didTapDeleteItemsButton))
     }()
 
-    private enum ErrorKind {
-        case noItems
-        case noConnection
-    }
+    /// The same as above applies to the `shareBarButtonItem`.
+    private lazy var shareBarButtonItem: UIBarButtonItem = {
+        UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(didTapShareItemsButton))
+    }()
 
-    private var errorKind: ErrorKind?
+    /// And the same applies for this one.
+    private lazy var addBarButtonItem: UIBarButtonItem = {
+        UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddItemButton(_:)))
+    }()
 
     // MARK: - Initialization
 
@@ -125,7 +139,7 @@ final class MainViewController: UIViewController {
         presenter.addItem()
     }
 
-    // MARK: - Editing items
+    // MARK: Edit items
 
     @objc
     private func didFinishEditingItems() {
@@ -136,12 +150,7 @@ final class MainViewController: UIViewController {
     @objc
     private func didTapDeleteItemsButton() {
         let selectedItemCount = tableView.indexPathsForSelectedRows?.count ?? 0
-        guard selectedItemCount > 0 else {
-            print("NO SELECTED ITEMS")
-            return
-        }
-
-        print("SELECTED: \(selectedItemCount)")
+        guard selectedItemCount > 0 else { return }
 
         let alertBase = "EDIT_ITEMS_DELETE_COUNTER"
         let alertFormat = selectedItemCount > 1 ? alertBase.pluralized : alertBase.localized
@@ -157,7 +166,17 @@ final class MainViewController: UIViewController {
                 self.deleteItems()
             }
         )
+    }
 
+    @objc
+    private func didTapShareItemsButton() {
+        guard let selectedIndexPaths = tableView.indexPathsForSelectedRows else { return }
+
+        let itemsToShare = selectedIndexPaths.compactMap {
+            self.items[$0.row]
+        }
+
+        print("SHARE! \(itemsToShare)")
     }
 
     private func deleteItems() {
@@ -219,17 +238,17 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: MainViewDisplay {
 
-    func refreshDeleteButtonIfNeeded() {
+    func refreshBottomBarButtonsIfNeeded() {
         let selectedItemCount = tableView.indexPathsForSelectedRows?.count ?? 0
         deleteBarButtonItem.isEnabled = selectedItemCount > 0
     }
 
-    // MARK: - Data
+    // MARK: Data
 
     func displayItems() {
-        mainNavigationController?.updateBars(for: self)
         setEditingEnabled(false)
         tableView.reloadData()
+        mainNavigationController?.updateBars(for: self)
     }
 
     func displayEmptyError() {
@@ -289,7 +308,7 @@ extension MainViewController: MainViewDisplay {
         errorKind = nil
     }
 
-    // MARK: - Activity
+    // MARK: Activity
 
     func showActivityIndicator() {
         DispatchQueue.main.async {
@@ -303,7 +322,7 @@ extension MainViewController: MainViewDisplay {
         }
     }
 
-    // MARK: - Routing
+    // MARK: Routing
 
     // TODO: Delegate this to a router/coordinator object (later).
     func routeToAddItem() {
@@ -320,7 +339,7 @@ extension MainViewController: MainViewDisplay {
         present(navigationController, animated: true)
     }
 
-    // MARK: - Editing
+    // MARK: Editing
 
     func setEditingEnabled(_ isEditing: Bool) {
         tableView.allowsMultipleSelection = isEditing
@@ -351,6 +370,8 @@ extension MainViewController: ErrorViewDelegate {
 }
 
 // MARK: - Top/Bottom Bars
+
+// MARK: Top Bar
 
 extension MainViewController: TopBarProvider {
 
@@ -412,32 +433,34 @@ extension MainViewController: TopBarProvider {
     }
 }
 
+// MARK: Bottom Bar
+
 extension MainViewController: BottomBarProvider {
     var showsBottomBar: Bool { true }
 
     var bottomBarLeftItems: [UIBarButtonItem]? {
         guard tableView.isEditing else { return nil }
 
-        refreshDeleteButtonIfNeeded()
+        refreshBottomBarButtonsIfNeeded()
 
-        return [
-            deleteBarButtonItem
-        ]
+        return [deleteBarButtonItem]
     }
 
     var bottomBarCenterText: String? {
         guard !items.isEmpty else { return nil }
 
         let localized = items.count == 1 ? "ITEMS_COUNT".localized : "ITEMS_COUNT".pluralized
-        let totalCount = items.reduce(0) { (result, item) -> Int in result + item.count }
+        let totalCount = items.reduce(0) { (result, item) -> Int in return result + item.count }
         let finalString = String(format: localized, items.count, totalCount)
 
         return finalString
     }
 
     var bottomBarRightItems: [UIBarButtonItem]? {
-        [
-            UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddItemButton(_:)))
-        ]
+        if tableView.isEditing {
+            return [shareBarButtonItem]
+        } else {
+            return [addBarButtonItem]
+        }
     }
 }

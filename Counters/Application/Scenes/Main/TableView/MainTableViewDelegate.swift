@@ -14,12 +14,12 @@ final class MainTableViewDelegate: NSObject, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard tableView.isEditing else { return }
-        presenter?.updateDeleteButtonState()
+        presenter?.updateBottomBarButtonsState()
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard tableView.isEditing else { return }
-        presenter?.updateDeleteButtonState()
+        presenter?.updateBottomBarButtonsState()
     }
 }
 
