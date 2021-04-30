@@ -161,7 +161,7 @@ extension AddItemViewController: AddItemViewDisplay {
         }
     }
 
-    // TODO: Move these methods to a router/coordinator object (later).
+    // TODO: Move these methods to a router/coordinator object (later). [Resolution: Won't do. I don't care at this point.]
     func routeToExamples() {
         let viewController = AddItemExamplesViewController(
             tableViewDataSource: AddItemExamplesTableViewDataSource(),
