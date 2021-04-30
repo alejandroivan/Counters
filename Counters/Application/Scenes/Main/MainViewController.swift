@@ -234,9 +234,7 @@ extension MainViewController: MainViewDisplay {
             sourcePresenter: presenter
         )
         let navigationController = MainNavigationController(rootViewController: viewController)
-        present(navigationController, animated: true) {
-            self.hideErrors()
-        }
+        present(navigationController, animated: true)
     }
 
     // MARK: - Editing

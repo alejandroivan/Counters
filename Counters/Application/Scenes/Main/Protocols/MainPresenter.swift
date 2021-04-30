@@ -20,7 +20,7 @@ protocol MainPresenter: class {
     // MARK: - Add item
 
     func addItem()
-    func addItemDidFinish(_ addItemView: AddItemViewDisplay?)
+    func addItemDidFinish(_ addItemView: AddItemViewDisplay?, didCreateItem: Bool)
 
     // MARK: - Fetch items
 

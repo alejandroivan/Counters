@@ -15,7 +15,7 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
                 let addItemViewDisplay = viewController,
                 let viewController = viewController as? UIViewController
             else { return }
-            
+
             addItemViewDisplay.mainNavigationController?.updateBars(for: viewController)
         }
     }
@@ -43,7 +43,7 @@ final class AddItemViewControllerPresenter: AddItemPresenter {
     }
 
     func cancelItemCreation() {
-        viewController?.dismiss(animated: true, completion: nil)
+        viewController?.routeToMain(didCreateItem: false)
     }
 }
 

@@ -186,7 +186,7 @@ extension AddItemViewController: AddItemViewDisplay {
                 buttonTitle: "ADD_ITEM_SUCCESS_SAVING_DISMISS_BUTTON".localized
             ) { action in
                 self.addItemView.stopAnimating()
-                self.routeToMain()
+                self.routeToMain(didCreateItem: true)
             }
         }
     }
@@ -201,8 +201,8 @@ extension AddItemViewController: AddItemViewDisplay {
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    func routeToMain() {
-        sourcePresenter.addItemDidFinish(self)
+    func routeToMain(didCreateItem: Bool = false) {
+        sourcePresenter.addItemDidFinish(self, didCreateItem: didCreateItem)
         navigationController?.dismiss(animated: true, completion: nil)
     }
 }

@@ -65,30 +65,31 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
             syncDiffs()
         }
 
-        dispatchGroup.enter()
+        DispatchQueue.global().async {
+            self.dispatchGroup.enter()
 
-        networking.get(url: endpoint.path(), parameters: [:], resultType: [T].self) { response, error in
-            self.dispatchGroup.leave()
+            self.networking.get(url: endpoint.path(), parameters: [:], resultType: [T].self) { response, error in
+                self.dispatchGroup.leave()
 
-            guard error == nil else {
-                let items = self.getItemsFromLocalCache()
+                guard error == nil else {
+                    let items = self.getItemsFromLocalCache()
 
-                if items.isEmpty {
-                    completion(nil, error as? SwiftNetworkingError)
-                } else {
-                    completion(items, nil)
+                    if items.isEmpty {
+                        completion(nil, error as? SwiftNetworkingError)
+                    } else {
+                        completion(items, nil)
+                    }
+
+                    return
                 }
 
-                return
+                let itemsToSave = response ?? []
+                self.saveItemsToLocalCache(itemsToSave)
+
+                completion(response, nil)
             }
 
-            let itemsToSave = response ?? []
-            self.saveItemsToLocalCache(itemsToSave)
-
-            completion(response, nil)
-        }
-
-        dispatchGroup.wait()
+            self.dispatchGroup.wait()        }
     }
 
     func updateItem(
@@ -271,19 +272,19 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
                 }
                 self.dispatchGroup.leave()
             }
-
-            self.dispatchGroup.wait()
         }
 
-        #if DEBUG
-        if successfulUpdates > 0 {
-            print("[\(String(describing: self))] Sync complete. Successful updates: \(successfulUpdates)")
-        } else {
-            if !diffs.isEmpty {
-                print("[\(String(describing: self))] Couldn't sync with the backend.")
+        self.dispatchGroup.notify(queue: .global()) {
+            #if DEBUG
+            if successfulUpdates > 0 {
+                print("[\(String(describing: self))] Sync complete. Successful updates: \(successfulUpdates)")
+            } else {
+                if !diffs.isEmpty {
+                    print("[\(String(describing: self))] Couldn't sync with the backend.")
+                }
             }
+            #endif
         }
-        #endif
 
         isSyncInProgress = false
     }

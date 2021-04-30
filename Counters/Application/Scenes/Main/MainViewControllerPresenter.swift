@@ -51,7 +51,10 @@ extension MainViewControllerPresenter {
         viewController?.routeToAddItem()
     }
 
-    func addItemDidFinish(_ addItemView: AddItemViewDisplay?) {
+    func addItemDidFinish(_ addItemView: AddItemViewDisplay?, didCreateItem: Bool) {
+        if didCreateItem {
+            viewController?.hideErrors()
+        }
         fetchAllItems()
     }
 

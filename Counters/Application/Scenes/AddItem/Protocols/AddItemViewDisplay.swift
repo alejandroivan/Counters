@@ -12,4 +12,5 @@ protocol AddItemViewDisplay: class {
     func showSavingError()
     func showSavingSuccess()
     func routeToExamples()
+    func routeToMain(didCreateItem: Bool)
 }
