@@ -8,6 +8,7 @@ class DiffLocalCache: LocalCache {
     private static var entityName: String { "BackendDiffSync" }
     private static let idKey = "id"
     private static let typeKey = "type"
+    private static let uuidKey = "uuid"
 
     public private(set) lazy var managedContext = { persistentContainer.viewContext }()
 
@@ -21,6 +22,7 @@ class DiffLocalCache: LocalCache {
             let managedObject = NSManagedObject(entity: entity, insertInto: managedContext)
             managedObject.setValue(item.identifier, forKey: Self.idKey)
             managedObject.setValue(item.diffType.rawValue, forKey: Self.typeKey)
+            managedObject.setValue(item.uuid, forKey: Self.uuidKey)
             managedContext.insert(managedObject)
         }
 
@@ -42,9 +44,10 @@ class DiffLocalCache: LocalCache {
             if
                 let identifier = $0.value(forKey: Self.idKey) as? String,
                 let diffTypeRaw = $0.value(forKey: Self.typeKey) as? String,
-                let diffType = U(rawValue: diffTypeRaw)
+                let diffType = U(rawValue: diffTypeRaw),
+                let uuid = $0.value(forKey: Self.uuidKey) as? String
             {
-                let diff = T(identifier: identifier, diffType: diffType)
+                let diff = T(identifier: identifier, diffType: diffType, uuid: uuid)
                 let shouldDelete = shouldRemove?(diff) ?? true
 
                 if shouldDelete {
@@ -70,10 +73,11 @@ class DiffLocalCache: LocalCache {
             guard
                 let identifier = $0.value(forKey: Self.idKey) as? String,
                 let diffTypeRaw = $0.value(forKey: Self.typeKey) as? String,
-                let diffType = U(rawValue: diffTypeRaw)
+                let diffType = U(rawValue: diffTypeRaw),
+                let uuid = $0.value(forKey: Self.uuidKey) as? String
             else { return nil }
 
-            return T(identifier: identifier, diffType: diffType)
+            return T(identifier: identifier, diffType: diffType, uuid: uuid)
         }
 
         // We'll use compactMap to ensure there are no nil values

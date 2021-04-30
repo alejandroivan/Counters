@@ -3,12 +3,13 @@
     <entity name="BackendDiffSync" representedClassName="BackendDiffSync" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="uuid" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Counters" representedClassName="Counters" syncable="YES" codeGenerationType="class">
         <attribute name="json" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Counters" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="BackendDiffSync" positionX="-54" positionY="0" width="128" height="59"/>
+        <element name="BackendDiffSync" positionX="-54" positionY="0" width="128" height="74"/>
     </elements>
 </model>
