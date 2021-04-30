@@ -182,7 +182,8 @@ final class MainViewController: UIViewController {
             self.items[$0.row]
         }
 
-        print("SHARE! \(itemsToShare)")
+        let shareStrings = itemsToShare.compactMap { "\($0.count) × \($0.title)" }
+        presenter.shareStrings(shareStrings)
     }
 
     private func deleteItems() {

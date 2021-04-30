@@ -18,6 +18,7 @@ protocol MainPresenter: class {
 
     func editItems()
     func removeItems(_ itemsToRemove: Items)
+    func shareStrings(_ strings: [String])
 
     // MARK: - Add item
 

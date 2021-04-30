@@ -71,6 +71,17 @@ extension MainViewControllerPresenter {
         }
     }
 
+    func shareStrings(_ strings: [String]) {
+        DispatchQueue.main.async {
+            strings.sendToShareActivity { [weak self] activityType, completed, items, error in
+                /// Only disable the selection state if the share was completed.
+                /// This is because it would be a pain for the user if the share
+                /// fails and he/she has to select several items again.
+                self?.viewController?.setEditingEnabled(!completed)
+            }
+        }
+    }
+
     // MARK: - Add item
 
     func addItem() {
