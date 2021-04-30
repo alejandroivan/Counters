@@ -1,5 +1,11 @@
 import UIKit
 
+/*
+ NOTE: Since the use case layer has a local cache (diffCache) to know which items
+ couldn't be synced with the backend (to do that later), we just don't need the
+ "delete error" screen from Figma, as we added a synchronization "delete" case.
+ */
+
 final class MainViewController: UIViewController {
 
     var items: Items { presenter.items }
@@ -24,6 +30,14 @@ final class MainViewController: UIViewController {
     private let tableView = UITableView()
     private let activityIndicator = UIActivityIndicatorView(style: Constants.ActivityIndicator.style)
     private weak var errorView: MainErrorView?
+
+    /// This property needs to be lazy, in order to be evaluated after initialization.
+    /// This is because, if declared as `private let`, it will be available at init,
+    /// but the `didTapDeleteItemsButton()` selector is not (yet) evaluated at runtime,
+    /// so the button will not call it. The marvels of Objective-C runtime 🎉
+    private lazy var deleteBarButtonItem: UIBarButtonItem = {
+        UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didTapDeleteItemsButton))
+    }()
 
     private enum ErrorKind {
         case noItems
@@ -122,7 +136,12 @@ final class MainViewController: UIViewController {
     @objc
     private func didTapDeleteItemsButton() {
         let selectedItemCount = tableView.indexPathsForSelectedRows?.count ?? 0
-        guard selectedItemCount > 0 else { return }
+        guard selectedItemCount > 0 else {
+            print("NO SELECTED ITEMS")
+            return
+        }
+
+        print("SELECTED: \(selectedItemCount)")
 
         let alertBase = "EDIT_ITEMS_DELETE_COUNTER"
         let alertFormat = selectedItemCount > 1 ? alertBase.pluralized : alertBase.localized
@@ -162,7 +181,36 @@ final class MainViewController: UIViewController {
         /// NOTE: Documentation about `UITableView.ScrollPosition` is wrong from Apple.
         /// This method does NOT scroll the selected row to visible, even though the docs say so.
         /// Link: https://developer.apple.com/documentation/uikit/uitableview/scrollposition
-        indexPaths.forEach { tableView.selectRow(at: $0, animated: true, scrollPosition: .none)}
+        indexPaths.compactMap { $0 }.forEach {
+            let isAlreadySelected = tableView.cellForRow(at: $0)?.isSelected ?? false
+
+            if !isAlreadySelected {
+                tableView.selectRow(at: $0, animated: true, scrollPosition: .none)
+                tableView.delegate?.tableView?(tableView, didSelectRowAt: $0)
+            }
+        }
+        tableView.endUpdates()
+    }
+
+    @objc
+    private func deselectAllItems() {
+        var indexPaths: [IndexPath?] = []
+
+        for item in items {
+            guard let index = items.firstIndex(of: item) else { continue }
+            let indexPath = IndexPath(row: index, section: 0)
+            indexPaths.append(indexPath)
+        }
+
+        tableView.beginUpdates()
+        indexPaths.compactMap { $0 }.forEach {
+            let isSelected = tableView.cellForRow(at: $0)?.isSelected ?? false
+
+            if isSelected {
+                tableView.deselectRow(at: $0, animated: true)
+                tableView.delegate?.tableView?(tableView, didDeselectRowAt: $0)
+            }
+        }
         tableView.endUpdates()
     }
 }
@@ -170,6 +218,11 @@ final class MainViewController: UIViewController {
 // MARK: - MainViewDisplay protocol
 
 extension MainViewController: MainViewDisplay {
+
+    func refreshDeleteButtonIfNeeded() {
+        let selectedItemCount = tableView.indexPathsForSelectedRows?.count ?? 0
+        deleteBarButtonItem.isEnabled = selectedItemCount > 0
+    }
 
     // MARK: - Data
 
@@ -341,6 +394,12 @@ extension MainViewController: TopBarProvider {
         if tableView.isEditing {
             items = [
                 UIBarButtonItem(
+                    title: "EDIT_ITEMS_SELECT_NONE".localized,
+                    style: .plain,
+                    target: self,
+                    action: #selector(deselectAllItems)
+                ),
+                UIBarButtonItem(
                     title: "EDIT_ITEMS_SELECT_ALL".localized,
                     style: .plain,
                     target: self,
@@ -359,8 +418,10 @@ extension MainViewController: BottomBarProvider {
     var bottomBarLeftItems: [UIBarButtonItem]? {
         guard tableView.isEditing else { return nil }
 
+        refreshDeleteButtonIfNeeded()
+
         return [
-            UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didTapDeleteItemsButton))
+            deleteBarButtonItem
         ]
     }
 

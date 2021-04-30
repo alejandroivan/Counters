@@ -14,6 +14,7 @@ public protocol TopBarProvider where Self: UIViewController {
     var topBarLeftItems: [UIBarButtonItem]? { get }
 
     /// Defines the right bar button items to be shown when this view controller is presented.
+    /// Right items are added from right to left, so the first in the list will appear the right most.
     var topBarRightItems: [UIBarButtonItem]? { get }
 
     /// Defines either the top bar should use large titles or not.

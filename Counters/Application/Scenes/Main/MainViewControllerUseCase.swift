@@ -189,8 +189,6 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         var updates: [String: Int] = [:]
         var deletions: [String] = []
 
-        print("Diffs to apply: \(diffs.count)")
-
         for diff in diffs {
             let newValue: Int
 

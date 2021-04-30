@@ -86,7 +86,6 @@ class SwiftNetworking {
         resultType: T.Type,
         completion: @escaping (T?, Error?) -> Void
     ) {
-        print("DELETE: \(url)")
         parametrizedMethodRequest(
             url: url,
             method: .delete,

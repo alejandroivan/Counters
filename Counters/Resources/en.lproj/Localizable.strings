@@ -64,5 +64,6 @@
 // MARK: - Edit Items
 
 "EDIT_ITEMS_SELECT_ALL" = "Select All";
+"EDIT_ITEMS_SELECT_NONE" = "Select None";
 "EDIT_ITEMS_DELETE_COUNTER" = "Delete %d counter";
 "EDIT_ITEMS_DELETE_COUNTER_PLURALIZED" = "Delete %d counters";

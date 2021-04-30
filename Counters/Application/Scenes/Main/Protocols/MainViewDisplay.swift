@@ -18,4 +18,5 @@ protocol MainViewDisplay: class {
     // MARK: - Editing
     func setEditingEnabled(_ isEditing: Bool)
     var isEditingItems: Bool { get }
+    func refreshDeleteButtonIfNeeded()
 }

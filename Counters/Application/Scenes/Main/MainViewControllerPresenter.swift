@@ -34,6 +34,10 @@ final class MainViewControllerPresenter: MainPresenter {
     func viewDidLoad() {
         fetchAllItems()
     }
+
+    func updateDeleteButtonState() {
+        viewController?.refreshDeleteButtonIfNeeded()
+    }
 }
 
 extension MainViewControllerPresenter {

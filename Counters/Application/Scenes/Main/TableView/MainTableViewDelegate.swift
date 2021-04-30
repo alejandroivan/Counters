@@ -13,13 +13,13 @@ final class MainTableViewDelegate: NSObject, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard tableView.isEditing, let item = presenter?.items[indexPath.row] else { return }
-        print("SELECTED ITEM: \(item)")
+        guard tableView.isEditing else { return }
+        presenter?.updateDeleteButtonState()
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard tableView.isEditing, let item = presenter?.items[indexPath.row] else { return }
-        print("DESELECTED ITEM: \(item)")
+        guard tableView.isEditing else { return }
+        presenter?.updateDeleteButtonState()
     }
 }
 
