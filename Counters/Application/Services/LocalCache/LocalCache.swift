@@ -1,7 +1,7 @@
 import CoreData
 import Foundation
 
-protocol Cache {
+public protocol LocalCache {
     associatedtype T
 
     /// Gets all the items saved in the cache.
@@ -15,17 +15,15 @@ protocol Cache {
     func deleteItems(_ shouldRemove: ((T) -> Bool)?)
 }
 
-final class LocalCache {
+public extension LocalCache {
 
-    private static let dataModelName = "LocalCache"
-    private static let entityName = "Counters"
-    private static let jsonKey = "json"
-    private let decoder = JSONDecoder()
-    private let encoder = JSONEncoder()
+    private var dataModelName: String { "LocalCache" }
+    var decoder: JSONDecoder { JSONDecoder() }
+    var encoder: JSONEncoder { JSONEncoder() }
 
     // MARK: - Core Data
 
-    private static let persistentContainer: NSPersistentContainer = {
+    private var persistentContainer: NSPersistentContainer {
         let container = NSPersistentContainer(name: dataModelName)
 
         container.loadPersistentStores { persistentStore, error in
@@ -35,21 +33,23 @@ final class LocalCache {
         }
 
         return container
-    }()
+    }
 
-    private var persistentContainer: NSPersistentContainer { Self.persistentContainer }
-    private var managedContext: NSManagedObjectContext { persistentContainer.viewContext }
+    var managedContext: NSManagedObjectContext { persistentContainer.viewContext }
 
-    private lazy var entity: NSEntityDescription? = {
-        NSEntityDescription.entity(forEntityName: Self.entityName, in: managedContext)
-    }()
+    func entity(entityName: String) -> NSEntityDescription? {
+        NSEntityDescription.entity(forEntityName: entityName, in: managedContext)
+    }
 
-    private var fetchRequest: NSFetchRequest<NSManagedObject> { NSFetchRequest<NSManagedObject>(entityName: Self.entityName) }
+    func fetchRequest(entity: NSEntityDescription?) -> NSFetchRequest<NSManagedObject>? {
+        guard let entityName = entity?.name else { return nil }
+        return NSFetchRequest<NSManagedObject>(entityName: entityName)
+    }
 
     /// Saves the Core Data context.
     /// - Returns: A boolean indicating whether the save was successful or not.
     @discardableResult
-    private func saveContext() -> Bool {
+    func saveContext() -> Bool {
         guard managedContext.hasChanges else { return true }
 
         do {
@@ -64,72 +64,14 @@ final class LocalCache {
         }
     }
 
-    private func fetchObjects<T: Decodable>(_ type: T.Type) -> [T] {
-        guard let objects = try? managedContext.fetch(fetchRequest) else {
-            return []
-        }
+    // MARK: - Helpers
 
-        let result: [T?] = objects.map { decodableItem(from: $0, type: T.self) }
-
-        // We'll use compactMap to ensure there are no nil values
-        return result.compactMap { $0 }
-    }
-
-    private func decodableItem<T: Decodable>(from object: NSManagedObject, type: T.Type) -> T? {
+    func decodableItem<T: Decodable>(from object: NSManagedObject, key: String, type: T.Type) -> T? {
         guard
-            let json = object.value(forKey: Self.jsonKey) as? String,
+            let json = object.value(forKey: key) as? String,
             let data = json.data(using: .utf8)
         else { return nil }
 
         return try? decoder.decode(T.self, from: data)
-    }
-}
-
-extension LocalCache: Cache {
-    typealias T = Item
-
-    var items: [T] { fetchObjects(T.self) }
-
-    @discardableResult
-    func saveItems(_ items: [T]) -> Bool {
-        guard let entity = self.entity else { return false }
-
-        for item in items {
-            guard
-                let data = try? encoder.encode(item),
-                let json = String(data: data, encoding: .utf8)
-            else { continue }
-
-            let counter = NSManagedObject(entity: entity, insertInto: managedContext)
-            counter.setValue(json, forKey: Self.jsonKey)
-
-            managedContext.insert(counter)
-        }
-
-        do {
-            try managedContext.save()
-            return true
-        } catch {
-            return false
-        }
-    }
-
-    func deleteItems(_ shouldRemove: ((T) -> Bool)?) {
-        let allObjects = try? managedContext.fetch(fetchRequest)
-        var didDeleteItems = false
-
-        allObjects?.forEach {
-            guard let decodable = decodableItem(from: $0, type: T.self) else { return }
-            let shouldDelete = shouldRemove?(decodable) ?? true
-
-            if shouldDelete {
-                didDeleteItems = true
-                managedContext.delete($0)
-            }
-        }
-
-        if didDeleteItems {
-            try? managedContext.save()
-        }
     }
 }

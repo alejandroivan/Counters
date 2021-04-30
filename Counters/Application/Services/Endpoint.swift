@@ -4,8 +4,10 @@ import Foundation
 
 public enum Endpoint: String {
 
-    case saveItem = "counter"
     case getItems = "counters"
+    case saveItem = "counter"
+    case incrementItem = "counter/inc"
+    case decrementItem = "counter/dec"
 }
 
 // MARK: - Constants

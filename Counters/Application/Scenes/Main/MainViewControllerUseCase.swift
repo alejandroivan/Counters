@@ -10,11 +10,11 @@ protocol MainUseCaseProtocol {
 final class MainViewControllerUseCase: MainUseCaseProtocol {
 
     private let networking: SwiftNetworking
-    private let localCache: LocalCache
+    private let localCache: ItemsLocalCache
 
     // MARK: - Initialization
 
-    init(networking: SwiftNetworking, localCache: LocalCache) {
+    init(networking: SwiftNetworking, localCache: ItemsLocalCache) {
         self.networking = networking
         self.localCache = localCache
     }
@@ -43,9 +43,26 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         }
     }
 
+    func incrementItem(id: String, completion: @escaping(Items?, SwiftNetworkingError?) -> Void) {
+        let endpoint: Endpoint = .incrementItem
+
+        let parameters: [EndpointParameter: String] = [
+            .id: id
+        ]
+
+        networking.post(url: endpoint.path(), parameters: parameters, resultType: Items.self) { items, error in
+            print("ITEMS: \(items)")
+        }
+    }
+
     // MARK: - Helpers
 
-    private func getItemsFromLocalCache() -> Items { localCache.items }
+    private func getItemsFromLocalCache() -> Items { localCache.items as! Items }
+
+    @discardableResult
+    private func insertOrReplaceFromLocalCache(_ item: Item) -> Bool {
+        localCache.saveItems([item])
+    }
 
     @discardableResult
     private func saveItemsToLocalCache(_ items: Items) -> Bool {

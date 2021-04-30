@@ -90,9 +90,21 @@ extension MainViewControllerPresenter {
     func incrementItem(at index: Int) {
         /// This login shouldn't be needed, but if we, for some weird reason, get into the
         /// integer overflow limit, we'll get back to 0 and NOT the least negative number.
-        let newCount = items[index].count + 1
+        let item = items[index]
+        let newCount = item.count + 1
         items[index].count = max(0, newCount)
-        viewController?.displayItems()
+
+        useCase.incrementItem(id: item.identifier) { [weak self] items, error in
+            guard error == nil, let items = items else {
+                // Save diff to LocalCache, to upload later
+                return
+            }
+
+            // Save was successful, do nothing since the value was already added
+            // to the items array and represented in LocalCache. We just need to
+            // make sure the diffs are uploaded before the next fetchAllItems() call.
+        }
+
     }
 
     func decrementItem(at index: Int) {

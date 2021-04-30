@@ -17,8 +17,8 @@ final class AddItemViewControllerUseCase {
     func saveItem(name: String, completion: @escaping ResponseType) {
         let endpoint: Endpoint = .saveItem
 
-        let parameters: [String: String] = [
-            "title": name
+        let parameters: [EndpointParameter: String] = [
+            .title: name
         ]
 
         networking.post(url: endpoint.path(), parameters: parameters, resultType: Items.self) { response, error in

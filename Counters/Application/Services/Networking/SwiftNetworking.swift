@@ -26,7 +26,7 @@ class SwiftNetworking {
 
     func get<T: Decodable>(
         url: String,
-        parameters parametersDictionary: [String: String],
+        parameters parametersDictionary: [EndpointParameter: String],
         resultType: T.Type,
         completion: @escaping (T?, Error?) -> Void
     ) {
@@ -36,7 +36,7 @@ class SwiftNetworking {
             return
         }
 
-        let parameters: [URLQueryItem] = parametersDictionary.map { URLQueryItem(name: $0, value: $1) }
+        let parameters: [URLQueryItem] = parametersDictionary.map { URLQueryItem(name: $0.rawValue, value: $1) }
         guard let nsArrayParameters = NSArray(array: parameters) as? [URLQueryItem] else {
             return
         }
@@ -62,7 +62,7 @@ class SwiftNetworking {
 
     func post<T: Decodable>(
         url: String,
-        parameters parametersDictionary: [String: String],
+        parameters parametersDictionary: [EndpointParameter: String],
         resultType: T.Type,
         completion: @escaping (T?, Error?) -> Void
     ) {
@@ -72,7 +72,7 @@ class SwiftNetworking {
             return
         }
         
-        let parameters: [URLQueryItem] = parametersDictionary.map { URLQueryItem(name: $0, value: $1) }
+        let parameters: [URLQueryItem] = parametersDictionary.map { URLQueryItem(name: $0.rawValue, value: $1) }
         guard let nsArrayParameters = NSArray(array: parameters) as? [URLQueryItem] else {
             return
         }
