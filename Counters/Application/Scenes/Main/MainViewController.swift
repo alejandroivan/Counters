@@ -13,6 +13,15 @@ final class MainViewController: UIViewController {
 
     private struct Constants {
         static let backgroundColor = UIColor.counters.background
+        static let navigationBarMode: UINavigationItem.LargeTitleDisplayMode = .always
+
+        struct RefreshControl {
+            static let color = UIColor.counters.primaryText
+            // Defines if the refreshControl should appear on top of the navigation bar title
+            // or below of it (old behavior, attached to the tableview top).
+            static let appearsOnTop = true
+            static let scaleFactor: CGFloat = 0.75
+        }
 
         struct ActivityIndicator {
             /// There should be another ColorName for the ActivityIndicator,
@@ -35,6 +44,18 @@ final class MainViewController: UIViewController {
 
     private let tableView = UITableView()
     private let activityIndicator = UIActivityIndicatorView(style: Constants.ActivityIndicator.style)
+
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = Constants.RefreshControl.color
+        refreshControl.transform = CGAffineTransform(
+            scaleX: Constants.RefreshControl.scaleFactor,
+            y: Constants.RefreshControl.scaleFactor
+        )
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+        return refreshControl
+    }()
+
     private weak var errorView: MainErrorView?
 
     // MARK: Error
@@ -82,13 +103,15 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.largeTitleDisplayMode = Constants.navigationBarMode
         configureView()
         presenter.viewDidLoad()
     }
 
     private func configureView() {
         view.backgroundColor = Constants.backgroundColor
+        /// This line is necessary for the UIRefreshControl to show correctly.
+        extendedLayoutIncludesOpaqueBars = true
         configureTableView()
         configureActivityIndicator()
     }
@@ -100,6 +123,13 @@ final class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = presenter.tableViewDataSource
         tableView.delegate = presenter.tableViewDelegate
+
+        if Constants.RefreshControl.appearsOnTop {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+
         presenter.tableViewDelegate.tableView = tableView
 
         tableView.registerReusable(MainViewItemCell.self)
@@ -239,6 +269,11 @@ final class MainViewController: UIViewController {
         }
         tableView.endUpdates()
     }
+
+    @objc
+    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        presenter.fetchAllItems()
+    }
 }
 
 // MARK: - MainViewDisplay protocol
@@ -257,6 +292,7 @@ extension MainViewController: MainViewDisplay {
         setEditingEnabled(false)
         tableView.reloadData()
         mainNavigationController?.updateBars(for: self)
+        self.refreshControl.endRefreshing()
     }
 
     func displayEmptyError() {
