@@ -46,6 +46,7 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
     public enum UpdateItemType {
         case increment
         case decrement
+        case delete
     }
 
     // MARK: - Initialization
@@ -65,31 +66,30 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
             syncDiffs()
         }
 
-        DispatchQueue.global().async {
-            self.dispatchGroup.enter()
+        dispatchGroup.enter()
 
-            self.networking.get(url: endpoint.path(), parameters: [:], resultType: [T].self) { response, error in
-                self.dispatchGroup.leave()
+        networking.get(url: endpoint.path(), parameters: [:], resultType: [T].self) { response, error in
+            guard error == nil else {
+                let items = self.getItemsFromLocalCache()
 
-                guard error == nil else {
-                    let items = self.getItemsFromLocalCache()
-
-                    if items.isEmpty {
-                        completion(nil, error as? SwiftNetworkingError)
-                    } else {
-                        completion(items, nil)
-                    }
-
-                    return
+                if items.isEmpty {
+                    completion(nil, error as? SwiftNetworkingError)
+                } else {
+                    completion(items, nil)
                 }
 
-                let itemsToSave = response ?? []
-                self.saveItemsToLocalCache(itemsToSave)
-
-                completion(response, nil)
+                self.dispatchGroup.leave()
+                return
             }
 
-            self.dispatchGroup.wait()        }
+            let itemsToSave = response ?? []
+            self.saveItemsToLocalCache(itemsToSave)
+
+            completion(response, nil)
+            self.dispatchGroup.leave()
+        }
+
+        dispatchGroup.wait()
     }
 
     func updateItem(
@@ -107,6 +107,8 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         case .decrement:
             endpoint = .decrementItem
             diffType = .decrement
+        case .delete:
+            return // To be handled in deleteItems(_:, completion:)
         }
 
         let parameters: [EndpointParameter: String] = [
@@ -120,18 +122,18 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         dispatchGroup.enter()
 
         networking.post(url: endpoint.path(), parameters: parameters, resultType: [T].self) { items, error in
-            self.dispatchGroup.leave()
-
             guard error == nil, let items = items else {
                 if shouldSaveToLocalCache, self.insertToDiffCache(item, type: diffType) {
                     completion(self.getItemsFromLocalCache(), nil)
                 } else {
                     completion(nil, .noConnection)
                 }
+                self.dispatchGroup.leave()
                 return
             }
 
             completion(items, nil)
+            self.dispatchGroup.leave()
         }
 
         dispatchGroup.wait()
@@ -141,9 +143,13 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         _ items: [T],
         completion: @escaping ([T]?, SwiftNetworkingError?) -> Void
     ) {
-        // TODO: Delete logic.
-        print("DELETE ITEMS: \(items)")
-        completion([], nil)
+        let endpoint: Endpoint = .saveAndDeleteItem
+
+        if !isSyncInProgress {
+            syncDiffs()
+        }
+
+        completion(items, nil)
     }
 
     // MARK: - Helpers
@@ -159,25 +165,30 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         // The key is the identifier of an item, and the value the difference to be applied to its count.
         var updates: [String: Int] = [:]
 
-        diffs.forEach { diff in
+        print("Diffs to apply: \(diffs.count)")
+
+        for diff in diffs {
             let newValue: Int
 
             if let currentValue = updates[diff.identifier] {
                 switch diff.diffType {
-                case .increment: newValue = max(0, currentValue + 1)
-                case .decrement: newValue = max(0, currentValue - 1)
+                case .increment: newValue = currentValue + 1
+                case .decrement: newValue = currentValue - 1
+                case .delete: continue
                 }
             } else {
                 switch diff.diffType {
                 case .increment: newValue = 1
                 case .decrement: newValue = -1
+                case .delete: continue
                 }
             }
 
             updates[diff.identifier] = newValue
         }
 
-        let items = localCache.items.map { item -> T in
+        let items = localCache.items
+        let diffedItems = items.map { item -> T in
             var newItem = item
 
             if let diff = updates[item.identifier] {
@@ -187,7 +198,7 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
             return newItem
         }
 
-        return items
+        return diffedItems
     }
 
     /// Updates one item from the ones that we got from the local cache,
@@ -213,6 +224,7 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         switch type {
         case .increment: diffType = .increment
         case .decrement: diffType = .decrement
+        case .delete: diffType = .delete
         }
 
         let diff = U(identifier: item.identifier, diffType: diffType, uuid: UUID().uuidString)
@@ -270,30 +282,44 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
             switch diff.diffType {
             case .increment: updateType = .increment
             case .decrement: updateType = .decrement
+            case .delete: updateType = .delete
             }
 
             self.dispatchGroup.enter()
 
-            self.updateItem(item: item, type: updateType, shouldSaveToLocalCache: false) { items, error in
-                if error == nil, items != nil {
-                    successfulUpdates += 1
-                    self.removeFromDiffCache(diff)
+            switch updateType {
+            case .increment, .decrement:
+                self.updateItem(item: item, type: updateType, shouldSaveToLocalCache: false) { items, error in
+                    self.dispatchGroup.leave()
+
+                    if error == nil, items != nil {
+                        successfulUpdates += 1
+                        self.removeFromDiffCache(diff)
+                    }
                 }
-                self.dispatchGroup.leave()
+            case .delete:
+                self.deleteItems([item]) { items, error in
+                    self.dispatchGroup.leave()
+
+                    if error == nil, items != nil {
+                        successfulUpdates += 1
+                        self.removeFromDiffCache(diff)
+                    }
+                }
             }
         }
 
-        self.dispatchGroup.notify(queue: .global()) {
-            #if DEBUG
-            if successfulUpdates > 0 {
-                print("[\(String(describing: self))] Sync complete. Successful updates: \(successfulUpdates)")
-            } else {
-                if !diffs.isEmpty {
-                    print("[\(String(describing: self))] Couldn't sync with the backend.")
-                }
+        dispatchGroup.wait()
+
+        #if DEBUG
+        if successfulUpdates > 0 {
+            print("[\(String(describing: self))] Sync complete. Successful updates: \(successfulUpdates)")
+        } else {
+            if !diffs.isEmpty {
+                print("[\(String(describing: self))] Couldn't sync with the backend.")
             }
-            #endif
         }
+        #endif
 
         isSyncInProgress = false
     }

@@ -113,10 +113,8 @@ extension MainViewControllerPresenter {
     // MARK: - Counting
 
     func incrementItem(at index: Int) {
-        /// This check shouldn't be needed, but if we, for some weird reason, get into the
-        /// integer overflow limit, we'll get back to 0 and NOT the least negative number.
         var item = items[index]
-        item.count = max(0, item.count + 1)
+        item.count = item.count + 1
         items[index] = item
         viewController?.displayItems()
 
@@ -127,7 +125,7 @@ extension MainViewControllerPresenter {
 
     func decrementItem(at index: Int) {
         var item = items[index]
-        item.count = max(0, item.count - 1)
+        item.count = item.count - 1
         items[index] = item
         viewController?.displayItems()
 

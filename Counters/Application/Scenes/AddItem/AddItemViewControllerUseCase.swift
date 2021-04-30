@@ -15,7 +15,7 @@ final class AddItemViewControllerUseCase {
     // MARK: - Use Cases
 
     func saveItem(name: String, completion: @escaping ResponseType) {
-        let endpoint: Endpoint = .saveItem
+        let endpoint: Endpoint = .saveAndDeleteItem
 
         let parameters: [EndpointParameter: String] = [
             .title: name

@@ -3,6 +3,7 @@ import Foundation
 public enum LocalCacheDiffType: String, Codable {
     case increment
     case decrement
+    case delete
 }
 
 public struct LocalCacheDiff: Codable {
