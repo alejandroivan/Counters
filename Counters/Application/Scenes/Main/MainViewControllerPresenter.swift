@@ -67,7 +67,9 @@ extension MainViewControllerPresenter {
             self?.isLoading = false
             
             guard error == nil, let items = items else {
-                self?.viewController?.displayNoNetworkError()
+                DispatchQueue.main.async {
+                    self?.viewController?.displayNoNetworkError()
+                }
                 return
             }
 

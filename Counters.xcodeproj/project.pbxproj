@@ -24,6 +24,7 @@
 		FF0FDF6E263A2E2A0007503F /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF6D263A2E2A0007503F /* LocalCache.swift */; };
 		FF0FDF74263B65D50007503F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF73263B65D50007503F /* Reachability.m */; };
 		FF0FDF7D263B66410007503F /* SwiftReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF7C263B66410007503F /* SwiftReachability.swift */; };
+		FF0FDF8E263B7FB10007503F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF8D263B7FB10007503F /* Endpoint.swift */; };
 		FF164DCC2636289100EDD69E /* AddItemViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */; };
 		FF164DD226362E8000EDD69E /* AddItemExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DD126362E8000EDD69E /* AddItemExamplesViewController.swift */; };
 		FF164DDA26362FC000EDD69E /* AddItemExamplesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DD926362FC000EDD69E /* AddItemExamplesDelegate.swift */; };
@@ -105,6 +106,7 @@
 		FF0FDF73263B65D50007503F /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FF0FDF7B263B66240007503F /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FF0FDF7C263B66410007503F /* SwiftReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftReachability.swift; sourceTree = "<group>"; };
+		FF0FDF8D263B7FB10007503F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		FF164DCB2636289100EDD69E /* AddItemViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewDelegate.swift; sourceTree = "<group>"; };
 		FF164DD126362E8000EDD69E /* AddItemExamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesViewController.swift; sourceTree = "<group>"; };
 		FF164DD926362FC000EDD69E /* AddItemExamplesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				FF0FDF72263B65AB0007503F /* Reachability */,
 				FF0FDF66263A2D9D0007503F /* LocalCache */,
 				35EAFB7525CC9E1F00DCFE10 /* Networking */,
+				FF0FDF8D263B7FB10007503F /* Endpoint.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				FF93D8DB2634CB4F000B5361 /* MainPresenter.swift in Sources */,
 				FF0FDF7D263B66410007503F /* SwiftReachability.swift in Sources */,
 				FFE577212633B8B600BEE65E /* Namespace.swift in Sources */,
+				FF0FDF8E263B7FB10007503F /* Endpoint.swift in Sources */,
 				FF8131AB2637D2D9003BF7BB /* MainViewItemCellDelegate.swift in Sources */,
 				FF93D8B02634C522000B5361 /* MainViewControllerPresenter.swift in Sources */,
 				FF93D8F22634E4BE000B5361 /* AddItemViewController.swift in Sources */,

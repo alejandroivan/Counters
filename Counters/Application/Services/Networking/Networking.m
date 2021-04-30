@@ -3,7 +3,7 @@
 
 // MARK: - Base URL
 // TODO: Rollback to 127.0.0.1
-NSString *const baseURL = @"http://192.168.0.4:3000/api/";
+NSString *const baseURL = @"http://192.168.0.4:3000";
 
 // MARK: - Error
 NSErrorDomain const CountersErrorDomain = @"counters.network.error.domain";

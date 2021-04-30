@@ -9,10 +9,6 @@ protocol MainUseCaseProtocol {
 
 final class MainViewControllerUseCase: MainUseCaseProtocol {
 
-    private enum Endpoint: String {
-        case getItems = "v1/counters"
-    }
-
     private let networking: SwiftNetworking
     private let localCache: LocalCache
 
@@ -26,9 +22,9 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
     // MARK: - Use Cases
 
     func getItems(completion: @escaping (Items?, SwiftNetworkingError?) -> Void) {
-        let url: Endpoint = .getItems
+        let endpoint: Endpoint = .getItems
 
-        networking.get(url: url.rawValue, parameters: [:], resultType: Items.self) { response, error in
+        networking.get(url: endpoint.path(), parameters: [:], resultType: Items.self) { response, error in
             guard error == nil else {
                 let items = self.getItemsFromLocalCache()
 

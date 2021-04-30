@@ -4,10 +4,6 @@ final class AddItemViewControllerUseCase {
 
     typealias ResponseType = (Items?, SwiftNetworkingError?) -> Void
 
-    private enum Endpoint: String {
-        case save = "v1/counter"
-    }
-
     private let networking: SwiftNetworking
 
     // MARK: - Initialization
@@ -19,13 +15,13 @@ final class AddItemViewControllerUseCase {
     // MARK: - Use Cases
 
     func saveItem(name: String, completion: @escaping ResponseType) {
-        let url: Endpoint = .save
+        let endpoint: Endpoint = .saveItem
 
         let parameters: [String: String] = [
             "title": name
         ]
 
-        networking.post(url: url.rawValue, parameters: parameters, resultType: Items.self) { response, error in
+        networking.post(url: endpoint.path(), parameters: parameters, resultType: Items.self) { response, error in
             guard error == nil else {
                 completion(nil, error as? SwiftNetworkingError)
                 return
