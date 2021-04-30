@@ -128,6 +128,8 @@ final class MainViewItemCell: UITableViewCell {
         counterLabel.font = Constants.CounterLabel.font
         counterLabel.textColor = Constants.CounterLabel.textColor
         counterLabel.textAlignment = Constants.CounterLabel.textAlignment
+        counterLabel.adjustsFontSizeToFitWidth = true
+        counterLabel.adjustsFontForContentSizeCategory = true
 
         let insets = Constants.CounterLabel.insets
         NSLayoutConstraint.activate([
