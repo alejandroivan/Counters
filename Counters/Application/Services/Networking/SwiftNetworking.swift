@@ -9,6 +9,11 @@ enum SwiftNetworkingError: Error {
 
 class SwiftNetworking {
 
+    private enum HTTPParametrizedMethod {
+        case post
+        case delete
+    }
+
     private let networking: Networking
     private let reachability: SwiftReachability
 
@@ -66,18 +71,52 @@ class SwiftNetworking {
         resultType: T.Type,
         completion: @escaping (T?, Error?) -> Void
     ) {
+        parametrizedMethodRequest(
+            url: url,
+            method: .post,
+            parameters: parametersDictionary,
+            resultType: T.self,
+            completion: completion
+        )
+    }
+
+    func delete<T: Decodable>(
+        url: String,
+        parameters parametersDictionary: [EndpointParameter: String],
+        resultType: T.Type,
+        completion: @escaping (T?, Error?) -> Void
+    ) {
+        print("DELETE: \(url)")
+        parametrizedMethodRequest(
+            url: url,
+            method: .delete,
+            parameters: parametersDictionary,
+            resultType: T.self,
+            completion: completion
+        )
+    }
+
+    // MARK: - Helpers
+
+    private func parametrizedMethodRequest<T: Decodable>(
+        url: String,
+        method: HTTPParametrizedMethod,
+        parameters parametersDictionary: [EndpointParameter: String],
+        resultType: T.Type,
+        completion: @escaping (T?, Error?) -> Void
+    ) {
         guard reachability.isNetworkReachable else {
             let error: SwiftNetworkingError = .noConnection
             completion(nil, error)
             return
         }
-        
+
         let parameters: [URLQueryItem] = parametersDictionary.map { URLQueryItem(name: $0.rawValue, value: $1) }
         guard let nsArrayParameters = NSArray(array: parameters) as? [URLQueryItem] else {
             return
         }
 
-        networking.postURL(url, parameters: nsArrayParameters) { data, error in
+        let completionHandler: DataCompletionHandler = { data, error in
             guard
                 error == nil,
                 let data = data
@@ -94,9 +133,12 @@ class SwiftNetworking {
                 completion(nil, error)
             }
         }
-    }
 
-    // MARK: - Helpers
+        switch method {
+        case .post: networking.postURL(url, parameters: nsArrayParameters, completionHandler: completionHandler)
+        case .delete: networking.deleteURL(url, parameters: nsArrayParameters, completionHandler: completionHandler)
+        }
+    }
 
     private static func decodeNetworkObject<T: Decodable>(data: Data, to _: T.Type) -> T? {
         let decoder = JSONDecoder()

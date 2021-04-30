@@ -149,7 +149,30 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
             syncDiffs()
         }
 
-        completion(items, nil)
+        items.forEach { item in
+            self.dispatchGroup.enter()
+
+            let parameters: [EndpointParameter: String] = [
+                .id: item.identifier
+            ]
+
+            self.networking.delete(url: endpoint.path(), parameters: parameters, resultType: [T].self) { items, error in
+                guard error == nil, let items = items else {
+                    if self.insertToDiffCache(item, type: .delete) {
+                        completion(self.getItemsFromLocalCache(), nil)
+                    } else {
+                        completion(nil, .noConnection)
+                    }
+                    self.dispatchGroup.leave()
+                    return
+                }
+
+                completion(items, nil)
+                self.dispatchGroup.leave()
+            }
+        }
+
+        dispatchGroup.wait()
     }
 
     // MARK: - Helpers
@@ -164,6 +187,7 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         // We'll use a dictionary to avoid a potentially expensive O(n^2) operation.
         // The key is the identifier of an item, and the value the difference to be applied to its count.
         var updates: [String: Int] = [:]
+        var deletions: [String] = []
 
         print("Diffs to apply: \(diffs.count)")
 
@@ -174,13 +198,17 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
                 switch diff.diffType {
                 case .increment: newValue = currentValue + 1
                 case .decrement: newValue = currentValue - 1
-                case .delete: continue
+                case .delete:
+                    deletions.append(diff.identifier)
+                    continue
                 }
             } else {
                 switch diff.diffType {
                 case .increment: newValue = 1
                 case .decrement: newValue = -1
-                case .delete: continue
+                case .delete:
+                    deletions.append(diff.identifier)
+                    continue
                 }
             }
 
@@ -188,7 +216,7 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
         }
 
         let items = localCache.items
-        let diffedItems = items.map { item -> T in
+        let diffedItems = items.compactMap { item -> T in
             var newItem = item
 
             if let diff = updates[item.identifier] {
@@ -198,7 +226,7 @@ final class MainViewControllerUseCase: MainUseCaseProtocol {
             return newItem
         }
 
-        return diffedItems
+        return diffedItems.compactMap { deletions.contains($0.identifier) ? nil : $0 }
     }
 
     /// Updates one item from the ones that we got from the local cache,

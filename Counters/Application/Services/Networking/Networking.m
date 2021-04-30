@@ -119,7 +119,7 @@ typedef void (^DataCompletionHandler) (NSData * _Nullable data, NSError * _Nulla
     NSURL *url = [NSURL URLWithString:urlString];
 
     NSURLSessionTask *task = [self dataRequestURL:url
-                                       HTTPMethod:@"GET"
+                                       HTTPMethod:@"DELETE"
                                        parameters:parameters
                                 completionHandler:completion];
     [task resume];
