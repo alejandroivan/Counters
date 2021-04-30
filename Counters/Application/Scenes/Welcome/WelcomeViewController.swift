@@ -48,7 +48,8 @@ extension WelcomeViewController: WelcomeViewButtonDelegate {
                 tableViewDelegate: MainTableViewDelegate(),
                 useCase: MainViewControllerUseCase(
                     networking: SwiftNetworking(),
-                    localCache: ItemsLocalCache()
+                    localCache: ItemsLocalCache(),
+                    diffCache: DiffLocalCache()
                 )
             )
         )

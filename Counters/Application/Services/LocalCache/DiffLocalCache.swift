@@ -9,6 +9,8 @@ class DiffLocalCache: LocalCache {
     private static let idKey = "id"
     private static let typeKey = "type"
 
+    public private(set) lazy var managedContext = { persistentContainer.viewContext }()
+
     var items: [T] { fetchObjects(T.self) }
 
     @discardableResult

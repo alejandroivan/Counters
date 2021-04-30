@@ -4,8 +4,12 @@ import Foundation
 public protocol LocalCache {
     associatedtype T
 
+    /// The managed context for this cache.
+    var managedContext: NSManagedObjectContext { get }
+
     /// Gets all the items saved in the cache.
     var items: [T] { get }
+
     /// Saves all the items passed into the cache.
     func saveItems(_ items: [T]) -> Bool
 
@@ -23,7 +27,7 @@ public extension LocalCache {
 
     // MARK: - Core Data
 
-    private var persistentContainer: NSPersistentContainer {
+    var persistentContainer: NSPersistentContainer {
         let container = NSPersistentContainer(name: dataModelName)
 
         container.loadPersistentStores { persistentStore, error in
@@ -34,8 +38,6 @@ public extension LocalCache {
 
         return container
     }
-
-    var managedContext: NSManagedObjectContext { persistentContainer.viewContext }
 
     func entity(entityName: String) -> NSEntityDescription? {
         NSEntityDescription.entity(forEntityName: entityName, in: managedContext)

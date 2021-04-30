@@ -88,28 +88,26 @@ extension MainViewControllerPresenter {
     // MARK: - Counting
 
     func incrementItem(at index: Int) {
-        /// This login shouldn't be needed, but if we, for some weird reason, get into the
+        /// This check shouldn't be needed, but if we, for some weird reason, get into the
         /// integer overflow limit, we'll get back to 0 and NOT the least negative number.
-        let item = items[index]
-        let newCount = item.count + 1
-        items[index].count = max(0, newCount)
+        var item = items[index]
+        item.count = max(0, item.count + 1)
+        items[index] = item
+        viewController?.displayItems()
 
-        useCase.incrementItem(id: item.identifier) { [weak self] items, error in
-            guard error == nil, let items = items else {
-                // Save diff to LocalCache, to upload later
-                return
-            }
-
-            // Save was successful, do nothing since the value was already added
-            // to the items array and represented in LocalCache. We just need to
-            // make sure the diffs are uploaded before the next fetchAllItems() call.
-        }
-
+        // We don't need a completion handler here, since the useCase will handle
+        // all the caching stuff as appropiate. We just tell it to update.
+        useCase.updateItem(item: item, type: .increment) { _, _ in }
     }
 
     func decrementItem(at index: Int) {
-        let newCount = items[index].count - 1
-        items[index].count = max(0, newCount)
+        var item = items[index]
+        item.count = max(0, item.count - 1)
+        items[index] = item
         viewController?.displayItems()
+
+        // We don't need a completion handler here, since the useCase will handle
+        // all the caching stuff as appropiate. We just tell it to update.
+        useCase.updateItem(item: item, type: .decrement) { _, _ in }
     }
 }

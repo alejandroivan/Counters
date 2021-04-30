@@ -9,6 +9,8 @@ class ItemsLocalCache: LocalCache {
 
     var items: [T] { fetchObjects(T.self) }
 
+    public private(set) lazy var managedContext: NSManagedObjectContext = { persistentContainer.viewContext }()
+
     @discardableResult
     func saveItems(_ items: [T]) -> Bool {
         guard let entity = self.entity(entityName: Self.entityName) else { return false }
