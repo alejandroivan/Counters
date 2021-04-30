@@ -21,6 +21,12 @@ final class MainViewController: UIViewController {
             static let color = UIColor.counters.primaryText
             static let style: UIActivityIndicatorView.Style = .large
         }
+
+        struct BottomBarItemStyle {
+            static let add: UIBarButtonItem.SystemItem = .add
+            static let delete: UIBarButtonItem.SystemItem = .trash
+            static let share: UIBarButtonItem.SystemItem = .action
+        }
     }
 
     // MARK: - Views
@@ -47,17 +53,17 @@ final class MainViewController: UIViewController {
     /// but the `didTapDeleteItemsButton()` selector is not (yet) evaluated at runtime,
     /// so the button will not call it. The marvels of Objective-C runtime 🎉
     private lazy var deleteBarButtonItem: UIBarButtonItem = {
-        UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didTapDeleteItemsButton))
+        UIBarButtonItem(barButtonSystemItem: Constants.BottomBarItemStyle.delete, target: self, action: #selector(didTapDeleteItemsButton))
     }()
 
     /// The same as above applies to the `shareBarButtonItem`.
     private lazy var shareBarButtonItem: UIBarButtonItem = {
-        UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(didTapShareItemsButton))
+        UIBarButtonItem(barButtonSystemItem: Constants.BottomBarItemStyle.share, target: self, action: #selector(didTapShareItemsButton))
     }()
 
     /// And the same applies for this one.
     private lazy var addBarButtonItem: UIBarButtonItem = {
-        UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAddItemButton(_:)))
+        UIBarButtonItem(barButtonSystemItem: Constants.BottomBarItemStyle.add, target: self, action: #selector(didTapAddItemButton(_:)))
     }()
 
     // MARK: - Initialization
@@ -239,8 +245,9 @@ final class MainViewController: UIViewController {
 extension MainViewController: MainViewDisplay {
 
     func refreshBottomBarButtonsIfNeeded() {
-        let selectedItemCount = tableView.indexPathsForSelectedRows?.count ?? 0
-        deleteBarButtonItem.isEnabled = selectedItemCount > 0
+        let areEnabled = (tableView.indexPathsForSelectedRows?.count ?? 0) > 0
+        deleteBarButtonItem.isEnabled = areEnabled
+        shareBarButtonItem.isEnabled = areEnabled
     }
 
     // MARK: Data
