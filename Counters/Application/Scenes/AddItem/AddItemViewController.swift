@@ -161,7 +161,9 @@ extension AddItemViewController: AddItemViewDisplay {
         }
     }
 
-    // TODO: Move these methods to a router/coordinator object (later). [Resolution: Won't do. I don't care at this point.]
+    /// This could have been done in a coordinator/router object.
+    /// For simplifying this "architecture", I'm going to say:
+    /// "The views handle navigation, based on: Clean Swift."
     func routeToExamples() {
         let viewController = AddItemExamplesViewController(
             tableViewDataSource: AddItemExamplesTableViewDataSource(),

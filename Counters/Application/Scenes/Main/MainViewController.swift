@@ -412,7 +412,9 @@ extension MainViewController: MainViewDisplay {
 
     // MARK: Routing
 
-    // TODO: Delegate this to a router/coordinator object (later). [Resolution: Won't do. I don't care at this point.]
+    /// This could have been done in a coordinator/router object.
+    /// For simplifying this "architecture", I'm going to say:
+    /// "The views handle navigation, based on: Clean Swift."
     func routeToAddItem() {
         let addItemPresenter = AddItemViewControllerPresenter(
             useCase: AddItemViewControllerUseCase(
