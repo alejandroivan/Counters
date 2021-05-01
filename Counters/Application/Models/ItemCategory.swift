@@ -1,5 +1,10 @@
 import Foundation
 
+/*
+ This type is just a helper one for the "Examples" scene.
+ It's by no means a business logic model.
+ */
+
 enum ItemCategory: String, Decodable {
     case drink = "CATEGORY_DRINK"
     case food = "CATEGORY_FOOD"
