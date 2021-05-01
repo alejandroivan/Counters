@@ -16,6 +16,18 @@ final class MainViewController: UIViewController {
         static let backgroundColor = UIColor.counters.background
         static let navigationBarMode: UINavigationItem.LargeTitleDisplayMode = .always
 
+        struct SearchController {
+            static let noResultsText = "MAIN_VIEW_SEARCH_BAR_NO_RESULTS".localized
+            static let noResultsTextColor = UIColor.counters.secondaryText
+            static let noResultsTextAlignment: NSTextAlignment = .center
+            static let noResultsFont = UIFont.systemFont(ofSize: 20, weight: .regular)
+            static var noResultsTopSpacing: CGFloat {
+                let percentage: CGFloat = 0.36 // 36% screen height, tested to work fine on the iPhone 7 and the 12 Pro Max
+                let topSpacing: CGFloat = UIScreen.main.bounds.size.height * percentage
+                return topSpacing
+            }
+        }
+
         struct RefreshControl {
             static let color = UIColor.counters.primaryText
             // Defines if the refreshControl should appear on top of the navigation bar title
@@ -45,7 +57,9 @@ final class MainViewController: UIViewController {
 
     private let tableView = UITableView()
     private let activityIndicator = UIActivityIndicatorView(style: Constants.ActivityIndicator.style)
+
     private lazy var searchController = UISearchController(searchResultsController: nil)
+    private weak var noResultsLabel: UILabel?
 
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -429,6 +443,37 @@ extension MainViewController: MainViewDisplay {
     func updateFilteredItems() {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
         filteredItems = items.filter { $0.title.lowercased().contains(text) }
+
+        if filteredItems.isEmpty, isFiltering {
+            showNoResultsMessage()
+        } else {
+            hideNoResultsMessage()
+        }
+    }
+
+    private func showNoResultsMessage() {
+        guard noResultsLabel == nil else { return }
+
+        let label = UILabel()
+        noResultsLabel = label
+        view.addSubview(label)
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = Constants.SearchController.noResultsText
+        label.textColor = Constants.SearchController.noResultsTextColor
+        label.font = Constants.SearchController.noResultsFont
+        label.textAlignment = Constants.SearchController.noResultsTextAlignment
+
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.SearchController.noResultsTopSpacing),
+            label.heightAnchor.constraint(greaterThanOrEqualToConstant: 0),
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+
+    private func hideNoResultsMessage() {
+        noResultsLabel?.removeFromSuperview()
     }
 }
 
