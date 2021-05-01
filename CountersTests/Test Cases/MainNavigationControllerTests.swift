@@ -80,4 +80,15 @@ final class MainNavigationControllerTests: XCTestCase {
         XCTAssertNotEqual(barProvider.showsBottomBar, toolbar.isHidden)
         XCTAssertEqual(totalCount, viewController.toolbarItems?.count ?? 0)
     }
+
+    func testWillShowViewController_callsUpdateBars() {
+        let viewController = BarProviderMock()
+        let sutDelegate = sut.delegate
+
+        sutDelegate?.navigationController?(sut, willShow: viewController, animated: true)
+
+        XCTAssertTrue(sut === sutDelegate) // Pointer comparison, they should be the same object
+        XCTAssertNotNil(sutDelegate)
+        XCTAssertEqual(viewController.topBarTitle, viewController.navigationItem.title)
+    }
 }
