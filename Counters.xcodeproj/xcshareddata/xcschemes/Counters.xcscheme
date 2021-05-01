@@ -27,25 +27,26 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DECA256725CC8D4200851431"
+            BuildableName = "Counters.app"
+            BlueprintName = "Counters"
+            ReferencedContainer = "container:Counters.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DECA257D25CC8D4300851431"
                BuildableName = "CountersTests.xctest"
                BlueprintName = "CountersTests"
-               ReferencedContainer = "container:Counters.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DECA258825CC8D4300851431"
-               BuildableName = "CountersUITests.xctest"
-               BlueprintName = "CountersUITests"
                ReferencedContainer = "container:Counters.xcodeproj">
             </BuildableReference>
          </TestableReference>

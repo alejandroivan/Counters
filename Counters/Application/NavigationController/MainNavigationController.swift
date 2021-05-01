@@ -1,8 +1,8 @@
 import UIKit
 
-final class MainNavigationController: UINavigationController {
+public typealias BarProvider = TopBarProvider & BottomBarProvider
 
-    typealias BarProvider = TopBarProvider & BottomBarProvider
+final class MainNavigationController: UINavigationController {
 
     // MARK: - Styling
 

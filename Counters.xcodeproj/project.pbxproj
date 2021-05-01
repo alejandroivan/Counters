@@ -17,7 +17,6 @@
 		DECA257025CC8D4200851431 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA256F25CC8D4200851431 /* WelcomeViewController.swift */; };
 		DECA257525CC8D4300851431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DECA257425CC8D4300851431 /* Assets.xcassets */; };
 		DECA257825CC8D4300851431 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DECA257625CC8D4300851431 /* LaunchScreen.storyboard */; };
-		DECA258E25CC8D4300851431 /* CountersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECA258D25CC8D4300851431 /* CountersUITests.swift */; };
 		DEED7FCE25CC975D00BA0CDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEED7FD025CC975D00BA0CDB /* Localizable.strings */; };
 		FF0FDF69263A2E1C0007503F /* LocalCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF67263A2E1C0007503F /* LocalCache.xcdatamodeld */; };
 		FF0FDF6E263A2E2A0007503F /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF6D263A2E2A0007503F /* LocalCache.swift */; };
@@ -36,6 +35,8 @@
 		FF164DEE2636427700EDD69E /* AddItemExamplesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DED2636427700EDD69E /* AddItemExamplesTableViewDataSource.swift */; };
 		FF164DF62636537E00EDD69E /* SwiftNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DF52636537E00EDD69E /* SwiftNetworking.swift */; };
 		FF164E002637824F00EDD69E /* MainViewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DFF2637824F00EDD69E /* MainViewItemCell.swift */; };
+		FF33E834263D0D2200119E91 /* BarProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33E833263D0D2200119E91 /* BarProviderMock.swift */; };
+		FF33E841263D0F3C00119E91 /* MainNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */; };
 		FF8131A126378BED003BF7BB /* MainErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8131A026378BED003BF7BB /* MainErrorView.swift */; };
 		FF8131A62637C8EC003BF7BB /* MainTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8131A52637C8EC003BF7BB /* MainTableViewDelegate.swift */; };
 		FF8131AB2637D2D9003BF7BB /* MainViewItemCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8131AA2637D2D9003BF7BB /* MainViewItemCellDelegate.swift */; };
@@ -76,13 +77,6 @@
 			remoteGlobalIDString = DECA256725CC8D4200851431;
 			remoteInfo = Counters;
 		};
-		DECA258A25CC8D4300851431 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DECA256025CC8D4200851431 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DECA256725CC8D4200851431;
-			remoteInfo = Counters;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -102,9 +96,6 @@
 		DECA257925CC8D4300851431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DECA257E25CC8D4300851431 /* CountersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DECA258425CC8D4300851431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DECA258925CC8D4300851431 /* CountersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DECA258D25CC8D4300851431 /* CountersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersUITests.swift; sourceTree = "<group>"; };
-		DECA258F25CC8D4300851431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEED7FCF25CC975D00BA0CDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF0FDF68263A2E1C0007503F /* LocalCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalCache.xcdatamodel; sourceTree = "<group>"; };
 		FF0FDF6D263A2E2A0007503F /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
@@ -124,6 +115,7 @@
 		FF164DED2636427700EDD69E /* AddItemExamplesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemExamplesTableViewDataSource.swift; sourceTree = "<group>"; };
 		FF164DF52636537E00EDD69E /* SwiftNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNetworking.swift; sourceTree = "<group>"; };
 		FF164DFF2637824F00EDD69E /* MainViewItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewItemCell.swift; sourceTree = "<group>"; };
+		FF33E833263D0D2200119E91 /* BarProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarProviderMock.swift; sourceTree = "<group>"; };
 		FF8131A026378BED003BF7BB /* MainErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainErrorView.swift; sourceTree = "<group>"; };
 		FF8131A52637C8EC003BF7BB /* MainTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDelegate.swift; sourceTree = "<group>"; };
 		FF8131AA2637D2D9003BF7BB /* MainViewItemCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewItemCellDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +140,8 @@
 		FFC425CC263C95CD00D81045 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		FFC425D1263CB6AD00D81045 /* String+ShareActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ShareActivity.swift"; sourceTree = "<group>"; };
 		FFC425D9263CC41700D81045 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FFC425EF263D0A2C00D81045 /* CountersTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CountersTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationControllerTests.swift; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
 		FFE577042633B13B00BEE65E /* BottomBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarProvider.swift; sourceTree = "<group>"; };
@@ -165,13 +159,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DECA257B25CC8D4300851431 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DECA258625CC8D4300851431 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -238,7 +225,6 @@
 			children = (
 				DECA256A25CC8D4200851431 /* Counters */,
 				DECA258125CC8D4300851431 /* CountersTests */,
-				DECA258C25CC8D4300851431 /* CountersUITests */,
 				DECA256925CC8D4200851431 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -248,7 +234,6 @@
 			children = (
 				DECA256825CC8D4200851431 /* Counters.app */,
 				DECA257E25CC8D4300851431 /* CountersTests.xctest */,
-				DECA258925CC8D4300851431 /* CountersUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,18 +254,12 @@
 		DECA258125CC8D4300851431 /* CountersTests */ = {
 			isa = PBXGroup;
 			children = (
+				FF33E831263D0CFF00119E91 /* Mocks */,
+				FF33E832263D0D0A00119E91 /* Test Cases */,
 				DECA258425CC8D4300851431 /* Info.plist */,
+				FFC425EF263D0A2C00D81045 /* CountersTests-Bridging-Header.h */,
 			);
 			path = CountersTests;
-			sourceTree = "<group>";
-		};
-		DECA258C25CC8D4300851431 /* CountersUITests */ = {
-			isa = PBXGroup;
-			children = (
-				DECA258D25CC8D4300851431 /* CountersUITests.swift */,
-				DECA258F25CC8D4300851431 /* Info.plist */,
-			);
-			path = CountersUITests;
 			sourceTree = "<group>";
 		};
 		DECA25AA25CC8FD600851431 /* Application */ = {
@@ -408,6 +387,22 @@
 				FF8131AA2637D2D9003BF7BB /* MainViewItemCellDelegate.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		FF33E831263D0CFF00119E91 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				FF33E833263D0D2200119E91 /* BarProviderMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		FF33E832263D0D0A00119E91 /* Test Cases */ = {
+			isa = PBXGroup;
+			children = (
+				FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */,
+			);
+			path = "Test Cases";
 			sourceTree = "<group>";
 		};
 		FF81319F26378BE6003BF7BB /* Views */ = {
@@ -550,24 +545,6 @@
 			productReference = DECA257E25CC8D4300851431 /* CountersTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DECA258825CC8D4300851431 /* CountersUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DECA259825CC8D4300851431 /* Build configuration list for PBXNativeTarget "CountersUITests" */;
-			buildPhases = (
-				DECA258525CC8D4300851431 /* Sources */,
-				DECA258625CC8D4300851431 /* Frameworks */,
-				DECA258725CC8D4300851431 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DECA258B25CC8D4300851431 /* PBXTargetDependency */,
-			);
-			name = CountersUITests;
-			productName = CountersUITests;
-			productReference = DECA258925CC8D4300851431 /* CountersUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -583,10 +560,7 @@
 					};
 					DECA257D25CC8D4300851431 = {
 						CreatedOnToolsVersion = 12.4;
-						TestTargetID = DECA256725CC8D4200851431;
-					};
-					DECA258825CC8D4300851431 = {
-						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 						TestTargetID = DECA256725CC8D4200851431;
 					};
 				};
@@ -606,7 +580,6 @@
 			targets = (
 				DECA256725CC8D4200851431 /* Counters */,
 				DECA257D25CC8D4300851431 /* CountersTests */,
-				DECA258825CC8D4300851431 /* CountersUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -624,13 +597,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DECA257C25CC8D4300851431 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DECA258725CC8D4300851431 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -726,14 +692,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DECA258525CC8D4300851431 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DECA258E25CC8D4300851431 /* CountersUITests.swift in Sources */,
+				FF33E841263D0F3C00119E91 /* MainNavigationControllerTests.swift in Sources */,
+				FF33E834263D0D2200119E91 /* BarProviderMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,11 +704,6 @@
 			isa = PBXTargetDependency;
 			target = DECA256725CC8D4200851431 /* Counters */;
 			targetProxy = DECA257F25CC8D4300851431 /* PBXContainerItemProxy */;
-		};
-		DECA258B25CC8D4300851431 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DECA256725CC8D4200851431 /* Counters */;
-			targetProxy = DECA258A25CC8D4300851431 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -902,7 +857,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornershop.Counters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Counters/Config/Counters-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/Counters/Config/Counters-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -923,7 +878,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornershop.Counters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Counters/Config/Counters-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/Counters/Config/Counters-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -934,6 +889,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CountersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -944,6 +900,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornershop.CountersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/CountersTests/CountersTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Counters.app/Counters";
@@ -955,6 +913,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CountersTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -965,47 +924,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cornershop.CountersTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/CountersTests/CountersTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Counters.app/Counters";
-			};
-			name = Release;
-		};
-		DECA259925CC8D4300851431 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CountersUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cornershop.CountersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Counters;
-			};
-			name = Debug;
-		};
-		DECA259A25CC8D4300851431 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CountersUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cornershop.CountersUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Counters;
 			};
 			name = Release;
 		};
@@ -1035,15 +957,6 @@
 			buildConfigurations = (
 				DECA259625CC8D4300851431 /* Debug */,
 				DECA259725CC8D4300851431 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DECA259825CC8D4300851431 /* Build configuration list for PBXNativeTarget "CountersUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DECA259925CC8D4300851431 /* Debug */,
-				DECA259A25CC8D4300851431 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
