@@ -8,6 +8,9 @@ protocol MainPresenter: class {
 
     var items: Items { get set }
 
+    var filteredItems: Items { get }
+    var isFiltering: Bool { get }
+
     /// Must be called at the end of viewDidLoad() in the view controller.
     /// Basically starts whatever the presenter needs to do at initialization,
     /// but delayed to when the view has loaded.

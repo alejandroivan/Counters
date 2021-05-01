@@ -29,6 +29,8 @@
 "ITEMS_COUNT" = "%ld item • Counted %ld times";
 "ITEMS_COUNT_PLURALIZED" = "%ld items • Counted %ld times";
 
+"MAIN_VIEW_SEARCH_BAR_PLACEHOLDER" = "Search";
+
 "MAIN_VIEW_ERROR_NOCOUNTERS_TITLE" = "No counters yet";
 "MAIN_VIEW_ERROR_NOCOUNTERS_SUBTITLE" = "\"When I started counting my blessings, my whole life turned around.\"\n— Willie Nelson";
 "MAIN_VIEW_ERROR_NOCOUNTERS_BUTTON_TITLE" = "Create a counter";

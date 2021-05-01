@@ -9,6 +9,7 @@ import UIKit
 final class MainViewController: UIViewController {
 
     var items: Items { presenter.items }
+
     private let presenter: MainPresenter
 
     private struct Constants {
@@ -19,7 +20,7 @@ final class MainViewController: UIViewController {
             static let color = UIColor.counters.primaryText
             // Defines if the refreshControl should appear on top of the navigation bar title
             // or below of it (old behavior, attached to the tableview top).
-            static let appearsOnTop = true
+            static let appearsOnTop = false
             static let scaleFactor: CGFloat = 0.75
         }
 
@@ -44,6 +45,7 @@ final class MainViewController: UIViewController {
 
     private let tableView = UITableView()
     private let activityIndicator = UIActivityIndicatorView(style: Constants.ActivityIndicator.style)
+    private lazy var searchController = UISearchController(searchResultsController: nil)
 
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -58,7 +60,22 @@ final class MainViewController: UIViewController {
 
     private weak var errorView: MainErrorView?
 
-    // MARK: Error
+    // MARK: - Private
+
+    // MARK: UISearchResultsUpdating helpers
+
+    var filteredItems: Items = [] {
+        didSet {
+            mainNavigationController?.updateBars(for: self)
+            tableView.reloadData()
+        }
+    }
+
+    var isSearchBarEmpty: Bool { searchController.searchBar.text?.isEmpty ?? true }
+
+    var isFiltering: Bool { !isSearchBarEmpty }
+
+    // MARK: Error kind
 
     private enum ErrorKind {
         case noItems
@@ -67,7 +84,7 @@ final class MainViewController: UIViewController {
 
     private var errorKind: ErrorKind?
 
-    // MARK: Bottom Bar items
+    // MARK: - Bottom Bar items
 
     /// This property needs to be lazy, in order to be evaluated after initialization.
     /// This is because, if declared as `private let`, it will be available at init,
@@ -103,7 +120,6 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = Constants.navigationBarMode
         configureView()
         presenter.viewDidLoad()
     }
@@ -112,8 +128,12 @@ final class MainViewController: UIViewController {
         view.backgroundColor = Constants.backgroundColor
         /// This line is necessary for the UIRefreshControl to show correctly.
         extendedLayoutIncludesOpaqueBars = true
+        definesPresentationContext = true
+        navigationItem.largeTitleDisplayMode = Constants.navigationBarMode
+
         configureTableView()
         configureActivityIndicator()
+        configureSearchController()
     }
 
     private func configureTableView() {
@@ -157,6 +177,15 @@ final class MainViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.color = Constants.ActivityIndicator.color
         activityIndicator.backgroundColor = view.backgroundColor
+    }
+
+    private func configureSearchController() {
+        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "MAIN_VIEW_SEARCH_BAR_PLACEHOLDER".localized
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     // MARK: - Buttons
@@ -290,6 +319,7 @@ extension MainViewController: MainViewDisplay {
 
     func displayItems() {
         setEditingEnabled(false)
+        updateFilteredItems()
         tableView.reloadData()
         mainNavigationController?.updateBars(for: self)
         self.refreshControl.endRefreshing()
@@ -393,6 +423,13 @@ extension MainViewController: MainViewDisplay {
     }
 
     var isEditingItems: Bool { tableView.isEditing }
+
+    // MARK: Filtering
+
+    func updateFilteredItems() {
+        guard let text = searchController.searchBar.text?.lowercased() else { return }
+        filteredItems = items.filter { $0.title.lowercased().contains(text) }
+    }
 }
 
 // MARK: - ErrorViewDelegate
@@ -483,14 +520,13 @@ extension MainViewController: BottomBarProvider {
     var showsBottomBar: Bool { true }
 
     var bottomBarLeftItems: [UIBarButtonItem]? {
-        guard tableView.isEditing else { return nil }
-
+        guard !isFiltering, tableView.isEditing else { return nil }
         refreshBottomBarButtonsIfNeeded()
-
         return [deleteBarButtonItem]
     }
 
     var bottomBarCenterText: String? {
+        let items = isFiltering ? filteredItems : self.items
         guard !items.isEmpty else { return nil }
 
         let localized = items.count == 1 ? "ITEMS_COUNT".localized : "ITEMS_COUNT".pluralized
@@ -501,10 +537,28 @@ extension MainViewController: BottomBarProvider {
     }
 
     var bottomBarRightItems: [UIBarButtonItem]? {
+        guard !isFiltering else { return nil }
+        
         if tableView.isEditing {
             return [shareBarButtonItem]
         } else {
             return [addBarButtonItem]
         }
+    }
+}
+
+// MARK: - UISearchController
+
+extension MainViewController: UISearchControllerDelegate {
+
+    func willPresentSearchController(_ searchController: UISearchController) {
+        setEditingEnabled(false)
+    }
+}
+
+extension MainViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        updateFilteredItems()
     }
 }

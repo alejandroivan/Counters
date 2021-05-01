@@ -19,4 +19,10 @@ protocol MainViewDisplay: class {
     func setEditingEnabled(_ isEditing: Bool)
     var isEditingItems: Bool { get }
     func refreshBottomBarButtonsIfNeeded()
+
+    // MARK: - Search bar
+
+    var filteredItems: Items { get }
+    var isFiltering: Bool { get }
+    func updateFilteredItems()
 }

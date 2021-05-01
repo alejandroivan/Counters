@@ -28,11 +28,23 @@ extension MainTableViewDelegate: MainViewItemCellDelegate {
     func mainViewCell(_ cell: MainViewItemCell, countAction: MainViewItemAction) {
         guard let indexPath = tableView?.indexPath(for: cell) else { return }
 
+        let realIndex: Int
+
+        if presenter?.isFiltering == true {
+            if let filteredItem = presenter?.filteredItems[indexPath.row] {
+                realIndex = presenter?.items.firstIndex { item in item.identifier == filteredItem.identifier } ?? 0
+            } else {
+                realIndex = 0
+            }
+        } else {
+            realIndex = indexPath.row
+        }
+
         switch countAction {
         case .increment:
-            presenter?.incrementItem(at: indexPath.row)
+            presenter?.incrementItem(at: realIndex)
         case .decrement:
-            presenter?.decrementItem(at: indexPath.row)
+            presenter?.decrementItem(at: realIndex)
         }
     }
 }

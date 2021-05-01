@@ -3,6 +3,9 @@ import UIKit
 final class MainViewControllerPresenter: MainPresenter {
     var items: Items = []
 
+    var filteredItems: Items { viewController?.filteredItems ?? [] }
+    var isFiltering: Bool { viewController?.isFiltering ?? false }
+
     weak var viewController: MainViewDisplay?
 
     private(set) var tableViewDataSource: MainTableViewDataSource
