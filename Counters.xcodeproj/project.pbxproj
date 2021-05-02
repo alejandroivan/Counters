@@ -24,6 +24,7 @@
 		FF0A66E9263E798C00DDEF4D /* #api#v1#counter.json in Resources */ = {isa = PBXBuildFile; fileRef = FF0A66E8263E798C00DDEF4D /* #api#v1#counter.json */; };
 		FF0A66ED263E810500DDEF4D /* MainViewControllerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A66EC263E810500DDEF4D /* MainViewControllerPresenterTests.swift */; };
 		FF0A66F3263E832F00DDEF4D /* MainViewDisplayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A66F2263E832F00DDEF4D /* MainViewDisplayMock.swift */; };
+		FF0A66FC263EC0E000DDEF4D /* MainTableViewDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A66FB263EC0E000DDEF4D /* MainTableViewDataSourceTests.swift */; };
 		FF0FDF69263A2E1C0007503F /* LocalCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF67263A2E1C0007503F /* LocalCache.xcdatamodeld */; };
 		FF0FDF6E263A2E2A0007503F /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF6D263A2E2A0007503F /* LocalCache.swift */; };
 		FF0FDF74263B65D50007503F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF73263B65D50007503F /* Reachability.m */; };
@@ -121,6 +122,7 @@
 		FF0A66E8263E798C00DDEF4D /* #api#v1#counter.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "#api#v1#counter.json"; sourceTree = "<group>"; };
 		FF0A66EC263E810500DDEF4D /* MainViewControllerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenterTests.swift; sourceTree = "<group>"; };
 		FF0A66F2263E832F00DDEF4D /* MainViewDisplayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewDisplayMock.swift; sourceTree = "<group>"; };
+		FF0A66FB263EC0E000DDEF4D /* MainTableViewDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDataSourceTests.swift; sourceTree = "<group>"; };
 		FF0FDF68263A2E1C0007503F /* LocalCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalCache.xcdatamodel; sourceTree = "<group>"; };
 		FF0FDF6D263A2E2A0007503F /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 		FF0FDF73263B65D50007503F /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -358,6 +360,14 @@
 			path = Welcome;
 			sourceTree = "<group>";
 		};
+		FF0A66FA263EC0D800DDEF4D /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				FF0A66FB263EC0E000DDEF4D /* MainTableViewDataSourceTests.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		FF0FDF66263A2D9D0007503F /* LocalCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +570,7 @@
 		FFCAEF90263E638800111635 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FF0A66FA263EC0D800DDEF4D /* TableView */,
 				FF0A66EC263E810500DDEF4D /* MainViewControllerPresenterTests.swift */,
 				FFCAEF91263E639E00111635 /* MainViewControllerUseCaseTests.swift */,
 			);
@@ -812,6 +823,7 @@
 				FF33E84F263DFDDA00119E91 /* ReachabilityMock.swift in Sources */,
 				FF0A66ED263E810500DDEF4D /* MainViewControllerPresenterTests.swift in Sources */,
 				FFCAEF62263E4E3C00111635 /* DiffLocalCacheTests.swift in Sources */,
+				FF0A66FC263EC0E000DDEF4D /* MainTableViewDataSourceTests.swift in Sources */,
 				FFCAEF92263E639E00111635 /* MainViewControllerUseCaseTests.swift in Sources */,
 				FFCAEFA8263E676D00111635 /* ItemsLocalCacheMock.swift in Sources */,
 			);

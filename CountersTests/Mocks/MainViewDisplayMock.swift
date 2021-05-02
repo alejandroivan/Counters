@@ -15,7 +15,7 @@ final class MainViewDisplayMock: MainViewDisplay {
     var updateFilteresItemsCalled = false
 
     var isEditingItems = false
-    var filteredItems: Items = []
+    var filteredItems: Items = [Item(identifier: "a", title: "a", count: 1)]
     var isFiltering = false
 
     func displayItems() {

@@ -10,7 +10,6 @@ final class MainViewControllerPresenterTests: XCTestCase {
     private var dataSource: MainTableViewDataSource!
     private var delegate: MainTableViewDelegate!
     private var viewController: MainViewDisplayMock!
-    private var emptyViewController = UIViewController(nibName: nil, bundle: nil)
     private var mockNetworking: NetworkingMock!
 
     override func setUp() {
@@ -133,13 +132,6 @@ final class MainViewControllerPresenterTests: XCTestCase {
         XCTAssertTrue(viewController.displayEmptyErrorCalled)
         XCTAssertTrue(viewController.hideActivityIndicatorCalled)
         XCTAssertEqual(sut.items.count, 0)
-    }
-
-    private func createKeyWindow() {
-        let keyWindow = UIWindow(frame: UIScreen.main.bounds)
-        keyWindow.makeKeyAndVisible()
-        keyWindow.rootViewController = emptyViewController
-        _ = emptyViewController.view
     }
 
     // MARK: - Add items
