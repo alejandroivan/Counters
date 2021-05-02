@@ -62,7 +62,7 @@
 		FFC425CD263C95CD00D81045 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC425CC263C95CD00D81045 /* UIViewController+Alert.swift */; };
 		FFC425D2263CB6AD00D81045 /* String+ShareActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC425D1263CB6AD00D81045 /* String+ShareActivity.swift */; };
 		FFC425DA263CC41700D81045 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FFC425D9263CC41700D81045 /* README.md */; };
-		FFCAEF56263E386F00111635 /* SwiftReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF55263E386F00111635 /* SwiftReachability.swift */; };
+		FFCAEF56263E386F00111635 /* SwiftReachabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF55263E386F00111635 /* SwiftReachabilityTests.swift */; };
 		FFCAEF5A263E3BC700111635 /* ItemsLocalCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF59263E3BC700111635 /* ItemsLocalCacheTests.swift */; };
 		FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576F32633AF9300BEE65E /* MainNavigationController.swift */; };
 		FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */; };
@@ -146,7 +146,7 @@
 		FFC425D9263CC41700D81045 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FFC425EF263D0A2C00D81045 /* CountersTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CountersTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationControllerTests.swift; sourceTree = "<group>"; };
-		FFCAEF55263E386F00111635 /* SwiftReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftReachability.swift; sourceTree = "<group>"; };
+		FFCAEF55263E386F00111635 /* SwiftReachabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftReachabilityTests.swift; sourceTree = "<group>"; };
 		FFCAEF59263E3BC700111635 /* ItemsLocalCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLocalCacheTests.swift; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
@@ -408,8 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */,
-				FFCAEF55263E386F00111635 /* SwiftReachability.swift */,
-				FFCAEF59263E3BC700111635 /* ItemsLocalCacheTests.swift */,
+				FFCAEF5F263E469100111635 /* Services */,
 			);
 			path = "Test Cases";
 			sourceTree = "<group>";
@@ -471,6 +470,23 @@
 				FF93D9212634F922000B5361 /* AddItemView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FFCAEF5F263E469100111635 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FFCAEF55263E386F00111635 /* SwiftReachabilityTests.swift */,
+				FFCAEF60263E46A000111635 /* LocalCache */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FFCAEF60263E46A000111635 /* LocalCache */ = {
+			isa = PBXGroup;
+			children = (
+				FFCAEF59263E3BC700111635 /* ItemsLocalCacheTests.swift */,
+			);
+			path = LocalCache;
 			sourceTree = "<group>";
 		};
 		FFE576DD2633ADF100BEE65E /* Scenes */ = {
@@ -701,7 +717,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFCAEF56263E386F00111635 /* SwiftReachability.swift in Sources */,
+				FFCAEF56263E386F00111635 /* SwiftReachabilityTests.swift in Sources */,
 				FF33E841263D0F3C00119E91 /* MainNavigationControllerTests.swift in Sources */,
 				FFCAEF5A263E3BC700111635 /* ItemsLocalCacheTests.swift in Sources */,
 				FF33E834263D0D2200119E91 /* BarProviderMock.swift in Sources */,
