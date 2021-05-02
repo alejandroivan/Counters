@@ -65,6 +65,14 @@
 		FFCAEF56263E386F00111635 /* SwiftReachabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF55263E386F00111635 /* SwiftReachabilityTests.swift */; };
 		FFCAEF5A263E3BC700111635 /* ItemsLocalCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF59263E3BC700111635 /* ItemsLocalCacheTests.swift */; };
 		FFCAEF62263E4E3C00111635 /* DiffLocalCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF61263E4E3C00111635 /* DiffLocalCacheTests.swift */; };
+		FFCAEF69263E503300111635 /* SwiftNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF68263E503300111635 /* SwiftNetworkingTests.swift */; };
+		FFCAEF6F263E508600111635 /* NetworkingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF6E263E508600111635 /* NetworkingMock.swift */; };
+		FFCAEF74263E559400111635 /* GET_counters_200.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF73263E559400111635 /* GET_counters_200.json */; };
+		FFCAEF7A263E58B400111635 /* GET_counters_200_single.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF79263E58B400111635 /* GET_counters_200_single.json */; };
+		FFCAEF7E263E5A0400111635 /* POST_counter_200.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF7D263E5A0400111635 /* POST_counter_200.json */; };
+		FFCAEF82263E5A2A00111635 /* POST_counter_200_single.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF81263E5A2A00111635 /* POST_counter_200_single.json */; };
+		FFCAEF86263E5A5C00111635 /* DELETE_counter_200.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF85263E5A5C00111635 /* DELETE_counter_200.json */; };
+		FFCAEF8A263E5B0C00111635 /* DELETE_counter_200_single.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF89263E5B0C00111635 /* DELETE_counter_200_single.json */; };
 		FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576F32633AF9300BEE65E /* MainNavigationController.swift */; };
 		FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */; };
 		FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE577042633B13B00BEE65E /* BottomBarProvider.swift */; };
@@ -150,6 +158,14 @@
 		FFCAEF55263E386F00111635 /* SwiftReachabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftReachabilityTests.swift; sourceTree = "<group>"; };
 		FFCAEF59263E3BC700111635 /* ItemsLocalCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLocalCacheTests.swift; sourceTree = "<group>"; };
 		FFCAEF61263E4E3C00111635 /* DiffLocalCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffLocalCacheTests.swift; sourceTree = "<group>"; };
+		FFCAEF68263E503300111635 /* SwiftNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNetworkingTests.swift; sourceTree = "<group>"; };
+		FFCAEF6E263E508600111635 /* NetworkingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingMock.swift; sourceTree = "<group>"; };
+		FFCAEF73263E559400111635 /* GET_counters_200.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GET_counters_200.json; sourceTree = "<group>"; };
+		FFCAEF79263E58B400111635 /* GET_counters_200_single.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GET_counters_200_single.json; sourceTree = "<group>"; };
+		FFCAEF7D263E5A0400111635 /* POST_counter_200.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = POST_counter_200.json; sourceTree = "<group>"; };
+		FFCAEF81263E5A2A00111635 /* POST_counter_200_single.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = POST_counter_200_single.json; sourceTree = "<group>"; };
+		FFCAEF85263E5A5C00111635 /* DELETE_counter_200.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DELETE_counter_200.json; sourceTree = "<group>"; };
+		FFCAEF89263E5B0C00111635 /* DELETE_counter_200_single.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DELETE_counter_200_single.json; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
 		FFE577042633B13B00BEE65E /* BottomBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarProvider.swift; sourceTree = "<group>"; };
@@ -400,8 +416,10 @@
 		FF33E831263D0CFF00119E91 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				FFCAEF72263E558200111635 /* Mocks */,
 				FF33E833263D0D2200119E91 /* BarProviderMock.swift */,
 				FF33E84E263DFDDA00119E91 /* ReachabilityMock.swift */,
+				FFCAEF6E263E508600111635 /* NetworkingMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -479,6 +497,7 @@
 			children = (
 				FFCAEF55263E386F00111635 /* SwiftReachabilityTests.swift */,
 				FFCAEF60263E46A000111635 /* LocalCache */,
+				FFCAEF67263E501200111635 /* Networking */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -490,6 +509,27 @@
 				FFCAEF61263E4E3C00111635 /* DiffLocalCacheTests.swift */,
 			);
 			path = LocalCache;
+			sourceTree = "<group>";
+		};
+		FFCAEF67263E501200111635 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FFCAEF68263E503300111635 /* SwiftNetworkingTests.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		FFCAEF72263E558200111635 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				FFCAEF73263E559400111635 /* GET_counters_200.json */,
+				FFCAEF79263E58B400111635 /* GET_counters_200_single.json */,
+				FFCAEF7D263E5A0400111635 /* POST_counter_200.json */,
+				FFCAEF81263E5A2A00111635 /* POST_counter_200_single.json */,
+				FFCAEF85263E5A5C00111635 /* DELETE_counter_200.json */,
+				FFCAEF89263E5B0C00111635 /* DELETE_counter_200_single.json */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		FFE576DD2633ADF100BEE65E /* Scenes */ = {
@@ -628,6 +668,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFCAEF86263E5A5C00111635 /* DELETE_counter_200.json in Resources */,
+				FFCAEF7A263E58B400111635 /* GET_counters_200_single.json in Resources */,
+				FFCAEF8A263E5B0C00111635 /* DELETE_counter_200_single.json in Resources */,
+				FFCAEF7E263E5A0400111635 /* POST_counter_200.json in Resources */,
+				FFCAEF74263E559400111635 /* GET_counters_200.json in Resources */,
+				FFCAEF82263E5A2A00111635 /* POST_counter_200_single.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,9 +767,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFCAEF56263E386F00111635 /* SwiftReachabilityTests.swift in Sources */,
+				FFCAEF6F263E508600111635 /* NetworkingMock.swift in Sources */,
 				FF33E841263D0F3C00119E91 /* MainNavigationControllerTests.swift in Sources */,
 				FFCAEF5A263E3BC700111635 /* ItemsLocalCacheTests.swift in Sources */,
 				FF33E834263D0D2200119E91 /* BarProviderMock.swift in Sources */,
+				FFCAEF69263E503300111635 /* SwiftNetworkingTests.swift in Sources */,
 				FF33E84F263DFDDA00119E91 /* ReachabilityMock.swift in Sources */,
 				FFCAEF62263E4E3C00111635 /* DiffLocalCacheTests.swift in Sources */,
 			);
