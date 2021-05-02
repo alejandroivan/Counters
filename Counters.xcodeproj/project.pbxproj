@@ -22,7 +22,7 @@
 		FF0A66E1263E76F900DDEF4D /* #api#v1#counter#inc.json in Resources */ = {isa = PBXBuildFile; fileRef = FF0A66E0263E76F900DDEF4D /* #api#v1#counter#inc.json */; };
 		FF0A66E5263E771D00DDEF4D /* #api#v1#counter#dec.json in Resources */ = {isa = PBXBuildFile; fileRef = FF0A66E4263E771D00DDEF4D /* #api#v1#counter#dec.json */; };
 		FF0A66E9263E798C00DDEF4D /* #api#v1#counter.json in Resources */ = {isa = PBXBuildFile; fileRef = FF0A66E8263E798C00DDEF4D /* #api#v1#counter.json */; };
-		FF0A66ED263E810500DDEF4D /* MainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A66EC263E810500DDEF4D /* MainViewControllerPresenter.swift */; };
+		FF0A66ED263E810500DDEF4D /* MainViewControllerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A66EC263E810500DDEF4D /* MainViewControllerPresenterTests.swift */; };
 		FF0A66F3263E832F00DDEF4D /* MainViewDisplayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A66F2263E832F00DDEF4D /* MainViewDisplayMock.swift */; };
 		FF0FDF69263A2E1C0007503F /* LocalCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF67263A2E1C0007503F /* LocalCache.xcdatamodeld */; };
 		FF0FDF6E263A2E2A0007503F /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF6D263A2E2A0007503F /* LocalCache.swift */; };
@@ -119,7 +119,7 @@
 		FF0A66E0263E76F900DDEF4D /* #api#v1#counter#inc.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "#api#v1#counter#inc.json"; sourceTree = "<group>"; };
 		FF0A66E4263E771D00DDEF4D /* #api#v1#counter#dec.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "#api#v1#counter#dec.json"; sourceTree = "<group>"; };
 		FF0A66E8263E798C00DDEF4D /* #api#v1#counter.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "#api#v1#counter.json"; sourceTree = "<group>"; };
-		FF0A66EC263E810500DDEF4D /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
+		FF0A66EC263E810500DDEF4D /* MainViewControllerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenterTests.swift; sourceTree = "<group>"; };
 		FF0A66F2263E832F00DDEF4D /* MainViewDisplayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewDisplayMock.swift; sourceTree = "<group>"; };
 		FF0FDF68263A2E1C0007503F /* LocalCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalCache.xcdatamodel; sourceTree = "<group>"; };
 		FF0FDF6D263A2E2A0007503F /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
@@ -560,7 +560,7 @@
 		FFCAEF90263E638800111635 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				FF0A66EC263E810500DDEF4D /* MainViewControllerPresenter.swift */,
+				FF0A66EC263E810500DDEF4D /* MainViewControllerPresenterTests.swift */,
 				FFCAEF91263E639E00111635 /* MainViewControllerUseCaseTests.swift */,
 			);
 			path = Main;
@@ -810,7 +810,7 @@
 				FF0A66F3263E832F00DDEF4D /* MainViewDisplayMock.swift in Sources */,
 				FFCAEF69263E503300111635 /* SwiftNetworkingTests.swift in Sources */,
 				FF33E84F263DFDDA00119E91 /* ReachabilityMock.swift in Sources */,
-				FF0A66ED263E810500DDEF4D /* MainViewControllerPresenter.swift in Sources */,
+				FF0A66ED263E810500DDEF4D /* MainViewControllerPresenterTests.swift in Sources */,
 				FFCAEF62263E4E3C00111635 /* DiffLocalCacheTests.swift in Sources */,
 				FFCAEF92263E639E00111635 /* MainViewControllerUseCaseTests.swift in Sources */,
 				FFCAEFA8263E676D00111635 /* ItemsLocalCacheMock.swift in Sources */,

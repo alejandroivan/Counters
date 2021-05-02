@@ -18,6 +18,7 @@ final class NetworkingMock: Networking {
     var deleteUrlCalled = false
 
     var shouldFail = false
+    var dataShouldBeEmpty = false
 
     override func jsonRequest(
         _ url: URL,
@@ -39,7 +40,7 @@ final class NetworkingMock: Networking {
         if shouldFail {
             completion(nil, Self.mockError)
         } else {
-            let data = mockData(resource: urlString)
+            let data = dataShouldBeEmpty ? emptyMockData() : mockData(resource: urlString)
             completion(data, nil)
         }
     }
@@ -54,7 +55,7 @@ final class NetworkingMock: Networking {
         if shouldFail {
             completion(nil, Self.mockError)
         } else {
-            let data = mockData(resource: urlString)
+            let data = dataShouldBeEmpty ? emptyMockData() : mockData(resource: urlString)
             completion(data, nil)
         }
     }
@@ -69,7 +70,7 @@ final class NetworkingMock: Networking {
         if shouldFail {
             completion(nil, Self.mockError)
         } else {
-            let data = mockData(resource: urlString)
+            let data = dataShouldBeEmpty ? emptyMockData() : mockData(resource: urlString)
             completion(data, nil)
         }
     }
@@ -93,5 +94,9 @@ extension NetworkingMock {
         ) else { return nil }
         let fileUrl = URL(fileURLWithPath: path)
         return try? Data(contentsOf: fileUrl)
+    }
+
+    private func emptyMockData() -> Data? {
+        "[]".data(using: .utf8)
     }
 }
