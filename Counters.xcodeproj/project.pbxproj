@@ -64,6 +64,7 @@
 		FFC425DA263CC41700D81045 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FFC425D9263CC41700D81045 /* README.md */; };
 		FFCAEF56263E386F00111635 /* SwiftReachabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF55263E386F00111635 /* SwiftReachabilityTests.swift */; };
 		FFCAEF5A263E3BC700111635 /* ItemsLocalCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF59263E3BC700111635 /* ItemsLocalCacheTests.swift */; };
+		FFCAEF62263E4E3C00111635 /* DiffLocalCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF61263E4E3C00111635 /* DiffLocalCacheTests.swift */; };
 		FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576F32633AF9300BEE65E /* MainNavigationController.swift */; };
 		FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */; };
 		FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE577042633B13B00BEE65E /* BottomBarProvider.swift */; };
@@ -148,6 +149,7 @@
 		FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationControllerTests.swift; sourceTree = "<group>"; };
 		FFCAEF55263E386F00111635 /* SwiftReachabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftReachabilityTests.swift; sourceTree = "<group>"; };
 		FFCAEF59263E3BC700111635 /* ItemsLocalCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLocalCacheTests.swift; sourceTree = "<group>"; };
+		FFCAEF61263E4E3C00111635 /* DiffLocalCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffLocalCacheTests.swift; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
 		FFE577042633B13B00BEE65E /* BottomBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarProvider.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				FFCAEF59263E3BC700111635 /* ItemsLocalCacheTests.swift */,
+				FFCAEF61263E4E3C00111635 /* DiffLocalCacheTests.swift */,
 			);
 			path = LocalCache;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				FFCAEF5A263E3BC700111635 /* ItemsLocalCacheTests.swift in Sources */,
 				FF33E834263D0D2200119E91 /* BarProviderMock.swift in Sources */,
 				FF33E84F263DFDDA00119E91 /* ReachabilityMock.swift in Sources */,
+				FFCAEF62263E4E3C00111635 /* DiffLocalCacheTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
