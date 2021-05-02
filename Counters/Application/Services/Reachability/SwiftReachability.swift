@@ -1,6 +1,6 @@
 import Foundation
 
-final class SwiftReachability {
+public class SwiftReachability {
 
     static let `default`: SwiftReachability = .init()
     private let reachability: Reachability
