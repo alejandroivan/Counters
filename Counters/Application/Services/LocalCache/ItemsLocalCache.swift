@@ -27,12 +27,7 @@ class ItemsLocalCache: LocalCache {
             managedContext.insert(counter)
         }
 
-        do {
-            try managedContext.save()
-            return true
-        } catch {
-            return false
-        }
+        return saveContext()
     }
 
     func deleteItems(_ shouldRemove: ((T) -> Bool)?) {
@@ -52,7 +47,7 @@ class ItemsLocalCache: LocalCache {
         }
 
         if didDeleteItems {
-            try? managedContext.save()
+            saveContext()
         }
     }
 
