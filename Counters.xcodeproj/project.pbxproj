@@ -18,6 +18,10 @@
 		DECA257525CC8D4300851431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DECA257425CC8D4300851431 /* Assets.xcassets */; };
 		DECA257825CC8D4300851431 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DECA257625CC8D4300851431 /* LaunchScreen.storyboard */; };
 		DEED7FCE25CC975D00BA0CDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEED7FD025CC975D00BA0CDB /* Localizable.strings */; };
+		FF0A66DB263E6A5800DDEF4D /* #api#v1#counters.json in Resources */ = {isa = PBXBuildFile; fileRef = FF0A66DA263E6A5800DDEF4D /* #api#v1#counters.json */; };
+		FF0A66E1263E76F900DDEF4D /* #api#v1#counter#inc.json in Resources */ = {isa = PBXBuildFile; fileRef = FF0A66E0263E76F900DDEF4D /* #api#v1#counter#inc.json */; };
+		FF0A66E5263E771D00DDEF4D /* #api#v1#counter#dec.json in Resources */ = {isa = PBXBuildFile; fileRef = FF0A66E4263E771D00DDEF4D /* #api#v1#counter#dec.json */; };
+		FF0A66E9263E798C00DDEF4D /* #api#v1#counter.json in Resources */ = {isa = PBXBuildFile; fileRef = FF0A66E8263E798C00DDEF4D /* #api#v1#counter.json */; };
 		FF0FDF69263A2E1C0007503F /* LocalCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF67263A2E1C0007503F /* LocalCache.xcdatamodeld */; };
 		FF0FDF6E263A2E2A0007503F /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF6D263A2E2A0007503F /* LocalCache.swift */; };
 		FF0FDF74263B65D50007503F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF73263B65D50007503F /* Reachability.m */; };
@@ -70,6 +74,9 @@
 		FFCAEF74263E559400111635 /* GET_counters_200.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF73263E559400111635 /* GET_counters_200.json */; };
 		FFCAEF7E263E5A0400111635 /* POST_counter_200.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF7D263E5A0400111635 /* POST_counter_200.json */; };
 		FFCAEF86263E5A5C00111635 /* DELETE_counter_200.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF85263E5A5C00111635 /* DELETE_counter_200.json */; };
+		FFCAEF92263E639E00111635 /* MainViewControllerUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF91263E639E00111635 /* MainViewControllerUseCaseTests.swift */; };
+		FFCAEFA4263E676400111635 /* DiffLocalCacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEFA3263E676400111635 /* DiffLocalCacheMock.swift */; };
+		FFCAEFA8263E676D00111635 /* ItemsLocalCacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEFA7263E676D00111635 /* ItemsLocalCacheMock.swift */; };
 		FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576F32633AF9300BEE65E /* MainNavigationController.swift */; };
 		FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */; };
 		FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE577042633B13B00BEE65E /* BottomBarProvider.swift */; };
@@ -106,6 +113,10 @@
 		DECA257E25CC8D4300851431 /* CountersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DECA258425CC8D4300851431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEED7FCF25CC975D00BA0CDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FF0A66DA263E6A5800DDEF4D /* #api#v1#counters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "#api#v1#counters.json"; sourceTree = "<group>"; };
+		FF0A66E0263E76F900DDEF4D /* #api#v1#counter#inc.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "#api#v1#counter#inc.json"; sourceTree = "<group>"; };
+		FF0A66E4263E771D00DDEF4D /* #api#v1#counter#dec.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "#api#v1#counter#dec.json"; sourceTree = "<group>"; };
+		FF0A66E8263E798C00DDEF4D /* #api#v1#counter.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "#api#v1#counter.json"; sourceTree = "<group>"; };
 		FF0FDF68263A2E1C0007503F /* LocalCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalCache.xcdatamodel; sourceTree = "<group>"; };
 		FF0FDF6D263A2E2A0007503F /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 		FF0FDF73263B65D50007503F /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -160,6 +171,9 @@
 		FFCAEF73263E559400111635 /* GET_counters_200.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GET_counters_200.json; sourceTree = "<group>"; };
 		FFCAEF7D263E5A0400111635 /* POST_counter_200.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = POST_counter_200.json; sourceTree = "<group>"; };
 		FFCAEF85263E5A5C00111635 /* DELETE_counter_200.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DELETE_counter_200.json; sourceTree = "<group>"; };
+		FFCAEF91263E639E00111635 /* MainViewControllerUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerUseCaseTests.swift; sourceTree = "<group>"; };
+		FFCAEFA3263E676400111635 /* DiffLocalCacheMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffLocalCacheMock.swift; sourceTree = "<group>"; };
+		FFCAEFA7263E676D00111635 /* ItemsLocalCacheMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLocalCacheMock.swift; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
 		FFE577042633B13B00BEE65E /* BottomBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarProvider.swift; sourceTree = "<group>"; };
@@ -414,6 +428,8 @@
 				FF33E833263D0D2200119E91 /* BarProviderMock.swift */,
 				FF33E84E263DFDDA00119E91 /* ReachabilityMock.swift */,
 				FFCAEF6E263E508600111635 /* NetworkingMock.swift */,
+				FFCAEFA3263E676400111635 /* DiffLocalCacheMock.swift */,
+				FFCAEFA7263E676D00111635 /* ItemsLocalCacheMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -423,6 +439,7 @@
 			children = (
 				FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */,
 				FFCAEF5F263E469100111635 /* Services */,
+				FFCAEF8F263E638300111635 /* Scenes */,
 			);
 			path = "Test Cases";
 			sourceTree = "<group>";
@@ -519,8 +536,28 @@
 				FFCAEF73263E559400111635 /* GET_counters_200.json */,
 				FFCAEF7D263E5A0400111635 /* POST_counter_200.json */,
 				FFCAEF85263E5A5C00111635 /* DELETE_counter_200.json */,
+				FF0A66DA263E6A5800DDEF4D /* #api#v1#counters.json */,
+				FF0A66E0263E76F900DDEF4D /* #api#v1#counter#inc.json */,
+				FF0A66E4263E771D00DDEF4D /* #api#v1#counter#dec.json */,
+				FF0A66E8263E798C00DDEF4D /* #api#v1#counter.json */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		FFCAEF8F263E638300111635 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				FFCAEF90263E638800111635 /* Main */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		FFCAEF90263E638800111635 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FFCAEF91263E639E00111635 /* MainViewControllerUseCaseTests.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		FFE576DD2633ADF100BEE65E /* Scenes */ = {
@@ -660,8 +697,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFCAEF86263E5A5C00111635 /* DELETE_counter_200.json in Resources */,
+				FF0A66E5263E771D00DDEF4D /* #api#v1#counter#dec.json in Resources */,
 				FFCAEF7E263E5A0400111635 /* POST_counter_200.json in Resources */,
+				FF0A66DB263E6A5800DDEF4D /* #api#v1#counters.json in Resources */,
 				FFCAEF74263E559400111635 /* GET_counters_200.json in Resources */,
+				FF0A66E1263E76F900DDEF4D /* #api#v1#counter#inc.json in Resources */,
+				FF0A66E9263E798C00DDEF4D /* #api#v1#counter.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,6 +796,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFCAEF56263E386F00111635 /* SwiftReachabilityTests.swift in Sources */,
+				FFCAEFA4263E676400111635 /* DiffLocalCacheMock.swift in Sources */,
 				FFCAEF6F263E508600111635 /* NetworkingMock.swift in Sources */,
 				FF33E841263D0F3C00119E91 /* MainNavigationControllerTests.swift in Sources */,
 				FFCAEF5A263E3BC700111635 /* ItemsLocalCacheTests.swift in Sources */,
@@ -762,6 +804,8 @@
 				FFCAEF69263E503300111635 /* SwiftNetworkingTests.swift in Sources */,
 				FF33E84F263DFDDA00119E91 /* ReachabilityMock.swift in Sources */,
 				FFCAEF62263E4E3C00111635 /* DiffLocalCacheTests.swift in Sources */,
+				FFCAEF92263E639E00111635 /* MainViewControllerUseCaseTests.swift in Sources */,
+				FFCAEFA8263E676D00111635 /* ItemsLocalCacheMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
