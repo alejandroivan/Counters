@@ -68,11 +68,8 @@
 		FFCAEF69263E503300111635 /* SwiftNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF68263E503300111635 /* SwiftNetworkingTests.swift */; };
 		FFCAEF6F263E508600111635 /* NetworkingMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF6E263E508600111635 /* NetworkingMock.swift */; };
 		FFCAEF74263E559400111635 /* GET_counters_200.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF73263E559400111635 /* GET_counters_200.json */; };
-		FFCAEF7A263E58B400111635 /* GET_counters_200_single.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF79263E58B400111635 /* GET_counters_200_single.json */; };
 		FFCAEF7E263E5A0400111635 /* POST_counter_200.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF7D263E5A0400111635 /* POST_counter_200.json */; };
-		FFCAEF82263E5A2A00111635 /* POST_counter_200_single.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF81263E5A2A00111635 /* POST_counter_200_single.json */; };
 		FFCAEF86263E5A5C00111635 /* DELETE_counter_200.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF85263E5A5C00111635 /* DELETE_counter_200.json */; };
-		FFCAEF8A263E5B0C00111635 /* DELETE_counter_200_single.json in Resources */ = {isa = PBXBuildFile; fileRef = FFCAEF89263E5B0C00111635 /* DELETE_counter_200_single.json */; };
 		FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576F32633AF9300BEE65E /* MainNavigationController.swift */; };
 		FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */; };
 		FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE577042633B13B00BEE65E /* BottomBarProvider.swift */; };
@@ -161,11 +158,8 @@
 		FFCAEF68263E503300111635 /* SwiftNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNetworkingTests.swift; sourceTree = "<group>"; };
 		FFCAEF6E263E508600111635 /* NetworkingMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingMock.swift; sourceTree = "<group>"; };
 		FFCAEF73263E559400111635 /* GET_counters_200.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GET_counters_200.json; sourceTree = "<group>"; };
-		FFCAEF79263E58B400111635 /* GET_counters_200_single.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GET_counters_200_single.json; sourceTree = "<group>"; };
 		FFCAEF7D263E5A0400111635 /* POST_counter_200.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = POST_counter_200.json; sourceTree = "<group>"; };
-		FFCAEF81263E5A2A00111635 /* POST_counter_200_single.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = POST_counter_200_single.json; sourceTree = "<group>"; };
 		FFCAEF85263E5A5C00111635 /* DELETE_counter_200.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DELETE_counter_200.json; sourceTree = "<group>"; };
-		FFCAEF89263E5B0C00111635 /* DELETE_counter_200_single.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DELETE_counter_200_single.json; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
 		FFE577042633B13B00BEE65E /* BottomBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarProvider.swift; sourceTree = "<group>"; };
@@ -523,11 +517,8 @@
 			isa = PBXGroup;
 			children = (
 				FFCAEF73263E559400111635 /* GET_counters_200.json */,
-				FFCAEF79263E58B400111635 /* GET_counters_200_single.json */,
 				FFCAEF7D263E5A0400111635 /* POST_counter_200.json */,
-				FFCAEF81263E5A2A00111635 /* POST_counter_200_single.json */,
 				FFCAEF85263E5A5C00111635 /* DELETE_counter_200.json */,
-				FFCAEF89263E5B0C00111635 /* DELETE_counter_200_single.json */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -669,11 +660,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFCAEF86263E5A5C00111635 /* DELETE_counter_200.json in Resources */,
-				FFCAEF7A263E58B400111635 /* GET_counters_200_single.json in Resources */,
-				FFCAEF8A263E5B0C00111635 /* DELETE_counter_200_single.json in Resources */,
 				FFCAEF7E263E5A0400111635 /* POST_counter_200.json in Resources */,
 				FFCAEF74263E559400111635 /* GET_counters_200.json in Resources */,
-				FFCAEF82263E5A2A00111635 /* POST_counter_200_single.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
