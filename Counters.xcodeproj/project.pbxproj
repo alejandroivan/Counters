@@ -37,6 +37,7 @@
 		FF164E002637824F00EDD69E /* MainViewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF164DFF2637824F00EDD69E /* MainViewItemCell.swift */; };
 		FF33E834263D0D2200119E91 /* BarProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33E833263D0D2200119E91 /* BarProviderMock.swift */; };
 		FF33E841263D0F3C00119E91 /* MainNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */; };
+		FF33E84F263DFDDA00119E91 /* ReachabilityMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33E84E263DFDDA00119E91 /* ReachabilityMock.swift */; };
 		FF8131A126378BED003BF7BB /* MainErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8131A026378BED003BF7BB /* MainErrorView.swift */; };
 		FF8131A62637C8EC003BF7BB /* MainTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8131A52637C8EC003BF7BB /* MainTableViewDelegate.swift */; };
 		FF8131AB2637D2D9003BF7BB /* MainViewItemCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8131AA2637D2D9003BF7BB /* MainViewItemCellDelegate.swift */; };
@@ -61,6 +62,7 @@
 		FFC425CD263C95CD00D81045 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC425CC263C95CD00D81045 /* UIViewController+Alert.swift */; };
 		FFC425D2263CB6AD00D81045 /* String+ShareActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC425D1263CB6AD00D81045 /* String+ShareActivity.swift */; };
 		FFC425DA263CC41700D81045 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FFC425D9263CC41700D81045 /* README.md */; };
+		FFCAEF56263E386F00111635 /* SwiftReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCAEF55263E386F00111635 /* SwiftReachability.swift */; };
 		FFE576F42633AF9300BEE65E /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576F32633AF9300BEE65E /* MainNavigationController.swift */; };
 		FFE576FD2633AFC900BEE65E /* TopBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */; };
 		FFE577052633B13B00BEE65E /* BottomBarProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE577042633B13B00BEE65E /* BottomBarProvider.swift */; };
@@ -116,6 +118,7 @@
 		FF164DF52636537E00EDD69E /* SwiftNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNetworking.swift; sourceTree = "<group>"; };
 		FF164DFF2637824F00EDD69E /* MainViewItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewItemCell.swift; sourceTree = "<group>"; };
 		FF33E833263D0D2200119E91 /* BarProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarProviderMock.swift; sourceTree = "<group>"; };
+		FF33E84E263DFDDA00119E91 /* ReachabilityMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityMock.swift; sourceTree = "<group>"; };
 		FF8131A026378BED003BF7BB /* MainErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainErrorView.swift; sourceTree = "<group>"; };
 		FF8131A52637C8EC003BF7BB /* MainTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDelegate.swift; sourceTree = "<group>"; };
 		FF8131AA2637D2D9003BF7BB /* MainViewItemCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewItemCellDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		FFC425D9263CC41700D81045 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FFC425EF263D0A2C00D81045 /* CountersTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CountersTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationControllerTests.swift; sourceTree = "<group>"; };
+		FFCAEF55263E386F00111635 /* SwiftReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftReachability.swift; sourceTree = "<group>"; };
 		FFE576F32633AF9300BEE65E /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		FFE576FC2633AFC900BEE65E /* TopBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarProvider.swift; sourceTree = "<group>"; };
 		FFE577042633B13B00BEE65E /* BottomBarProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarProvider.swift; sourceTree = "<group>"; };
@@ -393,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				FF33E833263D0D2200119E91 /* BarProviderMock.swift */,
+				FF33E84E263DFDDA00119E91 /* ReachabilityMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				FFC425FB263D0A7500D81045 /* MainNavigationControllerTests.swift */,
+				FFCAEF55263E386F00111635 /* SwiftReachability.swift */,
 			);
 			path = "Test Cases";
 			sourceTree = "<group>";
@@ -692,8 +698,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFCAEF56263E386F00111635 /* SwiftReachability.swift in Sources */,
 				FF33E841263D0F3C00119E91 /* MainNavigationControllerTests.swift in Sources */,
 				FF33E834263D0D2200119E91 /* BarProviderMock.swift in Sources */,
+				FF33E84F263DFDDA00119E91 /* ReachabilityMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
