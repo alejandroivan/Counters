@@ -55,11 +55,13 @@ final class MainTableViewDataSourceTests: XCTestCase {
     }
 
     func testNumberOfSections() {
+        presenter.viewDidLoad() // forces the presenter to load some items from the mocks
         let numberOfSections = sut.numberOfSections(in: tableView)
         XCTAssertEqual(numberOfSections, 1)
     }
 
     func testNumberOfRows_whenNotFiltering() {
+        presenter.viewDidLoad() // forces the presenter to load some items from the mocks
         let numberOfRows = sut.tableView(tableView, numberOfRowsInSection: 0)
         XCTAssertEqual(numberOfRows, presenter.items.count)
     }
@@ -72,7 +74,7 @@ final class MainTableViewDataSourceTests: XCTestCase {
     }
 
     func testCellForRow_isOfCorrectTypeAndHasPropertiesSet() {
-        viewController.isFiltering = true // We make sure we get at least one item
+        presenter.viewDidLoad() // forces the presenter to load some items from the mocks
         let genericCell = sut.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
         let cell = genericCell as? MainViewItemCell
 

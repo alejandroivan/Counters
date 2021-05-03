@@ -3,6 +3,8 @@ import UIKit
 
 final class MainViewDisplayMock: MainViewDisplay {
 
+    let tableView = UITableView()
+
     var displayItemsCalled = false
     var displayEmptyErrorCalled = false
     var displayNoNetworkErrorCalled = false

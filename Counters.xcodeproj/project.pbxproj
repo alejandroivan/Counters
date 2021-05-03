@@ -25,6 +25,7 @@
 		FF0A66ED263E810500DDEF4D /* MainViewControllerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A66EC263E810500DDEF4D /* MainViewControllerPresenterTests.swift */; };
 		FF0A66F3263E832F00DDEF4D /* MainViewDisplayMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A66F2263E832F00DDEF4D /* MainViewDisplayMock.swift */; };
 		FF0A66FC263EC0E000DDEF4D /* MainTableViewDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A66FB263EC0E000DDEF4D /* MainTableViewDataSourceTests.swift */; };
+		FF0A6702263F684900DDEF4D /* MainTableViewDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0A6701263F684900DDEF4D /* MainTableViewDelegateTests.swift */; };
 		FF0FDF69263A2E1C0007503F /* LocalCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF67263A2E1C0007503F /* LocalCache.xcdatamodeld */; };
 		FF0FDF6E263A2E2A0007503F /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF6D263A2E2A0007503F /* LocalCache.swift */; };
 		FF0FDF74263B65D50007503F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0FDF73263B65D50007503F /* Reachability.m */; };
@@ -123,6 +124,7 @@
 		FF0A66EC263E810500DDEF4D /* MainViewControllerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenterTests.swift; sourceTree = "<group>"; };
 		FF0A66F2263E832F00DDEF4D /* MainViewDisplayMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewDisplayMock.swift; sourceTree = "<group>"; };
 		FF0A66FB263EC0E000DDEF4D /* MainTableViewDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDataSourceTests.swift; sourceTree = "<group>"; };
+		FF0A6701263F684900DDEF4D /* MainTableViewDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewDelegateTests.swift; sourceTree = "<group>"; };
 		FF0FDF68263A2E1C0007503F /* LocalCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalCache.xcdatamodel; sourceTree = "<group>"; };
 		FF0FDF6D263A2E2A0007503F /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 		FF0FDF73263B65D50007503F /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				FF0A66FB263EC0E000DDEF4D /* MainTableViewDataSourceTests.swift */,
+				FF0A6701263F684900DDEF4D /* MainTableViewDelegateTests.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				FFCAEFA4263E676400111635 /* DiffLocalCacheMock.swift in Sources */,
 				FFCAEF6F263E508600111635 /* NetworkingMock.swift in Sources */,
 				FF33E841263D0F3C00119E91 /* MainNavigationControllerTests.swift in Sources */,
+				FF0A6702263F684900DDEF4D /* MainTableViewDelegateTests.swift in Sources */,
 				FFCAEF5A263E3BC700111635 /* ItemsLocalCacheTests.swift in Sources */,
 				FF33E834263D0D2200119E91 /* BarProviderMock.swift in Sources */,
 				FF0A66F3263E832F00DDEF4D /* MainViewDisplayMock.swift in Sources */,

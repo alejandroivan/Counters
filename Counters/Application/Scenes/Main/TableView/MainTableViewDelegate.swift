@@ -27,7 +27,10 @@ extension MainTableViewDelegate: MainViewItemCellDelegate {
 
     func mainViewCell(_ cell: MainViewItemCell, countAction: MainViewItemAction) {
         guard let indexPath = tableView?.indexPath(for: cell) else { return }
+        mainViewCell(indexPath, countAction: countAction)
+    }
 
+    func mainViewCell(_ indexPath: IndexPath, countAction: MainViewItemAction) {
         let realIndex: Int
 
         if presenter?.isFiltering == true {
